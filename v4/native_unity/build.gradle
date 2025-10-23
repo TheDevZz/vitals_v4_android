@@ -1,0 +1,74 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.vitals.lib'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        externalNativeBuild {
+            cmake {
+//                arguments "-DANDROID_STL=c++_static"
+                arguments "-DANDROID_STL=c++_shared" // for opencv & pytorch
+//                cppFlags "-std=c++11" // eigen needs at least c++14
+                cppFlags "-fexceptions -frtti" // for opencv
+            }
+        }
+        ndk {
+            abiFilters "arm64-v8a", "armeabi-v7a"
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path 'src/main/cpp/CMakeLists.txt'
+            version '3.22.1'
+        }
+    }
+
+    ndkVersion "21.4.7075529"
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    packaging {
+        resources  {
+            // pytorch的jni库会调用java中的类，因此需要在dependencies中另外引入pytorch，
+            // 所以这里可以排除pytorch的库，以减小aar包体积
+            excludes += ['**/libpytorch_jni.so', '**/libfbjni.so']
+        }
+    }
+
+    aaptOptions {
+        // 忽略指定的文件
+        ignoreAssetsPattern "*.pt"
+        // 或者忽略多个模式
+        // ignoreAssetsPattern "*.pt:*.bin:*.model"
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.12.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
+}

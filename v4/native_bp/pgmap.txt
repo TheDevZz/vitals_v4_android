@@ -1,0 +1,58 @@
+# compiler: R8
+# compiler_version: 8.1.68
+# common_typos_disable
+# {"id":"com.android.tools.r8.mapping","version":"2.2"}
+# pg_map_id: d24f631
+# pg_map_hash: SHA-256 d24f631bb48dff977c3f3de47bc490159aadad0e0f33ca3e570c85b463fa557d
+com.vitals.sdk.api.BloodPressureAnalyzer -> com.vitals.sdk.api.BloodPressureAnalyzer:
+    1:1:java.lang.String hashSHA256(java.lang.String):0:0 -> a
+    2:2:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult resultFromCode(int):0:0 -> a
+com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult -> com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult:
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(float,float):0:0 -> <init>
+    3:3:void <init>(float,float,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+com.vitals.sdk.api.BloodPressureAnalyzer$hashSHA256$1 -> com.vitals.sdk.api.BloodPressureAnalyzer$a:
+    com.vitals.sdk.api.BloodPressureAnalyzer$hashSHA256$1 INSTANCE -> a
+    java.lang.CharSequence invoke(byte) -> a
+com.vitals.sdk.bp.Native -> com.vitals.sdk.bp.Native:
+    com.vitals.sdk.bp.Native INSTANCE -> a
+com.vitals.sdk.parcel.BaseFeature -> com.vitals.sdk.parcel.BaseFeature:
+    1:1:void <init>(int,com.vitals.sdk.parcel.Gender,double,double):0:0 -> <init>
+    2:2:void <init>(android.os.Parcel):0:0 -> <init>
+com.vitals.sdk.parcel.BaseFeature$CREATOR -> com.vitals.sdk.parcel.BaseFeature$CREATOR:
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    1:1:com.vitals.sdk.parcel.BaseFeature createFromParcel(android.os.Parcel):0:0 -> createFromParcel
+    2:2:java.lang.Object createFromParcel(android.os.Parcel):0:0 -> createFromParcel
+    1:1:com.vitals.sdk.parcel.BaseFeature[] newArray(int):0:0 -> newArray
+    2:2:java.lang.Object[] newArray(int):0:0 -> newArray
+com.vitals.sdk.parcel.Credential -> com.vitals.sdk.parcel.Credential:
+    1:1:void <init>(long,java.lang.String):0:0 -> <init>
+    2:2:void <init>(android.os.Parcel):0:0 -> <init>
+com.vitals.sdk.parcel.Credential$CREATOR -> com.vitals.sdk.parcel.Credential$CREATOR:
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    1:1:com.vitals.sdk.parcel.Credential createFromParcel(android.os.Parcel):0:0 -> createFromParcel
+    2:2:java.lang.Object createFromParcel(android.os.Parcel):0:0 -> createFromParcel
+    1:1:com.vitals.sdk.parcel.Credential[] newArray(int):0:0 -> newArray
+    2:2:java.lang.Object[] newArray(int):0:0 -> newArray
+com.vitals.sdk.parcel.Gender$Companion -> com.vitals.sdk.parcel.Gender$Companion:
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+com.vitals.sdk.parcel.ParcelableVitalsSampledData -> com.vitals.sdk.parcel.ParcelableVitalsSampledData:
+    1:1:void <init>(com.vitals.sdk.parcel.Credential,com.vitals.sdk.parcel.SignalData,java.util.List,java.util.List,com.vitals.sdk.parcel.BaseFeature):0:0 -> <init>
+    2:2:void <init>(com.vitals.sdk.parcel.Credential,com.vitals.sdk.parcel.SignalData,java.util.List,java.util.List,com.vitals.sdk.parcel.BaseFeature,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+com.vitals.sdk.parcel.ParcelableVitalsSampledData$CREATOR -> com.vitals.sdk.parcel.ParcelableVitalsSampledData$CREATOR:
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    1:1:com.vitals.sdk.parcel.ParcelableVitalsSampledData createFromParcel(android.os.Parcel):0:0 -> createFromParcel
+    2:2:java.lang.Object createFromParcel(android.os.Parcel):0:0 -> createFromParcel
+    1:1:com.vitals.sdk.parcel.ParcelableVitalsSampledData[] newArray(int):0:0 -> newArray
+    2:2:java.lang.Object[] newArray(int):0:0 -> newArray
+com.vitals.sdk.parcel.SignalData$CREATOR -> com.vitals.sdk.parcel.SignalData$CREATOR:
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    1:1:com.vitals.sdk.parcel.SignalData createFromParcel(android.os.Parcel):0:0 -> createFromParcel
+    2:2:java.lang.Object createFromParcel(android.os.Parcel):0:0 -> createFromParcel
+    1:1:com.vitals.sdk.parcel.SignalData[] newArray(int):0:0 -> newArray
+    2:2:java.lang.Object[] newArray(int):0:0 -> newArray

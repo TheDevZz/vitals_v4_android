@@ -1,0 +1,44 @@
+pluginManagement {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { url 'https://jitpack.io' }
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { url 'https://jitpack.io' }
+        google()
+        mavenCentral()
+        maven {url 'https://developer.huawei.com/repo/'}
+//        flatDir {
+//            // 使用多个目录
+//            dirs new File(rootDir, 'v4/native_bp/build/outputs/aar'),
+//                 new File(rootDir, 'v4/sdk/build/outputs/aar')
+//        }
+    }
+}
+
+rootProject.name = "Vitals"
+include ':app'
+include ':v4:sdk'
+include ':v4:native_unity'
+include ':v4:native_bp'
+include ':v4:example'
+include ':v4:example_app'
+include ':v4:example_service'
