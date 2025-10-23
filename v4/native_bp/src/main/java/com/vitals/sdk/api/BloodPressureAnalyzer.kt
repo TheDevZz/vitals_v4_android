@@ -51,7 +51,7 @@ object BloodPressureAnalyzer {
             return resultFromCode(9)
         }
 
-        if (sampledData.pickedFrames[0].width != 0 && sampledData.pickedFrames[0].height != 0) {
+        if (sampledData.pickedFrames[0].width == 0 || sampledData.pickedFrames[0].height == 0) {
             return resultFromCode(10)
         }
         if (!Native.verifyCredential(timestamp, sampledData.credential.sign)) {

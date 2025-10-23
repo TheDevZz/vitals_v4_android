@@ -2,8 +2,8 @@
 # compiler_version: 8.1.68
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 3067b87
-# pg_map_hash: SHA-256 3067b875ec2210ac84b15eb09289c5ea67fb33ae8b5a840811499e7d6dbf0fd2
+# pg_map_id: a3db8ca
+# pg_map_hash: SHA-256 a3db8ca796dc859777f03eb4186326d4df3f91fdcacdb70cc74e418f864c1e9e
 com.vitals.sdk.api.AnalyzeResult -> com.vitals.sdk.api.AnalyzeResult:
     com.vitals.sdk.api.MeasureResult measureResult -> a
     com.vitals.sdk.api.VitalsRuntimeException exception -> b
@@ -1446,11 +1446,23 @@ com.vitals.sdk.solutions.live.imp.LiveSolution -> com.vitals.sdk.solutions.live.
     25:25:void startHandle():0:0 -> b
     25:25:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     25:25:void postFaceResult$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
-    26:26:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
+    26:26:android.graphics.Bitmap com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrame():0:0 -> b
+    26:26:void pickFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    26:26:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     26:26:void postFaceResult$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
-    27:27:void com.vitals.sdk.solutions.live.imp.LiveSolution$CountDownSignal.await():0:0 -> b
-    27:27:void stopHandle():0 -> b
-    28:28:void stopHandle():0:0 -> b
+    27:27:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFaceResult():0:0 -> b
+    27:27:void pickFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    27:27:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    27:27:void postFaceResult$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    28:28:void pickFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
+    28:28:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    28:28:void postFaceResult$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    29:29:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
+    29:29:void postFaceResult$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    30:30:void com.vitals.sdk.solutions.live.imp.LiveSolution$CountDownSignal.await():0:0 -> b
+    30:30:void stopHandle():0 -> b
+    31:31:void stopHandle():0:0 -> b
     1:1:void postFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/f/d;)V"}
     2:2:void handleFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c

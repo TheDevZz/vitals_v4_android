@@ -426,6 +426,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
                 if (faceGood) {
                     if (now - keepStartTime > Threshold.keepTime) {
                         startHandle()
+                        pickFrame(frame)
                     }
                 } else {
                     toState(State.IDLE)
@@ -611,6 +612,14 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         }
     }
 
+    private fun pickFrame(frame: Frame) {
+        val bitmap = frame.frame ?: return
+        val landmark = frame.faceResult?.faceLandmarks()?.getOrNull(0)?.map {
+            PointF(it.x, it.y)
+        } ?: return
+        pickedFrames.add(bitmap)
+        pickedLandmarks.add(landmark)
+    }
 
     inner class Debugger {
         private var hasOwner = false
