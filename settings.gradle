@@ -34,7 +34,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Vitals"
+rootProject.name = "Vitals_v4"
 include ':app'
 include ':v4:sdk'
 include ':v4:native_unity'
