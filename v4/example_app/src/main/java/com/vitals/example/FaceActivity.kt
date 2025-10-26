@@ -3,7 +3,7 @@ package com.vitals.example
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Outline
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewOutlineProvider
@@ -11,6 +11,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.vitals.example.databinding.ActivityFaceBinding
 import com.vitals.sdk.api.FaceState
@@ -76,6 +77,7 @@ class FaceActivity : AppCompatActivity() {
     private fun setup() {
         val solution = Vitals.getSdkInstance().getSolution()
         val vitalsSampler = solution.createSampler()
+//        vitalsSampler.setActionThreshold(0.8f)
         vitalsSampler.bindToLifecycle(this, this, viewBinding.previewView)
         vitalsSampler.setEventListener(object : SamplerEventListener {
             override fun onFaceStateChange(state: FaceState) {
@@ -120,6 +122,29 @@ class FaceActivity : AppCompatActivity() {
                     .show()
             }
 
+        })
+
+        viewBinding.thresholdSeekBar.max = 100
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            viewBinding.thresholdSeekBar.min = 0
+        }
+        viewBinding.thresholdSeekBar.progress = (vitalsSampler.getActionThreshold() * 100).toInt()
+        viewBinding.thresholdText.text =
+            "动作阈值: ${"%.2f".format(vitalsSampler.getActionThreshold())}"
+        viewBinding.thresholdSeekBar.setOnSeekBarChangeListener(object :
+            android.widget.SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(
+                seekBar: android.widget.SeekBar?,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+                val threshold = progress / 100.0f
+                vitalsSampler.setActionThreshold(threshold)
+                viewBinding.thresholdText.text = "动作阈值: ${"%.2f".format(threshold)}"
+            }
+
+            override fun onStartTrackingTouch(seekBar: android.widget.SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: android.widget.SeekBar?) {}
         })
     }
 

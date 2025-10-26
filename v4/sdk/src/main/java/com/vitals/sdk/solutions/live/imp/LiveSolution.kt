@@ -105,6 +105,11 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
     private var faceLandmarker: FaceLandmarker? = null
 
     private val faceChecker = FaceChecker()
+    var actionThreshold: Float
+        get() = faceChecker.actionThreshold
+        set(value) {
+            faceChecker.actionThreshold = value
+        }
 
     // State Machine >>>
     var state = State.IDLE
