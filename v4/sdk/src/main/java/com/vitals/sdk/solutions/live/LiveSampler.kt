@@ -16,8 +16,6 @@ import com.vitals.sdk.solutions.live.imp.LiveSolution
 
 interface ILiveSampler {
     fun bindToLifecycle(context: Context, lifecycleOwner: LifecycleOwner, previewView: PreviewView)
-    fun setActionThreshold(threshold: Float)
-    fun getActionThreshold(): Float
 }
 
 class LiveSampler: AbsSampler(), VitalsSampler {
@@ -25,15 +23,6 @@ class LiveSampler: AbsSampler(), VitalsSampler {
     private var preFaceOutType: FaceOutType? = null
     private var mSolution: LiveSolution? = null
     private var mActionThreshold: Float = 1f
-
-    override fun setActionThreshold(threshold: Float) {
-        mSolution?.actionThreshold = threshold
-        mActionThreshold = threshold
-    }
-
-    override fun getActionThreshold(): Float {
-        return mSolution?.actionThreshold ?: mActionThreshold
-    }
 
     override fun bindToLifecycle(context: Context, lifecycleOwner: LifecycleOwner, previewView: PreviewView) {
         val liveSolution = LiveSolution(context, lifecycleOwner)

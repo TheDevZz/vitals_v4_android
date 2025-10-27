@@ -128,24 +128,24 @@ class FaceActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             viewBinding.thresholdSeekBar.min = 0
         }
-        viewBinding.thresholdSeekBar.progress = (vitalsSampler.getActionThreshold() * 100).toInt()
-        viewBinding.thresholdText.text =
-            "动作阈值: ${"%.2f".format(vitalsSampler.getActionThreshold())}"
-        viewBinding.thresholdSeekBar.setOnSeekBarChangeListener(object :
-            android.widget.SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(
-                seekBar: android.widget.SeekBar?,
-                progress: Int,
-                fromUser: Boolean
-            ) {
-                val threshold = progress / 100.0f
-                vitalsSampler.setActionThreshold(threshold)
-                viewBinding.thresholdText.text = "动作阈值: ${"%.2f".format(threshold)}"
-            }
-
-            override fun onStartTrackingTouch(seekBar: android.widget.SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: android.widget.SeekBar?) {}
-        })
+//        viewBinding.thresholdSeekBar.progress = (vitalsSampler.getActionThreshold() * 100).toInt()
+//        viewBinding.thresholdText.text =
+//            "动作阈值: ${"%.2f".format(vitalsSampler.getActionThreshold())}"
+//        viewBinding.thresholdSeekBar.setOnSeekBarChangeListener(object :
+//            android.widget.SeekBar.OnSeekBarChangeListener {
+//            override fun onProgressChanged(
+//                seekBar: android.widget.SeekBar?,
+//                progress: Int,
+//                fromUser: Boolean
+//            ) {
+//                val threshold = progress / 100.0f
+//                vitalsSampler.setActionThreshold(threshold)
+//                viewBinding.thresholdText.text = "动作阈值: ${"%.2f".format(threshold)}"
+//            }
+//
+//            override fun onStartTrackingTouch(seekBar: android.widget.SeekBar?) {}
+//            override fun onStopTrackingTouch(seekBar: android.widget.SeekBar?) {}
+//        })
     }
 
     private fun getTips(faceState: FaceState): String {

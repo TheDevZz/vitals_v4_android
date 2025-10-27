@@ -2,8 +2,8 @@
 # compiler_version: 8.1.68
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: a3db8ca
-# pg_map_hash: SHA-256 a3db8ca796dc859777f03eb4186326d4df3f91fdcacdb70cc74e418f864c1e9e
+# pg_map_id: 2d2d9f7
+# pg_map_hash: SHA-256 2d2d9f7663fec21d682090e1cdfd103ca1ec82946535dae7f2daed01a81d3fd7
 com.vitals.sdk.api.AnalyzeResult -> com.vitals.sdk.api.AnalyzeResult:
     com.vitals.sdk.api.MeasureResult measureResult -> a
     com.vitals.sdk.api.VitalsRuntimeException exception -> b
@@ -691,77 +691,93 @@ com.vitals.sdk.solutions.core.Box -> vs.d.a:
     java.lang.String toString() -> toString
 com.vitals.sdk.solutions.core.FaceChecker -> vs.d.d:
     java.util.Map shakeCheckRecord -> a
+    java.util.Map actionThresholdMap -> b
     void <init>() -> <init>
-    1:1:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.setFaceOutType(com.vitals.sdk.solutions.core.FaceChecker$FaceOutType):0:0 -> a
-    1:1:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    1:1:void applyActionThreshold(float):0:0 -> a
+    2:2:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.setFaceOutType(com.vitals.sdk.solutions.core.FaceChecker$FaceOutType):0:0 -> a
+    2:2:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/e/b;Landroid/graphics/Bitmap;)Lvs/d/b;"}
-    2:2:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    3:3:void com.vitals.sdk.solutions.core.Box.<init>():0:0 -> a
-    3:3:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    4:4:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    5:5:float com.vitals.sdk.solutions.core.Box.getLeft():0:0 -> a
-    5:5:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    6:6:void com.vitals.sdk.solutions.core.Box.setLeft(float):0:0 -> a
+    3:3:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    4:4:void com.vitals.sdk.solutions.core.Box.<init>():0:0 -> a
+    4:4:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    5:5:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    6:6:float com.vitals.sdk.solutions.core.Box.getLeft():0:0 -> a
     6:6:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    7:7:float com.vitals.sdk.solutions.core.Box.getRight():0:0 -> a
+    7:7:void com.vitals.sdk.solutions.core.Box.setLeft(float):0:0 -> a
     7:7:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    8:8:void com.vitals.sdk.solutions.core.Box.setRight(float):0:0 -> a
+    8:8:float com.vitals.sdk.solutions.core.Box.getRight():0:0 -> a
     8:8:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    9:9:float com.vitals.sdk.solutions.core.Box.getTop():0:0 -> a
+    9:9:void com.vitals.sdk.solutions.core.Box.setRight(float):0:0 -> a
     9:9:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    10:10:void com.vitals.sdk.solutions.core.Box.setTop(float):0:0 -> a
+    10:10:float com.vitals.sdk.solutions.core.Box.getTop():0:0 -> a
     10:10:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    11:11:float com.vitals.sdk.solutions.core.Box.getBottom():0:0 -> a
+    11:11:void com.vitals.sdk.solutions.core.Box.setTop(float):0:0 -> a
     11:11:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    12:12:void com.vitals.sdk.solutions.core.Box.setBottom(float):0:0 -> a
+    12:12:float com.vitals.sdk.solutions.core.Box.getBottom():0:0 -> a
     12:12:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    13:13:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.setBox(com.vitals.sdk.solutions.core.Box):0:0 -> a
+    13:13:void com.vitals.sdk.solutions.core.Box.setBottom(float):0:0 -> a
     13:13:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    14:14:float com.vitals.sdk.solutions.core.Box.getLeft():0:0 -> a
+    14:14:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.setBox(com.vitals.sdk.solutions.core.Box):0:0 -> a
     14:14:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    15:15:float com.vitals.sdk.solutions.core.Box.getTop():0:0 -> a
+    15:15:float com.vitals.sdk.solutions.core.Box.getLeft():0:0 -> a
     15:15:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    16:16:float com.vitals.sdk.solutions.core.Box.getRight():0:0 -> a
+    16:16:float com.vitals.sdk.solutions.core.Box.getTop():0:0 -> a
     16:16:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    17:17:float com.vitals.sdk.solutions.core.Box.getBottom():0:0 -> a
+    17:17:float com.vitals.sdk.solutions.core.Box.getRight():0:0 -> a
     17:17:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    18:18:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    19:19:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.setFarProportion(float):0:0 -> a
-    19:19:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    20:20:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    21:21:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.setLightness(float):0:0 -> a
-    21:21:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    22:22:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    23:23:float com.vitals.sdk.solutions.core.FaceChecker.distance(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark):0:0 -> a
-    23:23:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    24:24:float com.vitals.sdk.solutions.core.FaceChecker.distance(float,float,float,float):0:0 -> a
-    24:24:float com.vitals.sdk.solutions.core.FaceChecker.distance(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark):0 -> a
+    18:18:float com.vitals.sdk.solutions.core.Box.getBottom():0:0 -> a
+    18:18:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    19:19:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    20:20:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.setFarProportion(float):0:0 -> a
+    20:20:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    21:21:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    22:22:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.setLightness(float):0:0 -> a
+    22:22:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    23:23:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    24:24:android.graphics.PointF com.vitals.sdk.solutions.core.FaceChecker.convertPoint(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,int,int):0:0 -> a
     24:24:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
     25:25:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    26:26:float com.vitals.sdk.solutions.core.FaceChecker.distance(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark):0:0 -> a
+    26:26:float com.vitals.sdk.solutions.core.FaceChecker.distance(android.graphics.PointF,android.graphics.PointF):0:0 -> a
     26:26:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
     27:27:float com.vitals.sdk.solutions.core.FaceChecker.distance(float,float,float,float):0:0 -> a
-    27:27:float com.vitals.sdk.solutions.core.FaceChecker.distance(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark):0 -> a
+    27:27:float com.vitals.sdk.solutions.core.FaceChecker.distance(android.graphics.PointF,android.graphics.PointF):0 -> a
     27:27:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
     28:28:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    29:29:com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark com.vitals.sdk.solutions.core.FaceChecker.center(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark):0:0 -> a
+    29:29:float com.vitals.sdk.solutions.core.FaceChecker.distance(android.graphics.PointF,android.graphics.PointF):0:0 -> a
     29:29:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    30:30:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    31:31:float com.vitals.sdk.solutions.core.FaceChecker.distance(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark):0:0 -> a
-    31:31:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    32:32:float com.vitals.sdk.solutions.core.FaceChecker.distance(float,float,float,float):0:0 -> a
-    32:32:float com.vitals.sdk.solutions.core.FaceChecker.distance(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark):0 -> a
+    30:30:float com.vitals.sdk.solutions.core.FaceChecker.distance(float,float,float,float):0:0 -> a
+    30:30:float com.vitals.sdk.solutions.core.FaceChecker.distance(android.graphics.PointF,android.graphics.PointF):0 -> a
+    30:30:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    31:31:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    32:32:android.graphics.PointF com.vitals.sdk.solutions.core.FaceChecker.center(android.graphics.PointF,android.graphics.PointF):0:0 -> a
     32:32:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
     33:33:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    34:34:float com.vitals.sdk.solutions.core.FaceChecker.distance(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark):0:0 -> a
+    34:34:android.graphics.PointF com.vitals.sdk.solutions.core.FaceChecker.convertPoint(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,int,int):0:0 -> a
     34:34:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    35:35:float com.vitals.sdk.solutions.core.FaceChecker.distance(float,float,float,float):0:0 -> a
-    35:35:float com.vitals.sdk.solutions.core.FaceChecker.distance(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark):0 -> a
-    35:35:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    36:36:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
-    37:37:float com.vitals.sdk.solutions.core.FaceChecker.distance(float,float,float,float):0:0 -> a
+    35:35:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    36:36:android.graphics.PointF com.vitals.sdk.solutions.core.FaceChecker.convertPoint(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,int,int):0:0 -> a
+    36:36:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    37:37:float com.vitals.sdk.solutions.core.FaceChecker.distance(android.graphics.PointF,android.graphics.PointF):0:0 -> a
     37:37:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
-    38:38:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    38:38:float com.vitals.sdk.solutions.core.FaceChecker.distance(float,float,float,float):0:0 -> a
+    38:38:float com.vitals.sdk.solutions.core.FaceChecker.distance(android.graphics.PointF,android.graphics.PointF):0 -> a
+    38:38:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    39:39:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    40:40:android.graphics.PointF com.vitals.sdk.solutions.core.FaceChecker.convertPoint(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,int,int):0:0 -> a
+    40:40:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    41:41:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    42:42:android.graphics.PointF com.vitals.sdk.solutions.core.FaceChecker.convertPoint(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,int,int):0:0 -> a
+    42:42:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    43:43:float com.vitals.sdk.solutions.core.FaceChecker.distance(android.graphics.PointF,android.graphics.PointF):0:0 -> a
+    43:43:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    44:44:float com.vitals.sdk.solutions.core.FaceChecker.distance(float,float,float,float):0:0 -> a
+    44:44:float com.vitals.sdk.solutions.core.FaceChecker.distance(android.graphics.PointF,android.graphics.PointF):0 -> a
+    44:44:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    45:45:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    46:46:float com.vitals.sdk.solutions.core.FaceChecker.distance(float,float,float,float):0:0 -> a
+    46:46:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0 -> a
+    47:47:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult check(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult,android.graphics.Bitmap):0:0 -> a
+    48:48:float interpolateThreshold(float,float,float):0:0 -> a
 com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult -> vs.d.b:
     com.vitals.sdk.solutions.core.FaceChecker$FaceOutType faceOutType -> a
     com.vitals.sdk.solutions.core.Box box -> b
@@ -999,7 +1015,12 @@ com.vitals.sdk.solutions.live.LiveSampler -> vs.e.i:
     com.vitals.sdk.solutions.core.FaceChecker$FaceOutType preFaceOutType -> b
     1:1:void com.vitals.sdk.internal.AbsSampler.<init>():0:0 -> <init>
     1:1:void <init>():0 -> <init>
-    void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView) -> bindToLifecycle
+    1:1:void com.vitals.sdk.solutions.live.imp.LiveSolution.setActionThreshold(float):0:0 -> bindToLifecycle
+    1:1:void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView):0 -> bindToLifecycle
+    2:2:void com.vitals.sdk.solutions.core.FaceChecker.setActionThreshold(float):0:0 -> bindToLifecycle
+    2:2:void com.vitals.sdk.solutions.live.imp.LiveSolution.setActionThreshold(float):0 -> bindToLifecycle
+    2:2:void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView):0 -> bindToLifecycle
+    3:3:void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView):0:0 -> bindToLifecycle
     1:1:void com.vitals.sdk.internal.AbsSampler.setEventListener(com.vitals.sdk.api.SamplerEventListener):0:0 -> setEventListener
     1:1:void setEventListener(com.vitals.sdk.api.SamplerEventListener):0 -> setEventListener
       # {"id":"com.android.tools.r8.synthesized"}
