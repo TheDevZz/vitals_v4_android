@@ -185,11 +185,37 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
 
     override fun onDestroy(owner: LifecycleOwner) {
         super.onDestroy(owner)
-        faceLandmarker?.close()
         imageAnalyzer?.clearAnalyzer()
-        analysisExecutor.shutdown()
-        poolExecutor.shutdown()
-        handleExecutor.shutdown()
+
+        val executors = ArrayDeque(
+            arrayListOf(
+                analysisExecutor,
+                handleExecutor,
+                poolExecutor,
+                analysisExecutor,
+                handleExecutor,
+                poolExecutor,
+            )
+        )
+
+        fun flushExecutor(executors: ArrayDeque<ExecutorService>) {
+            if (executors.isEmpty()) {
+                mainExecutor.execute {
+                    logger.d(TAG, "onDestroy: release all")
+                    val faceLandmarkerLocal = faceLandmarker
+                    faceLandmarker = null
+                    faceLandmarkerLocal?.close()
+                    analysisExecutor.shutdown()
+                    handleExecutor.shutdown()
+                    poolExecutor.shutdown()
+                }
+            } else {
+                executors.removeFirst().execute {
+                    flushExecutor(executors)
+                }
+            }
+        }
+        flushExecutor(executors)
     }
 
     override fun onPause(owner: LifecycleOwner) {
@@ -383,11 +409,12 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
             frameTimestamp += 1
         }
         preFrameTimestamp = frameTimestamp
-        val result = faceLandmarker!!.detectForVideo(mpImage, frameTimestamp)
+        faceLandmarker?.detectForVideo(mpImage, frameTimestamp)?.also { result ->
+            frame.faceResult = result
+            frame.faceCheckResult = faceChecker.check(result, frame.frame!!)
+        }
 //        val result = faceLandmarker!!.detect(mpImage)
         solutionStats.faceStats.end()
-        frame.faceResult = result
-        frame.faceCheckResult = faceChecker.check(result, frame.frame!!)
     }
 
     private fun handleFrame(frame: Frame) {
@@ -408,11 +435,11 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
     }
 
     private fun handleFaceResult(frame: Frame) {
-        val faceOutType = frame.faceCheckResult!!.faceOutType
-        val now = System.currentTimeMillis()
-
         // Debug
         debugger.debugFaceResult(frame)
+
+        val faceOutType = frame.faceCheckResult?.faceOutType ?: return
+        val now = System.currentTimeMillis()
 
         emitEvent(Event.FACE_RESULT, frame.faceCheckResult!!)
 

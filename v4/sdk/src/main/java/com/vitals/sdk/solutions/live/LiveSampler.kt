@@ -25,6 +25,7 @@ class LiveSampler: AbsSampler(), VitalsSampler {
     private var mActionThreshold: Float = 1f
 
     override fun bindToLifecycle(context: Context, lifecycleOwner: LifecycleOwner, previewView: PreviewView) {
+//        SdkManager.getLogger()?.let { LiveSolution.setLogImp(it) }
         val liveSolution = LiveSolution(context, lifecycleOwner)
         mSolution = liveSolution
         liveSolution.actionThreshold = mActionThreshold
