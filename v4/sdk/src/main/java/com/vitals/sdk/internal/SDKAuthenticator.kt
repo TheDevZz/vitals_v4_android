@@ -2,7 +2,7 @@ package com.vitals.sdk.internal
 
 import android.content.Context
 
-class SDKAuthenticator(context: Context, appId: String, appSecret: String) {
+class SDKAuthenticator(context: Context, val appId: String, appSecret: String) {
     val secretHashKey = CryptoUtils.hashSHA256(appId + appSecret)
     var isAuthPass: Boolean = false
         private set

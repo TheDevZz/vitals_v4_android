@@ -2,8 +2,8 @@
 # compiler_version: 8.1.68
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 116c641
-# pg_map_hash: SHA-256 116c64132792110703ea02621ac1d7f2439a08380542db155d5fce041d674fa6
+# pg_map_id: 49a8d59
+# pg_map_hash: SHA-256 49a8d59de0f70abf9b09b85487e93341d422ffdf36eb09af73c023404a52e739
 com.vitals.sdk.api.AnalyzeResult -> com.vitals.sdk.api.AnalyzeResult:
     com.vitals.sdk.api.MeasureResult measureResult -> a
     com.vitals.sdk.api.VitalsRuntimeException exception -> b
@@ -367,12 +367,13 @@ com.vitals.sdk.framework.SdkFileManager$WhenMappings -> vs.a.o:
     void <clinit>() -> <clinit>
 com.vitals.sdk.framework.SdkManager -> vs.a.s:
     com.vitals.sdk.framework.SdkManager INSTANCE -> a
-    java.lang.String secretHashKey -> b
-    kotlin.Lazy sdkInstance$delegate -> c
-    kotlin.Lazy sp$delegate -> d
-    com.vitals.sdk.framework.CrashHandler crashHandler -> e
-    com.vitals.sdk.framework.SdkFileManager fileManager -> f
-    com.vitals.sdk.imp.NetService netService -> g
+    java.lang.String appId -> b
+    java.lang.String secretHashKey -> c
+    kotlin.Lazy sdkInstance$delegate -> d
+    kotlin.Lazy sp$delegate -> e
+    com.vitals.sdk.framework.CrashHandler crashHandler -> f
+    com.vitals.sdk.framework.SdkFileManager fileManager -> g
+    com.vitals.sdk.imp.NetService netService -> h
     void <clinit>() -> <clinit>
     void <init>() -> <init>
     1:1:boolean checkAuth():0:0 -> a
@@ -547,19 +548,23 @@ com.vitals.sdk.imp.VitalsSdkImp1$initialize$1 -> vs.b.g:
     15:15:void com.vitals.sdk.imp.VitalsSdkImp1.access$setAuthPass$p(com.vitals.sdk.imp.VitalsSdkImp1,boolean):0:0 -> invokeSuspend
     15:15:java.lang.Object invokeSuspend(java.lang.Object):0 -> invokeSuspend
     16:16:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> invokeSuspend
-    17:17:java.lang.String com.vitals.sdk.internal.SDKAuthenticator.getSecretHashKey():0:0 -> invokeSuspend
+    17:17:java.lang.String com.vitals.sdk.internal.SDKAuthenticator.getAppId():0:0 -> invokeSuspend
     17:17:java.lang.Object invokeSuspend(java.lang.Object):0 -> invokeSuspend
-    18:18:void com.vitals.sdk.framework.SdkManager.setSecretHashKey(java.lang.String):0:0 -> invokeSuspend
+    18:18:void com.vitals.sdk.framework.SdkManager.setAppId(java.lang.String):0:0 -> invokeSuspend
     18:18:java.lang.Object invokeSuspend(java.lang.Object):0 -> invokeSuspend
-    19:19:void com.vitals.sdk.framework.SdkManager.handleInitialized():0:0 -> invokeSuspend
+    19:19:java.lang.String com.vitals.sdk.internal.SDKAuthenticator.getSecretHashKey():0:0 -> invokeSuspend
     19:19:java.lang.Object invokeSuspend(java.lang.Object):0 -> invokeSuspend
-    20:20:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> invokeSuspend
-    21:21:void com.vitals.sdk.framework.VitalsException.<init>(com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> invokeSuspend
+    20:20:void com.vitals.sdk.framework.SdkManager.setSecretHashKey(java.lang.String):0:0 -> invokeSuspend
+    20:20:java.lang.Object invokeSuspend(java.lang.Object):0 -> invokeSuspend
+    21:21:void com.vitals.sdk.framework.SdkManager.handleInitialized():0:0 -> invokeSuspend
     21:21:java.lang.Object invokeSuspend(java.lang.Object):0 -> invokeSuspend
     22:22:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> invokeSuspend
-    23:23:com.vitals.sdk.framework.CrashHandler com.vitals.sdk.framework.SdkManager.getCrashHandler():0:0 -> invokeSuspend
+    23:23:void com.vitals.sdk.framework.VitalsException.<init>(com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> invokeSuspend
     23:23:java.lang.Object invokeSuspend(java.lang.Object):0 -> invokeSuspend
     24:24:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> invokeSuspend
+    25:25:com.vitals.sdk.framework.CrashHandler com.vitals.sdk.framework.SdkManager.getCrashHandler():0:0 -> invokeSuspend
+    25:25:java.lang.Object invokeSuspend(java.lang.Object):0 -> invokeSuspend
+    26:26:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> invokeSuspend
 com.vitals.sdk.imp.VitalsSdkImp1$initialize$1$1 -> vs.b.f:
     kotlin.jvm.internal.Ref$ObjectRef $err -> a
     com.vitals.sdk.api.VitalsSdkInitCallback $callback -> b
@@ -587,9 +592,10 @@ com.vitals.sdk.internal.CryptoUtils$hashSHA256$1 -> vs.c.a:
 com.vitals.sdk.internal.ISampler -> vs.c.c:
     void setEventListener(com.vitals.sdk.api.SamplerEventListener) -> setEventListener
 com.vitals.sdk.internal.SDKAuthenticator -> vs.c.d:
-    java.lang.String secretHashKey -> a
-    boolean isAuthPass -> b
-    java.util.List allowSigns -> c
+    java.lang.String appId -> a
+    java.lang.String secretHashKey -> b
+    boolean isAuthPass -> c
+    java.util.List allowSigns -> d
     void <init>(android.content.Context,java.lang.String,java.lang.String) -> <init>
     boolean authenticate(java.lang.String,java.lang.String) -> a
 com.vitals.sdk.parcel.BaseFeature -> com.vitals.sdk.parcel.BaseFeature:
@@ -602,8 +608,9 @@ com.vitals.sdk.parcel.BaseFeature$CREATOR -> com.vitals.sdk.parcel.BaseFeature$C
     1:1:com.vitals.sdk.parcel.BaseFeature[] newArray(int):0:0 -> newArray
     2:2:java.lang.Object[] newArray(int):0:0 -> newArray
 com.vitals.sdk.parcel.Credential -> com.vitals.sdk.parcel.Credential:
-    1:1:void <init>(long,java.lang.String):0:0 -> <init>
-    2:2:void <init>(android.os.Parcel):0:0 -> <init>
+    1:1:void <init>(android.os.Parcel):0:0 -> <init>
+    2:2:void <init>(java.lang.String,long,java.lang.String):0:0 -> <init>
+    3:3:void <init>(java.lang.String,long,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
 com.vitals.sdk.parcel.Credential$CREATOR -> com.vitals.sdk.parcel.Credential$CREATOR:
     1:1:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     1:1:com.vitals.sdk.parcel.Credential createFromParcel(android.os.Parcel):0:0 -> createFromParcel
@@ -928,14 +935,16 @@ com.vitals.sdk.solutions.live.LiveNativeSolution -> vs.e.e:
     7:7:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0 -> genParcelableSampledData
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     8:8:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0:0 -> genParcelableSampledData
-    9:9:java.lang.String com.vitals.sdk.framework.SdkManager.getSecretHashKey():0:0 -> genParcelableSampledData
+    9:9:java.lang.String com.vitals.sdk.framework.SdkManager.getAppId():0:0 -> genParcelableSampledData
     9:9:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0 -> genParcelableSampledData
-    10:10:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0:0 -> genParcelableSampledData
-    11:11:java.util.List com.vitals.sdk.solutions.live.LiveSampledData.getPickedLandmarks():0:0 -> genParcelableSampledData
-    11:11:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0 -> genParcelableSampledData
-    12:12:java.util.List com.vitals.sdk.solutions.live.LiveSampledData.getPickedFrames():0:0 -> genParcelableSampledData
+    10:10:java.lang.String com.vitals.sdk.framework.SdkManager.getSecretHashKey():0:0 -> genParcelableSampledData
+    10:10:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0 -> genParcelableSampledData
+    11:11:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0:0 -> genParcelableSampledData
+    12:12:java.util.List com.vitals.sdk.solutions.live.LiveSampledData.getPickedLandmarks():0:0 -> genParcelableSampledData
     12:12:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0 -> genParcelableSampledData
-    13:13:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0:0 -> genParcelableSampledData
+    13:13:java.util.List com.vitals.sdk.solutions.live.LiveSampledData.getPickedFrames():0:0 -> genParcelableSampledData
+    13:13:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0 -> genParcelableSampledData
+    14:14:com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData):0:0 -> genParcelableSampledData
 com.vitals.sdk.solutions.live.LiveNativeSolution$analyze$1$1 -> vs.e.c:
     com.vitals.sdk.solutions.live.LiveNativeSolution$analyze$1$1 INSTANCE -> a
     void <clinit>() -> <clinit>

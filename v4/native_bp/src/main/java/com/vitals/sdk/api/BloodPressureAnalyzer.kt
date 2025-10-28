@@ -16,9 +16,7 @@ object BloodPressureAnalyzer {
         if (kotlin.math.abs(timestamp - sampledData.credential.timestamp) > 5 * 60 * 1000) {
             return resultFromCode(1)
         }
-        val text =
-            "3fa57e4353c939b04410e6c4727782b00c8d2a0b8fe7b30f2046745a12305d58" + sampledData.credential.timestamp.toString()
-        if (hashSHA256(text) != sampledData.credential.sign) {
+        if (!verifySign(sampledData)) {
             return resultFromCode(2)
         }
         Log.d("BPAnalyzer", "signal time: ${sampledData.signalData.startTime} ${sampledData.signalData.endTime}")
@@ -66,6 +64,15 @@ object BloodPressureAnalyzer {
         var hbp = 120f + code
         var lbp = 80f + code
         return MeasureResult(hbp, lbp)
+    }
+
+    private fun verifySign(sampledData: ParcelableVitalsSampledData): Boolean {
+        val appId = sampledData.credential.appId
+        val timestamp = sampledData.credential.timestamp
+        val sign = sampledData.credential.sign
+        val hashKeyHash = "d8da05c6a6eb0c615c009df4f6b42680149810fd1f7a980799f349209f04f3d0"
+        val expSign = hashSHA256(appId + hashKeyHash + timestamp.toString())
+        return expSign == sign
     }
 
     private fun hashSHA256(input: String): String {

@@ -2,11 +2,12 @@
 # compiler_version: 8.1.68
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 3c7fc2f
-# pg_map_hash: SHA-256 3c7fc2f9bdc5e926000ccbd517af737ce660fbba386eb75236a3b66ff31a7463
+# pg_map_id: 741e2ef
+# pg_map_hash: SHA-256 741e2efcf39b698011179a67a6184c4547f28b52b99087ca30f292637d40c6fe
 com.vitals.sdk.api.BloodPressureAnalyzer -> com.vitals.sdk.api.BloodPressureAnalyzer:
     1:1:java.lang.String hashSHA256(java.lang.String):0:0 -> a
     2:2:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult resultFromCode(int):0:0 -> a
+    3:3:boolean verifySign(com.vitals.sdk.parcel.ParcelableVitalsSampledData):0:0 -> a
 com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult -> com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult:
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(float,float):0:0 -> <init>
@@ -14,8 +15,6 @@ com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult -> com.vitals.sdk.api.Blo
 com.vitals.sdk.api.BloodPressureAnalyzer$hashSHA256$1 -> com.vitals.sdk.api.BloodPressureAnalyzer$a:
     com.vitals.sdk.api.BloodPressureAnalyzer$hashSHA256$1 INSTANCE -> a
     java.lang.CharSequence invoke(byte) -> a
-com.vitals.sdk.bp.Authenticator -> vnb.a.a:
-    void <init>() -> <init>
 com.vitals.sdk.bp.Native -> com.vitals.sdk.bp.Native:
     com.vitals.sdk.bp.Native INSTANCE -> a
 com.vitals.sdk.parcel.BaseFeature -> com.vitals.sdk.parcel.BaseFeature:
@@ -29,8 +28,9 @@ com.vitals.sdk.parcel.BaseFeature$CREATOR -> com.vitals.sdk.parcel.BaseFeature$C
     1:1:com.vitals.sdk.parcel.BaseFeature[] newArray(int):0:0 -> newArray
     2:2:java.lang.Object[] newArray(int):0:0 -> newArray
 com.vitals.sdk.parcel.Credential -> com.vitals.sdk.parcel.Credential:
-    1:1:void <init>(long,java.lang.String):0:0 -> <init>
-    2:2:void <init>(android.os.Parcel):0:0 -> <init>
+    1:1:void <init>(android.os.Parcel):0:0 -> <init>
+    2:2:void <init>(java.lang.String,long,java.lang.String):0:0 -> <init>
+    3:3:void <init>(java.lang.String,long,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
 com.vitals.sdk.parcel.Credential$CREATOR -> com.vitals.sdk.parcel.Credential$CREATOR:
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>

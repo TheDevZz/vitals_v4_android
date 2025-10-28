@@ -89,10 +89,12 @@ data class BaseFeature(
 }
 
 class Credential(
+    val appId: String = "",
     val timestamp: Long,
     val sign: String,
 ): Parcelable {
     constructor(parcel: Parcel) : this(
+        appId = parcel.readString() ?: "",
         timestamp = parcel.readLong(),
         sign = parcel.readString() ?: ""
     )
@@ -102,6 +104,7 @@ class Credential(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(appId)
         parcel.writeLong(timestamp)
         parcel.writeString(sign)
     }

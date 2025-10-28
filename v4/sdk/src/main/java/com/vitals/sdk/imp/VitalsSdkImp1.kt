@@ -97,6 +97,7 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
                 if (!authPass) {
                     throw VitalsException(ErrCode.AUTH_DENIED, "authorization fail")
                 }
+                SdkManager.appId = sdkAuthenticator.appId
                 SdkManager.secretHashKey = sdkAuthenticator.secretHashKey
                 SdkManager.handleInitialized()
             } catch (e: VitalsException) {

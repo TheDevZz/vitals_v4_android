@@ -11,6 +11,7 @@ import kotlin.io.path.pathString
 object SdkManager: ISdkManager {
     val sdkVersion = "4.0.0"
 
+    var appId: String = ""
     var secretHashKey: String = ""
 
     private val sdkInstance: ISdkManager by lazy {

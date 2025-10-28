@@ -65,10 +65,12 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
         val signalData = SignalData(fst, fet, fps, pixelsV2Signal, shapeV2)
 
         val timestamp = System.currentTimeMillis()
-        val text = SdkManager.secretHashKey + timestamp.toString()
+        val appId = SdkManager.appId
+        val secretHashKey = SdkManager.secretHashKey
+        val text = appId + CryptoUtils.hashSHA256(secretHashKey) + timestamp.toString()
         val sign = CryptoUtils.hashSHA256(text)
 
-        val credential = Credential(timestamp, sign)
+        val credential = Credential(appId, timestamp, sign)
 
         val parcelableVitalsSampledData = ParcelableVitalsSampledData(
             credential,
