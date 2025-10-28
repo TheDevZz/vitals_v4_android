@@ -2,8 +2,8 @@
 # compiler_version: 8.1.68
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: d24f631
-# pg_map_hash: SHA-256 d24f631bb48dff977c3f3de47bc490159aadad0e0f33ca3e570c85b463fa557d
+# pg_map_id: 3c7fc2f
+# pg_map_hash: SHA-256 3c7fc2f9bdc5e926000ccbd517af737ce660fbba386eb75236a3b66ff31a7463
 com.vitals.sdk.api.BloodPressureAnalyzer -> com.vitals.sdk.api.BloodPressureAnalyzer:
     1:1:java.lang.String hashSHA256(java.lang.String):0:0 -> a
     2:2:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult resultFromCode(int):0:0 -> a
@@ -14,6 +14,8 @@ com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult -> com.vitals.sdk.api.Blo
 com.vitals.sdk.api.BloodPressureAnalyzer$hashSHA256$1 -> com.vitals.sdk.api.BloodPressureAnalyzer$a:
     com.vitals.sdk.api.BloodPressureAnalyzer$hashSHA256$1 INSTANCE -> a
     java.lang.CharSequence invoke(byte) -> a
+com.vitals.sdk.bp.Authenticator -> vnb.a.a:
+    void <init>() -> <init>
 com.vitals.sdk.bp.Native -> com.vitals.sdk.bp.Native:
     com.vitals.sdk.bp.Native INSTANCE -> a
 com.vitals.sdk.parcel.BaseFeature -> com.vitals.sdk.parcel.BaseFeature:

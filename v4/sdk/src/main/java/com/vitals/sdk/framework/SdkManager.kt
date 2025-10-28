@@ -2,18 +2,16 @@ package com.vitals.sdk.framework
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.vitals.sdk.api.Vitals
 import com.vitals.sdk.api.AuthorizationException
+import com.vitals.sdk.api.Vitals
 import com.vitals.sdk.imp.NetService
-import com.vitals.sdk.solutions.live.LiveSampler
-import java.io.File
 import kotlin.io.path.Path
 import kotlin.io.path.pathString
 
 object SdkManager: ISdkManager {
     val sdkVersion = "4.0.0"
 
-    var appSecretHash: String = ""
+    var secretHashKey: String = ""
 
     private val sdkInstance: ISdkManager by lazy {
         Vitals.getSdkInstance() as ISdkManager

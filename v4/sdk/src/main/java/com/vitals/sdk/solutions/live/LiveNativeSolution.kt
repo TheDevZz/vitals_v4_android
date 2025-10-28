@@ -3,16 +3,16 @@ package com.vitals.sdk.solutions.live
 import com.vitals.lib.Port
 import com.vitals.sdk.api.Gender
 import com.vitals.sdk.api.MeasureResult
+import com.vitals.sdk.api.Result
 import com.vitals.sdk.api.VitalsSampledData
 import com.vitals.sdk.api.VitalsSampler
 import com.vitals.sdk.api.VitalsSolution
 import com.vitals.sdk.framework.SdkManager
-import com.vitals.sdk.solutions.core.SolutionUtils
-import com.vitals.sdk.api.Result
 import com.vitals.sdk.internal.CryptoUtils
 import com.vitals.sdk.parcel.Credential
 import com.vitals.sdk.parcel.ParcelableVitalsSampledData
 import com.vitals.sdk.parcel.SignalData
+import com.vitals.sdk.solutions.core.SolutionUtils
 
 interface ILiveNativeSolution {
     fun createSampler(): VitalsSampler
@@ -65,7 +65,7 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
         val signalData = SignalData(fst, fet, fps, pixelsV2Signal, shapeV2)
 
         val timestamp = System.currentTimeMillis()
-        val text = SdkManager.appSecretHash + timestamp.toString()
+        val text = SdkManager.secretHashKey + timestamp.toString()
         val sign = CryptoUtils.hashSHA256(text)
 
         val credential = Credential(timestamp, sign)

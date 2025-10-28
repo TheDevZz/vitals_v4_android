@@ -16,7 +16,8 @@ object BloodPressureAnalyzer {
         if (kotlin.math.abs(timestamp - sampledData.credential.timestamp) > 5 * 60 * 1000) {
             return resultFromCode(1)
         }
-        val text = "3d44d922058396773f131a9070f8b88f8fb6b7f2733fadae888be7bf26577c37" + sampledData.credential.timestamp.toString()
+        val text =
+            "3fa57e4353c939b04410e6c4727782b00c8d2a0b8fe7b30f2046745a12305d58" + sampledData.credential.timestamp.toString()
         if (hashSHA256(text) != sampledData.credential.sign) {
             return resultFromCode(2)
         }

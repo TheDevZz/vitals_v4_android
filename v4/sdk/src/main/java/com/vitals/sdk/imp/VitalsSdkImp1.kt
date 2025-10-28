@@ -1,9 +1,9 @@
 package com.vitals.sdk.imp
 
 import android.content.Context
-import com.vitals.sdk.api.VitalsSdkInitOption
 import com.vitals.sdk.api.VitalsSdkConfig
 import com.vitals.sdk.api.VitalsSdkInitCallback
+import com.vitals.sdk.api.VitalsSdkInitOption
 import com.vitals.sdk.api.VitalsSolution
 import com.vitals.sdk.framework.AbsSdkBase
 import com.vitals.sdk.framework.ActivateManager
@@ -14,17 +14,14 @@ import com.vitals.sdk.framework.IdentityManager
 import com.vitals.sdk.framework.SdkManager
 import com.vitals.sdk.framework.SdkXLogImp
 import com.vitals.sdk.framework.VitalsException
-import com.vitals.sdk.internal.CryptoUtils
+import com.vitals.sdk.internal.SDKAuthenticator
 import com.vitals.sdk.lib.FaceLandmarkerContract
 import com.vitals.sdk.solutions.live.LiveNativeSolution
-import com.vitals.sdk.solutions.live.imp.VitalsLib
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import java.io.File
-import java.nio.file.Path
-import java.security.MessageDigest
 
 interface IVitalsSdkImp1 {
     fun initialize(
@@ -89,11 +86,18 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
             var err: VitalsException? = null
             try {
 //                val r = OnlineAuth().authorize(vitalsSdkInitOption)
-                val r = PrivateOnlineAuth().authorize(vitalsSdkInitOption)
+//                val r = PrivateOnlineAuth().authorize(vitalsSdkInitOption)
 //                val r = true
-                authPass = r
-                SdkManager.getNetService().token = SdkManager.sp.getString("token", "")?:""
-                setAppSecretHash(vitalsSdkInitOption.appSecret)
+                val sdkAuthenticator = SDKAuthenticator(
+                    context,
+                    vitalsSdkInitOption.appId,
+                    vitalsSdkInitOption.appSecret
+                )
+                authPass = sdkAuthenticator.isAuthPass
+                if (!authPass) {
+                    throw VitalsException(ErrCode.AUTH_DENIED, "authorization fail")
+                }
+                SdkManager.secretHashKey = sdkAuthenticator.secretHashKey
                 SdkManager.handleInitialized()
             } catch (e: VitalsException) {
                 err = e
@@ -116,10 +120,6 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
 //        testDir.mkdirs()
 //
 //        Port.setupTest(testDir.path)
-    }
-
-    private fun setAppSecretHash(appSecret: String) {
-        SdkManager.appSecretHash = CryptoUtils.hashSHA256(appSecret)
     }
 
     fun prepareModelFromAssets(context: Context, modelDir: String): List<String> {
