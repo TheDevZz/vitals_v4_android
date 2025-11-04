@@ -38,15 +38,35 @@ function(set_target_options target)
                     -Wl,--strip-all
             )
         endif ()
+        #        # 使用生成器表达式 $<$<CONFIG:Release>:...>
+        #        target_compile_options(${target} PRIVATE
+        #                $<$<CONFIG:Release>:
+        #                    -fvisibility=hidden
+        #                    -fvisibility-inlines-hidden
+        #                    -fexceptions
+        #                    >
+        #        )
+        #
+        #        target_link_options(${target} PRIVATE
+        #                $<$<CONFIG:Release>:
+        #                    -Wl,--exclude-libs,ALL
+        #                    -Wl,--strip-all
+        #                    >
+        #        )
     endif ()
 endfunction()
 
 # MARK: - Build Targets
 
 add_library("vitals_bp" SHARED
+        src/algo/port_jni.cpp
         src/algo/bp_jni.cpp
+        src/algo/bp_pred_v3.cpp
         src/algo/bp_prediction.cpp
+        src/algo/binary_data_manager.cpp
+        src/algo/fea_pred.cpp
 
+        src/algo/process.cpp
         src/algo/measure_vital.cpp
         src/algo/performance.cpp
         src/algo/signal_processing.cpp
@@ -59,6 +79,7 @@ target_link_libraries("vitals_bp"
         z
         android
         log
+        jnigraphics
         pytorch
 )
 

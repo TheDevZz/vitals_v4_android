@@ -59,12 +59,12 @@ android {
         }
     }
 
-    aaptOptions {
-        // 忽略指定的文件
-        ignoreAssetsPattern "*.pt"
-        // 或者忽略多个模式
-        // ignoreAssetsPattern "*.pt:*.bin:*.model"
-    }
+//    aaptOptions {
+//        // 忽略指定的文件
+//        ignoreAssetsPattern "*.pt"
+//        // 或者忽略多个模式
+//        // ignoreAssetsPattern "*.pt:*.bin:*.model"
+//    }
 }
 
 dependencies {

@@ -10,6 +10,8 @@
 #include "bp_prediction.hpp"
 #endif
 
+#include "bp_pred_v3.hpp"
+
 namespace vitals {
 
 namespace measure {
@@ -388,36 +390,46 @@ MeasureResult processPixelsV2(const std::vector<std::vector<double>>& p, double 
   // std::cout << "peak_ratio: " << peak_ratio << std::endl;
 
   std::vector<double> sig_pos = EigenVectorToStdVector(ps);
-  double hrv, stress;
-  std::tie(hrv, stress) = predict_hrv_v2(sig_pos, fps, hr);
+    // double hrv, stress;
+    // std::tie(hrv, stress) = predict_hrv_v2(sig_pos, fps, hr);
 
   // std::cout << "hrv: " << hrv << std::endl;
   // std::cout << "stress: " << stress << std::endl;
 
-  double spo2 = predict_spo2_v2(p[0], p[2]);
+    // double spo2 = predict_spo2_v2(p[0], p[2]);
   // std::cout << "spo2: " << spo2 << std::endl;
 
-  double rr = predict_rr_v2(p, fps, 30);
+    // double rr = predict_rr_v2(p, fps, 30);
   // std::cout << "rr: " << rr << std::endl;
 
   MeasureResult res;
-  res.hr = hr;
+    // res.hr = hr;
   res.ratio = peak_ratio;
 
-  res.hrv = hrv;
-  res.stress = stress;
+    // res.hrv = hrv;
+    // res.stress = stress;
 
-  res.rr = rr;
-  res.spo2 = spo2;
+    // res.rr = rr;
+    // res.spo2 = spo2;
 
-#ifdef ENABLE_BP
-  BPEval bpEval = predice_bp_v2(p[1], fps, base_fea);
-  res.hbp = bpEval.hbp;
-  res.lbp = bpEval.lbp;
-#else
-  res.hbp = 0;
-  res.lbp = 0;
-#endif
+// #ifdef ENABLE_BP
+//   // BPEval bpEval = predice_bp_v2(p[1], fps, base_fea);
+//   // res.hbp = bpEval.hbp;
+//   // res.lbp = bpEval.lbp;
+// #else
+//   res.hbp = 0;
+//   res.lbp = 0;
+// #endif
+
+    if (base_fea) {
+      vitals::measure::BPPredV3 bpPredV3("bp.pt");
+      auto [hbp, lbp] = bpPredV3.predict_bp_v3(sig_pos, fps,
+                                               base_fea->age, base_fea->gender, base_fea->bmi,
+                                               hr, peak_ratio,
+                                               0, 0);
+      res.hbp = hbp;
+      res.lbp = lbp;
+    }
 
   return res;
 }

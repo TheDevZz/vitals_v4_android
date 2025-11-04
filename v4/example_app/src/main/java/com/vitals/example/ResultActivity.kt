@@ -1,6 +1,5 @@
 package com.vitals.example
 
-import androidx.appcompat.app.AppCompatActivity
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -9,6 +8,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.os.RemoteException
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.vitals.example.databinding.ActivityResultBinding
 import com.vitals.sdk.api.Gender
 import com.vitals.sdk.api.MeasureResult
@@ -22,10 +22,10 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityResultBinding
 
     private lateinit var sampledData: VitalsSampledData
-    
+
     private var bloodPressureService: IBloodPressureAnalyzerService? = null
     private var serviceConnected = false
-    
+
     companion object {
         private const val TAG = "ResultActivity"
     }
@@ -54,7 +54,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
         DataBridge.sampledData?.let {
             sampledData = it
-            DataBridge.sampledData = null
+            // DataBridge.sampledData = null
             GlobalScope.launch {
                 val analyzeResult = Vitals.getSdkInstance().getSolution().analyze(sampledData, 30, Gender.Male, 1.75, 60.0)
                 runOnUiThread {
@@ -83,9 +83,10 @@ class ResultActivity : AppCompatActivity() {
             GlobalScope.launch {
                 try {
                     val parcelableSampledData = Vitals.getSdkInstance().getSolution().genParcelableSampledData(sampledData)
+                    // DataBridge.writeParcelableToFile(parcelableSampledData, File(cacheDir, "sampled_data_${System.currentTimeMillis()}.parcelable"))
                     Log.d(TAG, "调用远程服务进行血压分析")
                     val result = bloodPressureService?.analyzeBloodPressure(parcelableSampledData)
-                    
+
                     runOnUiThread {
                         if (result != null) {
                             showServiceMeasureResult(result)

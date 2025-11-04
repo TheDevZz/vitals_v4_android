@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <numeric>
 #include <iterator>
+#include <stdexcept>
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/FFT>
@@ -101,7 +102,7 @@ std::vector<int> findPeaks(const std::vector<T> &data, const PeakParams<T> &para
   if (threshold < 0) {
     threshold = 0;
   }
-  
+
   std::vector<int> peaks;
 
   // int last_peak_idx = -1;
@@ -134,7 +135,7 @@ std::vector<int> findPeaks(const std::vector<T> &data, const PeakParams<T> &para
 
   if (distance > 1) {
     int peaks_size = peaks.size();
-    
+
     // argsort start: priority_to_position = np.argsort(data[peaks])
     // 创建一个索引向量并使用std::iota生成递增序列
     std::vector<int> priority_to_position(peaks_size);
@@ -274,6 +275,17 @@ template <typename T>
 double std_dev(const std::vector<T>& v) {
   return std::sqrt(variance(v));
 }
+
+// 根据索引获取数据的辅助函数
+  template<typename T>
+  std::vector<T> gather(const std::vector<T> &data, const std::vector<size_t> &indices) {
+    std::vector<T> result;
+    result.reserve(indices.size());
+    for (const auto &idx: indices) {
+      result.push_back(data[idx]);
+    }
+    return result;
+  }
 
 template<typename T>
 struct NumStats {
@@ -467,7 +479,7 @@ inline HRFreqInfo getHR(const FFTInfo& fftInfo, double frame_rate = 30, double m
     }
     freq_ids.push_back(i);
   }
-  
+
   // fft_data = np.abs(fft_data)
   // fft_data[inds] = 0
   // bps_freq = 60.0 * freq
@@ -611,13 +623,112 @@ T median(std::vector<T> v) {
 }
 
 template<typename T>
-std::vector<T> diff(const std::vector<T>& vec) {
-    std::vector<T> result;
-    for (size_t i = 1; i < vec.size(); ++i) {
-        result.push_back(vec[i] - vec[i-1]);
-    }
-    return result;
+std::vector<T> diff(const std::vector<T> &vec) {
+  std::vector<T> result;
+  for (size_t i = 1; i < vec.size(); ++i) {
+    result.push_back(vec[i] - vec[i - 1]);
+  }
+  return result;
 }
+
+/**
+ * 在指定区间内返回均匀间隔的数字
+ *
+ * @param start 起始值
+ * @param stop 结束值
+ * @param num 生成的样本数量，默认为50
+ * @param endpoint 是否包含结束值，默认为true
+ * @return 均匀分布的向量
+ */
+  template<typename T>
+  std::vector<T> linspace(T start, T stop, int num = 50, bool endpoint = true) {
+    static_assert(std::is_floating_point<T>::value, "linspace requires floating point type");
+    if (num < 0) {
+      throw std::invalid_argument("Number of samples must be non-negative.");
+    }
+    if (num == 0) {
+      return {};
+    }
+    if (num == 1) {
+      return std::vector<T>(1, start);
+    }
+
+    T step;
+    if (endpoint) {
+      step = (stop - start) / static_cast<T>(num - 1);
+    } else {
+      step = (stop - start) / static_cast<T>(num);
+    }
+
+    std::vector<T> result(num);
+    for (int i = 0; i < num; ++i) {
+      result[i] = start + static_cast<T>(i) * step;
+    }
+
+    return result;
+  }
+
+/**
+ * 手动实现线性插值
+ *
+ * @param x 需要插值的点（单个值或向量）
+ * @param xp 已知数据点的x坐标（递增序列）
+ * @param fp 已知数据点的y坐标
+ * @return 插值结果
+ */
+  template<typename T>
+  std::vector<T> interp(
+    const std::vector<T> &x, const std::vector<T> &xp,
+    const std::vector<T> &fp
+  ) {
+    if (xp.size() != fp.size()) {
+      throw std::invalid_argument("xp and fp must have the same size");
+    }
+    if (xp.empty()) {
+      throw std::invalid_argument("xp and fp cannot be empty");
+    }
+
+    std::vector<T> result;
+    result.reserve(x.size());
+
+    for (const T &xi: x) {
+      // 边界情况：超出范围
+      if (xi <= xp.front()) {
+        result.push_back(fp.front());
+        continue;
+      }
+      if (xi >= xp.back()) {
+        result.push_back(fp.back());
+        continue;
+      }
+
+      // 使用二分查找找到xi所在的区间[xp[i], xp[i+1]]
+      size_t left = 0, right = xp.size() - 1;
+      while (left < right - 1) {
+        size_t mid = (left + right) / 2;
+        if (xp[mid] <= xi) {
+          left = mid;
+        } else {
+          right = mid;
+        }
+      }
+
+      // 线性插值公式：y = y1 + (x - x1) * (y2 - y1) / (x2 - x1)
+      T x1 = xp[left], x2 = xp[left + 1];
+      T y1 = fp[left], y2 = fp[left + 1];
+      T yi = y1 + (xi - x1) * (y2 - y1) / (x2 - x1);
+      result.push_back(yi);
+    }
+
+    return result;
+  }
+
+// 重载版本：处理单个值的插值
+  template<typename T>
+  T interp(T x, const std::vector<T> &xp, const std::vector<T> &fp) {
+    std::vector<T> x_vec{x};
+    return interp(x_vec, xp, fp)[0];
+  }
 
 Eigen::VectorXd pos(const Eigen::MatrixXd& mp, double fps);
 Eigen::VectorXd pos(const std::vector<std::vector<double>>& p, double fps);

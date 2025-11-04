@@ -1,60 +1,267 @@
 # compiler: R8
-# compiler_version: 8.1.68
+# compiler_version: 8.6.27
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 741e2ef
-# pg_map_hash: SHA-256 741e2efcf39b698011179a67a6184c4547f28b52b99087ca30f292637d40c6fe
+# pg_map_id: 821a354
+# pg_map_hash: SHA-256 821a3541a3e96b16491513ddeb7addf942b8c9288e06fd54651f6cdf2335e155
+com.vitals.lib.Port -> com.vitals.lib.Port:
+# {"id":"sourceFile","fileName":"Port.kt"}
+    1:1:void <clinit>():15:15 -> <clinit>
+    1:1:void <init>():13:13 -> <init>
+    1:12:com.vitals.sdk.parcel.BaseFeature predictBaseFea(java.util.List):84:95 -> predictBaseFea
+    1:91:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):67:157 -> processPixelsV2
+    92:93:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):70:71 -> processPixelsV2
+    94:94:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):68:68 -> processPixelsV2
+    95:178:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):76:159 -> processPixelsV2
+    179:180:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):79:80 -> processPixelsV2
+    181:181:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):77:77 -> processPixelsV2
+    1:1:void removeBinaryData(java.lang.String):123:123 -> removeBinaryData
+    1:4:void storeBinaryData(java.lang.String,java.nio.ByteBuffer):107:110 -> storeBinaryData
+    5:5:void storeBinaryData(java.lang.String,java.nio.ByteBuffer):108:108 -> storeBinaryData
+    6:10:void storeBinaryData(java.lang.String,java.io.InputStream):114:118 -> storeBinaryData
+com.vitals.lib.Port$MeasureResult -> com.vitals.lib.Port$MeasureResult:
+# {"id":"sourceFile","fileName":"Port.kt"}
+    double hr -> a
+    double hrv -> b
+    double rr -> c
+    double spo2 -> d
+    double stress -> e
+    double hbp -> f
+    double lbp -> g
+    double ratio -> h
+    com.vitals.lib.Port$MeasureResult$Companion Companion -> i
+    1:1:void <init>():18:18 -> <init>
+    1:1:double getHbp():26:26 -> a
+    2:2:void setHbp(double):26:26 -> a
+    1:1:double getHr():19:19 -> b
+    2:2:void setHr(double):19:19 -> b
+    1:1:double getHrv():20:20 -> c
+    2:2:void setHrv(double):20:20 -> c
+    1:1:double getLbp():27:27 -> d
+    2:2:void setLbp(double):27:27 -> d
+    1:1:double getRatio():29:29 -> e
+    2:2:void setRatio(double):29:29 -> e
+    1:1:double getRr():21:21 -> f
+    2:2:void setRr(double):21:21 -> f
+    1:1:double getSpo2():22:22 -> g
+    2:2:void setSpo2(double):22:22 -> g
+    1:1:double getStress():24:24 -> h
+    2:2:void setStress(double):24:24 -> h
+    1:1:java.lang.String toString():62:62 -> toString
+com.vitals.lib.Port$MeasureResult$Companion -> com.vitals.lib.Port$MeasureResult$Companion:
+# {"id":"sourceFile","fileName":"Port.kt"}
+    1:1:void <init>():31:31 -> <init>
+    2:2:void <init>():31:31 -> <init>
+    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0 -> <init>
+    1:2:com.vitals.lib.Port$MeasureResult create(long):33:34 -> a
+    3:3:void com.vitals.lib.Port$MeasureResult.setHr(double):19:19 -> a
+    3:3:com.vitals.lib.Port$MeasureResult create(long):34 -> a
+    4:4:com.vitals.lib.Port$MeasureResult create(long):35:35 -> a
+    5:5:void com.vitals.lib.Port$MeasureResult.setHrv(double):20:20 -> a
+    5:5:com.vitals.lib.Port$MeasureResult create(long):35 -> a
+    6:6:com.vitals.lib.Port$MeasureResult create(long):36:36 -> a
+    7:7:void com.vitals.lib.Port$MeasureResult.setRr(double):21:21 -> a
+    7:7:com.vitals.lib.Port$MeasureResult create(long):36 -> a
+    8:8:com.vitals.lib.Port$MeasureResult create(long):37:37 -> a
+    9:9:void com.vitals.lib.Port$MeasureResult.setSpo2(double):22:22 -> a
+    9:9:com.vitals.lib.Port$MeasureResult create(long):37 -> a
+    10:10:com.vitals.lib.Port$MeasureResult create(long):38:38 -> a
+    11:11:void com.vitals.lib.Port$MeasureResult.setStress(double):24:24 -> a
+    11:11:com.vitals.lib.Port$MeasureResult create(long):38 -> a
+    12:12:com.vitals.lib.Port$MeasureResult create(long):39:39 -> a
+    13:13:void com.vitals.lib.Port$MeasureResult.setHbp(double):26:26 -> a
+    13:13:com.vitals.lib.Port$MeasureResult create(long):39 -> a
+    14:14:com.vitals.lib.Port$MeasureResult create(long):40:40 -> a
+    15:15:void com.vitals.lib.Port$MeasureResult.setLbp(double):27:27 -> a
+    15:15:com.vitals.lib.Port$MeasureResult create(long):40 -> a
+    16:16:com.vitals.lib.Port$MeasureResult create(long):41:41 -> a
+    17:17:void com.vitals.lib.Port$MeasureResult.setRatio(double):29:29 -> a
+    17:17:com.vitals.lib.Port$MeasureResult create(long):41 -> a
+    18:18:com.vitals.lib.Port$MeasureResult create(long):42:42 -> a
+    1:1:com.vitals.lib.Port$MeasureResult createOrNull(long):47:47 -> b
+com.vitals.lib.VitalsNativeException -> vnb.a.a:
+# {"id":"sourceFile","fileName":"VitalsNativeException.kt"}
+    java.lang.String errCode -> a
+    1:1:void <init>(java.lang.String,java.lang.String):3:3 -> <init>
+    1:1:java.lang.String getErrCode():3:3 -> a
+    2:2:void setErrCode(java.lang.String):3:3 -> a
 com.vitals.sdk.api.BloodPressureAnalyzer -> com.vitals.sdk.api.BloodPressureAnalyzer:
-    1:1:java.lang.String hashSHA256(java.lang.String):0:0 -> a
-    2:2:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult resultFromCode(int):0:0 -> a
-    3:3:boolean verifySign(com.vitals.sdk.parcel.ParcelableVitalsSampledData):0:0 -> a
+# {"id":"sourceFile","fileName":"BloodPressureAnalyzer.kt"}
+    1:1:void <init>():11:11 -> <init>
+    1:6:boolean verifySign(com.vitals.sdk.parcel.ParcelableVitalsSampledData):102:107 -> a
+    7:8:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String):111:112 -> a
+    1:102:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):18:119 -> analyze
+    103:125:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):40:62 -> analyze
+    126:127:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String):111:112 -> analyze
+    126:127:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):62 -> analyze
+    128:129:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):62:63 -> analyze
+    130:134:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):61:65 -> analyze
+    135:136:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String):111:112 -> analyze
+    135:136:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):65 -> analyze
+    137:137:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):65:65 -> analyze
+    138:142:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):64:68 -> analyze
+    143:144:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String):111:112 -> analyze
+    143:144:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):68 -> analyze
+    145:145:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):68:68 -> analyze
+    146:203:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):67:124 -> analyze
+    204:256:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):72:124 -> analyze
+    257:310:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):75:128 -> analyze
+    311:360:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):79:128 -> analyze
+    361:414:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):79:132 -> analyze
+    415:467:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):80:132 -> analyze
+    468:524:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):80:136 -> analyze
+    525:580:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):81:136 -> analyze
+    581:640:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):81:140 -> analyze
+    641:699:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):82:140 -> analyze
+    700:703:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):82:85 -> analyze
+    704:705:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String):111:112 -> analyze
+    704:705:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):85 -> analyze
+    706:707:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):85:86 -> analyze
+    708:718:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):84:94 -> analyze
+    719:719:double com.vitals.lib.Port$MeasureResult.getHbp():26:26 -> analyze
+    719:719:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):95 -> analyze
+    720:720:double com.vitals.lib.Port$MeasureResult.getLbp():27:27 -> analyze
+    720:720:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):96 -> analyze
+    721:721:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):94:94 -> analyze
+    722:722:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):92:92 -> analyze
+    723:723:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):84:84 -> analyze
+    724:724:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):67:67 -> analyze
+    725:725:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):64:64 -> analyze
+    726:726:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):61:61 -> analyze
+    727:727:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):57:57 -> analyze
+    728:728:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):53:53 -> analyze
+    729:729:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):47:47 -> analyze
+    730:730:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):44:44 -> analyze
+    731:806:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):41:116 -> analyze
+    807:807:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):38:38 -> analyze
+    808:808:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):35:35 -> analyze
+    809:809:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):30:30 -> analyze
+    810:810:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):23:23 -> analyze
+    811:811:com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult analyze(android.content.Context,com.vitals.sdk.parcel.ParcelableVitalsSampledData):20:20 -> analyze
 com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult -> com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult:
+# {"id":"sourceFile","fileName":"BloodPressureAnalyzer.kt"}
     1:1:void <init>():0:0 -> <init>
-    2:2:void <init>(float,float):0:0 -> <init>
-    3:3:void <init>(float,float,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
-com.vitals.sdk.api.BloodPressureAnalyzer$hashSHA256$1 -> com.vitals.sdk.api.BloodPressureAnalyzer$a:
-    com.vitals.sdk.api.BloodPressureAnalyzer$hashSHA256$1 INSTANCE -> a
-    java.lang.CharSequence invoke(byte) -> a
+    2:4:void <init>(float,float):12:14 -> <init>
+    5:5:void <init>(float,float,int,kotlin.jvm.internal.DefaultConstructorMarker):12:12 -> <init>
+    1:1:float getDiastolicBloodPressure():14:14 -> getDiastolicBloodPressure
+    1:1:float getSystolicBloodPressure():13:13 -> getSystolicBloodPressure
+    1:1:void setDiastolicBloodPressure(float):14:14 -> setDiastolicBloodPressure
+    1:1:void setSystolicBloodPressure(float):13:13 -> setSystolicBloodPressure
 com.vitals.sdk.bp.Native -> com.vitals.sdk.bp.Native:
+# {"id":"sourceFile","fileName":"Native.kt"}
     com.vitals.sdk.bp.Native INSTANCE -> a
+    1:1:void <clinit>():7:7 -> <clinit>
+    1:1:void <init>():5:5 -> <init>
+    1:2:java.lang.String getKey(java.lang.String):20:21 -> a
+    1:2:java.lang.String getKeyHash(java.lang.String):15:16 -> b
+com.vitals.sdk.internal.CryptoUtils -> vnb.b.a:
+# {"id":"sourceFile","fileName":"CryptoUtils.kt"}
+    com.vitals.sdk.internal.CryptoUtils INSTANCE -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnb/b/a;"}
+    1:1:void <clinit>():0:0 -> <clinit>
+    1:1:void <init>():10:10 -> <init>
+    1:4:java.lang.String hashSHA256(java.lang.String):12:15 -> a
+    5:68:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String):33:96 -> a
+    69:120:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String):45:96 -> a
+    121:135:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String):45:59 -> a
+    136:162:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String,byte[]):75:101 -> a
+    163:186:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String,byte[]):78:101 -> a
+    187:200:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String,byte[]):78:91 -> a
+    201:201:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String,byte[]):75:75 -> a
+com.vitals.sdk.internal.CryptoUtils$hashSHA256$1 -> vnb.b.a$a:
+# {"id":"sourceFile","fileName":"CryptoUtils.kt"}
+    com.vitals.sdk.internal.CryptoUtils$hashSHA256$1 INSTANCE -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnb/b/a$a;"}
+    1:1:void <clinit>():0:0 -> <clinit>
+    1:1:void <init>():0:0 -> <init>
+    1:1:java.lang.CharSequence invoke(byte):15:15 -> a
+    1:1:java.lang.Object invoke(java.lang.Object):15:15 -> invoke
 com.vitals.sdk.parcel.BaseFeature -> com.vitals.sdk.parcel.BaseFeature:
-    1:1:void <init>(int,com.vitals.sdk.parcel.Gender,double,double):0:0 -> <init>
-    2:2:void <init>(android.os.Parcel):0:0 -> <init>
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:5:void <init>(int,com.vitals.sdk.parcel.Gender,double,double):55:59 -> <init>
+    6:9:void <init>(android.os.Parcel):63:66 -> <init>
+    10:10:void <init>(android.os.Parcel):62:62 -> <init>
+    1:1:int getAge():56:56 -> getAge
+    1:1:com.vitals.sdk.parcel.Gender getGender():57:57 -> getGender
+    1:1:double getHeight():58:58 -> getHeight
+    1:1:double getWeight():59:59 -> getWeight
+    1:1:void setAge(int):56:56 -> setAge
+    1:1:void setGender(com.vitals.sdk.parcel.Gender):57:57 -> setGender
+    1:1:void setHeight(double):58:58 -> setHeight
+    1:1:void setWeight(double):59:59 -> setWeight
+    1:4:void writeToParcel(android.os.Parcel,int):70:73 -> writeToParcel
 com.vitals.sdk.parcel.BaseFeature$CREATOR -> com.vitals.sdk.parcel.BaseFeature$CREATOR:
-    1:1:void <init>():0:0 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
-    1:1:com.vitals.sdk.parcel.BaseFeature createFromParcel(android.os.Parcel):0:0 -> createFromParcel
-    2:2:java.lang.Object createFromParcel(android.os.Parcel):0:0 -> createFromParcel
-    1:1:com.vitals.sdk.parcel.BaseFeature[] newArray(int):0:0 -> newArray
-    2:2:java.lang.Object[] newArray(int):0:0 -> newArray
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:1:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    2:2:void <init>():80:80 -> <init>
+    1:1:java.lang.Object createFromParcel(android.os.Parcel):80:80 -> createFromParcel
+    2:2:com.vitals.sdk.parcel.BaseFeature createFromParcel(android.os.Parcel):82:82 -> createFromParcel
+    1:1:java.lang.Object[] newArray(int):80:80 -> newArray
+    2:2:com.vitals.sdk.parcel.BaseFeature[] newArray(int):86:86 -> newArray
 com.vitals.sdk.parcel.Credential -> com.vitals.sdk.parcel.Credential:
-    1:1:void <init>(android.os.Parcel):0:0 -> <init>
-    2:2:void <init>(java.lang.String,long,java.lang.String):0:0 -> <init>
-    3:3:void <init>(java.lang.String,long,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:4:void <init>(java.lang.String,long,java.lang.String):91:94 -> <init>
+    5:5:void <init>(java.lang.String,long,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker):92:92 -> <init>
+    6:6:void <init>(java.lang.String,long,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker):91:91 -> <init>
+    7:9:void <init>(android.os.Parcel):97:99 -> <init>
+    10:10:void <init>(android.os.Parcel):96:96 -> <init>
+    1:1:java.lang.String getAppId():92:92 -> getAppId
+    1:1:java.lang.String getSign():94:94 -> getSign
+    1:1:long getTimestamp():93:93 -> getTimestamp
+    1:3:void writeToParcel(android.os.Parcel,int):107:109 -> writeToParcel
 com.vitals.sdk.parcel.Credential$CREATOR -> com.vitals.sdk.parcel.Credential$CREATOR:
-    1:1:void <init>():0:0 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
-    1:1:com.vitals.sdk.parcel.Credential createFromParcel(android.os.Parcel):0:0 -> createFromParcel
-    2:2:java.lang.Object createFromParcel(android.os.Parcel):0:0 -> createFromParcel
-    1:1:com.vitals.sdk.parcel.Credential[] newArray(int):0:0 -> newArray
-    2:2:java.lang.Object[] newArray(int):0:0 -> newArray
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:1:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    2:2:void <init>():112:112 -> <init>
+    1:1:java.lang.Object createFromParcel(android.os.Parcel):112:112 -> createFromParcel
+    2:2:com.vitals.sdk.parcel.Credential createFromParcel(android.os.Parcel):114:114 -> createFromParcel
+    1:1:java.lang.Object[] newArray(int):112:112 -> newArray
+    2:2:com.vitals.sdk.parcel.Credential[] newArray(int):118:118 -> newArray
+com.vitals.sdk.parcel.Gender -> com.vitals.sdk.parcel.Gender:
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:2:void <clinit>():45:46 -> <clinit>
+    1:1:void <init>(java.lang.String,int,int):44:44 -> <init>
+    1:1:int getValue():44:44 -> getValue
 com.vitals.sdk.parcel.Gender$Companion -> com.vitals.sdk.parcel.Gender$Companion:
-    1:1:void <init>():0:0 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:1:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    2:2:void <init>():48:48 -> <init>
+    1:1:com.vitals.sdk.parcel.Gender fromValue(int):50:50 -> fromValue
 com.vitals.sdk.parcel.ParcelableVitalsSampledData -> com.vitals.sdk.parcel.ParcelableVitalsSampledData:
-    1:1:void <init>(com.vitals.sdk.parcel.Credential,com.vitals.sdk.parcel.SignalData,java.util.List,java.util.List,com.vitals.sdk.parcel.BaseFeature):0:0 -> <init>
-    2:2:void <init>(com.vitals.sdk.parcel.Credential,com.vitals.sdk.parcel.SignalData,java.util.List,java.util.List,com.vitals.sdk.parcel.BaseFeature,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:6:void <init>(com.vitals.sdk.parcel.Credential,com.vitals.sdk.parcel.SignalData,java.util.List,java.util.List,com.vitals.sdk.parcel.BaseFeature):123:128 -> <init>
+    7:7:void <init>(com.vitals.sdk.parcel.Credential,com.vitals.sdk.parcel.SignalData,java.util.List,java.util.List,com.vitals.sdk.parcel.BaseFeature,int,kotlin.jvm.internal.DefaultConstructorMarker):123:123 -> <init>
+    1:1:com.vitals.sdk.parcel.BaseFeature getBaseFeature():128:128 -> getBaseFeature
+    1:1:com.vitals.sdk.parcel.Credential getCredential():124:124 -> getCredential
+    1:1:java.util.List getPickedFrames():127:127 -> getPickedFrames
+    1:1:java.util.List getPickedLandmarks():126:126 -> getPickedLandmarks
+    1:1:com.vitals.sdk.parcel.SignalData getSignalData():125:125 -> getSignalData
+    1:70:void writeToParcel(android.os.Parcel,int):135:204 -> writeToParcel
+    71:136:void writeToParcel(android.os.Parcel,int):140:205 -> writeToParcel
+    137:203:void writeToParcel(android.os.Parcel,int):142:208 -> writeToParcel
+    204:211:void writeToParcel(android.os.Parcel,int):149:156 -> writeToParcel
 com.vitals.sdk.parcel.ParcelableVitalsSampledData$CREATOR -> com.vitals.sdk.parcel.ParcelableVitalsSampledData$CREATOR:
-    1:1:void <init>():0:0 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
-    1:1:com.vitals.sdk.parcel.ParcelableVitalsSampledData createFromParcel(android.os.Parcel):0:0 -> createFromParcel
-    2:2:java.lang.Object createFromParcel(android.os.Parcel):0:0 -> createFromParcel
-    1:1:com.vitals.sdk.parcel.ParcelableVitalsSampledData[] newArray(int):0:0 -> newArray
-    2:2:java.lang.Object[] newArray(int):0:0 -> newArray
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:1:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    2:2:void <init>():160:160 -> <init>
+    1:1:java.lang.Object createFromParcel(android.os.Parcel):160:160 -> createFromParcel
+    2:35:com.vitals.sdk.parcel.ParcelableVitalsSampledData createFromParcel(android.os.Parcel):162:195 -> createFromParcel
+    1:1:java.lang.Object[] newArray(int):160:160 -> newArray
+    2:2:com.vitals.sdk.parcel.ParcelableVitalsSampledData[] newArray(int):199:199 -> newArray
+com.vitals.sdk.parcel.SignalData -> com.vitals.sdk.parcel.SignalData:
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:6:void <init>(long,long,double,double[],int[]):8:13 -> <init>
+    1:1:long getEndTime():10:10 -> getEndTime
+    1:1:double getFps():11:11 -> getFps
+    1:1:double[] getPixels():12:12 -> getPixels
+    1:1:int[] getShape():13:13 -> getShape
+    1:1:long getStartTime():9:9 -> getStartTime
+    1:5:void writeToParcel(android.os.Parcel,int):21:25 -> writeToParcel
 com.vitals.sdk.parcel.SignalData$CREATOR -> com.vitals.sdk.parcel.SignalData$CREATOR:
-    1:1:void <init>():0:0 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
-    1:1:com.vitals.sdk.parcel.SignalData createFromParcel(android.os.Parcel):0:0 -> createFromParcel
-    2:2:java.lang.Object createFromParcel(android.os.Parcel):0:0 -> createFromParcel
-    1:1:com.vitals.sdk.parcel.SignalData[] newArray(int):0:0 -> newArray
-    2:2:java.lang.Object[] newArray(int):0:0 -> newArray
+# {"id":"sourceFile","fileName":"ParcelableVitalsSampledData.kt"}
+    1:1:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    2:2:void <init>():28:28 -> <init>
+    1:1:java.lang.Object createFromParcel(android.os.Parcel):28:28 -> createFromParcel
+    2:7:com.vitals.sdk.parcel.SignalData createFromParcel(android.os.Parcel):30:35 -> createFromParcel
+    1:1:java.lang.Object[] newArray(int):28:28 -> newArray
+    2:2:com.vitals.sdk.parcel.SignalData[] newArray(int):39:39 -> newArray

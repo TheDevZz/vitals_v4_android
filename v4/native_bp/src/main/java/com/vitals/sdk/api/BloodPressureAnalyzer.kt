@@ -1,9 +1,12 @@
 package com.vitals.sdk.api
 
-import android.util.Log
+import android.content.Context
+import com.vitals.lib.Port
 import com.vitals.sdk.bp.Native
+import com.vitals.sdk.internal.CryptoUtils
 import com.vitals.sdk.parcel.ParcelableVitalsSampledData
-import java.security.MessageDigest
+import java.io.InputStream
+import kotlin.math.roundToInt
 
 object BloodPressureAnalyzer {
     data class MeasureResult (
@@ -11,74 +14,101 @@ object BloodPressureAnalyzer {
         var diastolicBloodPressure: Float = 0f,
     )
 
-    fun analyze(sampledData: ParcelableVitalsSampledData): MeasureResult {
+    fun analyze(context: Context, sampledData: ParcelableVitalsSampledData): MeasureResult {
         val timestamp = System.currentTimeMillis()
         if (kotlin.math.abs(timestamp - sampledData.credential.timestamp) > 5 * 60 * 1000) {
-            return resultFromCode(1)
+            throw Exception("certificate expiration")
         }
         if (!verifySign(sampledData)) {
-            return resultFromCode(2)
+            throw Exception("invalid credentials")
         }
-        Log.d("BPAnalyzer", "signal time: ${sampledData.signalData.startTime} ${sampledData.signalData.endTime}")
-        Log.d("BPAnalyzer", "signal fps: ${sampledData.signalData.fps}")
-        Log.d("BPAnalyzer", "signal shape: ${sampledData.signalData.shape.joinToString()}")
-        Log.d("BPAnalyzer", "signal data size: ${sampledData.signalData.pixels.size}")
+        // Log.d("BPAnalyzer", "signal time: ${sampledData.signalData.startTime} ${sampledData.signalData.endTime}")
+        // Log.d("BPAnalyzer", "signal fps: ${sampledData.signalData.fps}")
+        // Log.d("BPAnalyzer", "signal shape: ${sampledData.signalData.shape.joinToString()}")
+        // Log.d("BPAnalyzer", "signal data size: ${sampledData.signalData.pixels.size}")
         if (sampledData.signalData.fps == 0.0) {
-            return resultFromCode(3)
+            throw Exception("invalid signal data: invalid fps")
         }
         if (sampledData.signalData.startTime >= sampledData.signalData.endTime
             || sampledData.signalData.startTime == 0L
             || sampledData.signalData.endTime == 0L) {
-            return resultFromCode(4)
+            throw Exception("invalid signal data: invalid time")
         }
         if (sampledData.signalData.shape.size != 2) {
-            return resultFromCode(5)
+            throw Exception("invalid signal data: invalid shape")
         }
         if (sampledData.signalData.shape.reduce { acc, i ->  acc * i} != sampledData.signalData.pixels.size) {
-            return resultFromCode(6)
+            throw Exception("invalid signal data: shape and pixel size mismatch")
         }
         if (sampledData.pickedLandmarks.isEmpty()) {
-            return resultFromCode(7)
+            throw Exception("invalid sampled data: no picked landmarks")
         }
         if (sampledData.pickedFrames.isEmpty()) {
-            return resultFromCode(8)
+            throw Exception("invalid sampled data: no picked frames")
         }
-        Log.d("BPAnalyzer", "picked size: ${sampledData.pickedLandmarks.size}")
-        Log.d("BPAnalyzer", "landmarks size: ${sampledData.pickedLandmarks[0].size}")
-        Log.d("BPAnalyzer", "frame wh: ${sampledData.pickedFrames[0].width}, ${sampledData.pickedFrames[0].height}")
+        // Log.d("BPAnalyzer", "picked size: ${sampledData.pickedLandmarks.size}")
+        // Log.d("BPAnalyzer", "landmarks size: ${sampledData.pickedLandmarks[0].size}")
+        // Log.d("BPAnalyzer", "frame wh: ${sampledData.pickedFrames[0].width}, ${sampledData.pickedFrames[0].height}")
         if (sampledData.pickedLandmarks.size != sampledData.pickedFrames.size) {
-            return resultFromCode(9)
+            throw Exception("invalid sampled data: picked size mismatch")
         }
 
         if (sampledData.pickedFrames[0].width == 0 || sampledData.pickedFrames[0].height == 0) {
-            return resultFromCode(10)
+            throw Exception("invalid sampled data: invalid picked frame size")
         }
-        if (!Native.verifyCredential(timestamp, sampledData.credential.sign)) {
-            return resultFromCode(11)
-        }
-        Thread.sleep(3000)
-        return resultFromCode(0)
-    }
 
-    private fun resultFromCode(code: Int): MeasureResult {
-        var hbp = 120f + code
-        var lbp = 80f + code
-        return MeasureResult(hbp, lbp)
+        val appId = sampledData.credential.appId
+        context.assets.open("age_merged_model_0.json.bin").use {
+            Port.storeBinaryData("./age_merged_model_0.json", decryptStream(it, appId))
+        }
+        context.assets.open("bmi_merged_model_0.json.bin").use {
+            Port.storeBinaryData("./bmi_merged_model_0.json", decryptStream(it, appId))
+        }
+        context.assets.open("gender_merged_model_0.json.bin").use {
+            Port.storeBinaryData("./gender_merged_model_0.json", decryptStream(it, appId))
+        }
+
+        val baseFeatures = sampledData.pickedLandmarks.map { landmark ->
+            Port.predictBaseFea(landmark)
+        }
+
+        Port.removeBinaryData("./age_merged_model_0.json")
+        Port.removeBinaryData("./bmi_merged_model_0.json")
+        Port.removeBinaryData("./gender_merged_model_0.json")
+
+        val age: Int = baseFeatures.map { it.age }.average().roundToInt()
+        val gender: Int = baseFeatures.map { it.gender.value }.average().roundToInt()
+        val height: Double = baseFeatures.map { it.height }.average()
+        val weight: Double = baseFeatures.map { it.weight }.average()
+
+        context.assets.open("bp.pt.bin").use {
+            Port.storeBinaryData("bp.pt", decryptStream(it, appId))
+        }
+        val measureResult = sampledData.signalData.run {
+            Port.processPixelsV2(pixels, shape, fps, ".", age, gender, height, weight)
+        }
+        Port.removeBinaryData("bp.pt")
+        return if (measureResult == null) {
+            throw Exception("analyze blood pressure failed")
+        } else {
+            MeasureResult(
+                systolicBloodPressure = measureResult.hbp.toFloat(),
+                diastolicBloodPressure = measureResult.lbp.toFloat()
+            )
+        }
     }
 
     private fun verifySign(sampledData: ParcelableVitalsSampledData): Boolean {
         val appId = sampledData.credential.appId
         val timestamp = sampledData.credential.timestamp
         val sign = sampledData.credential.sign
-        val hashKeyHash = "d8da05c6a6eb0c615c009df4f6b42680149810fd1f7a980799f349209f04f3d0"
-        val expSign = hashSHA256(appId + hashKeyHash + timestamp.toString())
+        val hashKeyHash = Native.getKeyHash(appId)
+        val expSign = CryptoUtils.hashSHA256(appId + hashKeyHash + timestamp.toString())
         return expSign == sign
     }
 
-    private fun hashSHA256(input: String): String {
-        val bytes = input.toByteArray(Charsets.UTF_8)
-        val digest = MessageDigest.getInstance("SHA-256")
-        val hashBytes = digest.digest(bytes)
-        return hashBytes.joinToString("") { "%02x".format(it) }
+    private fun decryptStream(inputStream: InputStream, appId: String): InputStream {
+        val aesKey = Native.getKey(appId)
+        return CryptoUtils.decryptStream(inputStream, aesKey)
     }
 }

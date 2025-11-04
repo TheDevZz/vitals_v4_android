@@ -5,6 +5,7 @@
 #include <ostream>
 #include <memory>
 #include <iomanip>
+#include <endian.h>
 
 #include <Eigen/Core>
 
@@ -176,6 +177,91 @@ public:
 
   TestHelperImp() {};
   ~TestHelperImp() {};
+
+  // 检测本地字节序是否为小端序
+  static bool isLittleEndian() {
+    uint16_t num = 0x0001;
+    return (*reinterpret_cast<uint8_t *>(&num) == 0x01);
+  }
+
+  // 将 std::vector<T> 数据以二进制形式写入文件（支持 double 和 float 类型）
+  // 参数说明：
+  // - data: 要写入的数据向量（支持 double 和 float 类型）
+  // - file_path: 目标文件路径
+  // - convert_endian: 是否转换为大端序（默认启用）
+  //    - true: 将数据转换为大端序后写入文件（适用于跨平台或网络传输）
+  //    - false: 直接以本地字节序写入文件（适用于同平台使用）
+  // 注意：
+  // - 大端序（Big-Endian）：高位字节在前，低位字节在后（如网络字节序）
+  // - 小端序（Little-Endian）：低位字节在前，高位字节在后（如 x86/ARM 架构）
+  template<typename T>
+  void write_binary_data(
+    const std::vector<T> &data, const std::string &file_path, bool convert_endian = true
+  ) {
+    std::ofstream ofs(file_path, std::ios::binary);
+    if (!ofs.is_open()) {
+      throw std::runtime_error("Could not open file for writing");
+    }
+
+    for (const auto &value: data) {
+      if (convert_endian) {
+        if constexpr (sizeof(T) == sizeof(uint64_t)) {
+          // 将 64 位数据转换为大端序
+          uint64_t big_endian_value = htobe64(*reinterpret_cast<const uint64_t *>(&value));
+          ofs.write(reinterpret_cast<const char *>(&big_endian_value), sizeof(big_endian_value));
+        } else if constexpr (sizeof(T) == sizeof(uint32_t)) {
+          // 将 32 位数据转换为大端序
+          uint32_t big_endian_value = htobe32(*reinterpret_cast<const uint32_t *>(&value));
+          ofs.write(reinterpret_cast<const char *>(&big_endian_value), sizeof(big_endian_value));
+        }
+      } else {
+        // 直接以本地字节序写入
+        ofs.write(reinterpret_cast<const char *>(&value), sizeof(value));
+      }
+    }
+    ofs.close();
+  }
+
+  // 从文件中读取二进制数据（支持 double 和 float 类型）
+  // 参数说明：
+  // - file_path: 文件路径
+  // - convert_endian: 是否从大端序转换回本地字节序（默认启用）
+  //    - true: 假设文件中的数据是大端序，转换为本地字节序
+  //    - false: 直接读取为本地字节序
+  // 返回值：
+  // - 包含读取数据的向量
+  template<typename T>
+  std::vector<T> read_binary_data(const std::string &file_path, bool convert_endian = true) {
+    std::ifstream ifs(file_path, std::ios::binary | std::ios::ate);
+    if (!ifs.is_open()) {
+      throw std::runtime_error("Could not open file for reading");
+    }
+
+    std::streamsize size = ifs.tellg();
+    ifs.seekg(0, std::ios::beg);
+
+    std::vector<T> data(size / sizeof(T));
+    ifs.read(reinterpret_cast<char *>(data.data()), size);
+
+    if (convert_endian) {
+      for (auto &value: data) {
+        if constexpr (sizeof(T) == sizeof(uint64_t)) {
+          // 将 64 位大端序数据转换为本地字节序
+          uint64_t big_endian_value = *reinterpret_cast<uint64_t *>(&value);
+          uint64_t host_endian_value = be64toh(big_endian_value);
+          value = *reinterpret_cast<T *>(&host_endian_value);
+        } else if constexpr (sizeof(T) == sizeof(uint32_t)) {
+          // 将 32 位大端序数据转换为本地字节序
+          uint32_t big_endian_value = *reinterpret_cast<uint32_t *>(&value);
+          uint32_t host_endian_value = be32toh(big_endian_value);
+          value = *reinterpret_cast<T *>(&host_endian_value);
+        }
+      }
+    }
+
+    ifs.close();
+    return data;
+  }
 
   void update_sig(const Eigen::VectorXd& sig) override {
     update_sig(EigenVectorToStdVector(sig));

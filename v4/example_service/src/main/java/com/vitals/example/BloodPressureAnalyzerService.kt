@@ -21,7 +21,8 @@ class BloodPressureAnalyzerService : Service() {
             
             try {
                 // 直接调用BloodPressureAnalyzer进行分析
-                val result = BloodPressureAnalyzer.analyze(sampledData)
+                val result =
+                    BloodPressureAnalyzer.analyze(this@BloodPressureAnalyzerService, sampledData)
                 
                 // 转换为AIDL可用的结果对象
                 val measureResult = BloodPressureMeasureResult(

@@ -26,6 +26,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        viewBinding.btnTest.setOnClickListener {
+            // cacheDir.listFiles()?.first()?.let {
+            //     DataBridge.readParcelableFromFile<ParcelableVitalsSampledData>(it, classLoader)?.let { data ->
+            //         viewBinding.echo.text = "读取到文件数据"
+            //
+            // }
+            startActivity(Intent(this, ResultActivity::class.java))
+        }
+
         setupSdk()
     }
 
