@@ -92,8 +92,8 @@ object BloodPressureAnalyzer {
             throw Exception("analyze blood pressure failed")
         } else {
             MeasureResult(
-                systolicBloodPressure = measureResult.hbp.toFloat(),
-                diastolicBloodPressure = measureResult.lbp.toFloat()
+                systolicBloodPressure = measureResult.hbp.roundToInt().toFloat(),
+                diastolicBloodPressure = measureResult.lbp.roundToInt().toFloat()
             )
         }
     }
