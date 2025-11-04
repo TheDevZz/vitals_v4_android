@@ -1,5 +1,8 @@
+# AGP版本不要升到8.4及以上，否则无法使用-applymapping
+# AGP 8.4以下建议 compileSdk 34，targetSdk 33
+# https://issuetracker.google.com/issues/338071861
 [versions]
-agp = "8.6.1"
+agp = "8.3.2"
 kotlin = "1.9.25"
 coreKtx = "1.12.0"
 junit = "4.13.2"

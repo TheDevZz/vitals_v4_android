@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.vitals.app'
-    compileSdk 35
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.vitals.app"
         minSdk 24
-        targetSdk 35
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
