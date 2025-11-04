@@ -2,14 +2,17 @@
 # compiler_version: 8.3.37
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 87b017c
-# pg_map_hash: SHA-256 87b017c9e74ad74805feaf0b7f2c61fee6b8147dbb76921c7a833f41eb1dd6a2
+# pg_map_id: f77e758
+# pg_map_hash: SHA-256 f77e7582dd8572bc1568d2b61ac6b60092903ceb400c91b0754be7f1037e6aeb
 com.vitals.lib.Port -> com.vitals.lib.Port:
 # {"id":"sourceFile","fileName":"Port.kt"}
-    1:1:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):0:0 -> processPixelsV2
-    2:2:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):0:0 -> processPixelsV2
-    1:1:void storeBinaryData(java.lang.String,java.io.InputStream):0:0 -> storeBinaryData
-    2:2:void storeBinaryData(java.lang.String,java.nio.ByteBuffer):0:0 -> storeBinaryData
+    com.vitals.lib.Port INSTANCE -> a
+    1:1:com.vitals.sdk.parcel.BaseFeature predictBaseFea(java.util.List):0:0 -> a
+    2:2:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):0:0 -> a
+    3:3:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):0:0 -> a
+    4:4:void removeBinaryData(java.lang.String):0:0 -> a
+    5:5:void storeBinaryData(java.lang.String,java.io.InputStream):0:0 -> a
+    6:6:void storeBinaryData(java.lang.String,java.nio.ByteBuffer):0:0 -> a
 com.vitals.lib.Port$MeasureResult -> com.vitals.lib.Port$MeasureResult:
 # {"id":"sourceFile","fileName":"Port.kt"}
     double hr -> a

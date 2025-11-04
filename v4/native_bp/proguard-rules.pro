@@ -23,7 +23,6 @@
 -keep class com.vitals.sdk.api.BloodPressureAnalyzer { public *; }
 -keep class com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult { *; }
 -keep class com.vitals.sdk.parcel.** { *; }
--keep class com.vitals.lib.Port { public *; }
 
 -dontshrink
 -flattenpackagehierarchy vnb

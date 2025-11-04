@@ -15,6 +15,7 @@ import com.vitals.sdk.api.MeasureResult
 import com.vitals.sdk.api.Result
 import com.vitals.sdk.api.Vitals
 import com.vitals.sdk.api.VitalsSampledData
+import com.vitals.sdk.parcel.BaseFeature
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -85,6 +86,7 @@ class ResultActivity : AppCompatActivity() {
                     val parcelableSampledData = Vitals.getSdkInstance().getSolution().genParcelableSampledData(sampledData)
                     // DataBridge.writeParcelableToFile(parcelableSampledData, File(cacheDir, "sampled_data_${System.currentTimeMillis()}.parcelable"))
                     Log.d(TAG, "调用远程服务进行血压分析")
+                    // parcelableSampledData.baseFeature = BaseFeature(58, com.vitals.sdk.parcel.Gender.Male, 1.75, 90.0)
                     val result = bloodPressureService?.analyzeBloodPressure(parcelableSampledData)
 
                     runOnUiThread {

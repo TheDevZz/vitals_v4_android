@@ -1,6 +1,7 @@
 package com.vitals.sdk.api
 
 import android.content.Context
+import android.util.Log
 import com.vitals.lib.Port
 import com.vitals.sdk.bp.Native
 import com.vitals.sdk.internal.CryptoUtils
@@ -58,28 +59,44 @@ object BloodPressureAnalyzer {
         }
 
         val appId = sampledData.credential.appId
-        context.assets.open("age_merged_model_0.json.bin").use {
-            Port.storeBinaryData("./age_merged_model_0.json", decryptStream(it, appId))
-        }
-        context.assets.open("bmi_merged_model_0.json.bin").use {
-            Port.storeBinaryData("./bmi_merged_model_0.json", decryptStream(it, appId))
-        }
-        context.assets.open("gender_merged_model_0.json.bin").use {
-            Port.storeBinaryData("./gender_merged_model_0.json", decryptStream(it, appId))
+
+        val age: Int
+        val gender: Int
+        val height: Double
+        val weight: Double
+
+        val baseFea = sampledData.baseFeature
+        if (baseFea != null) {
+            age = baseFea.age
+            gender = baseFea.gender.value
+            height = baseFea.height
+            weight = baseFea.weight
+            // Log.d("BPAnalyzer", "age: $age, gender: $gender, height: $height, weight: $weight")
+        } else {
+            context.assets.open("age_merged_model_0.json.bin").use {
+                Port.storeBinaryData("./age_merged_model_0.json", decryptStream(it, appId))
+            }
+            context.assets.open("bmi_merged_model_0.json.bin").use {
+                Port.storeBinaryData("./bmi_merged_model_0.json", decryptStream(it, appId))
+            }
+            context.assets.open("gender_merged_model_0.json.bin").use {
+                Port.storeBinaryData("./gender_merged_model_0.json", decryptStream(it, appId))
+            }
+
+            val baseFeatures = sampledData.pickedLandmarks.map { landmark ->
+                Port.predictBaseFea(landmark)
+            }
+
+            Port.removeBinaryData("./age_merged_model_0.json")
+            Port.removeBinaryData("./bmi_merged_model_0.json")
+            Port.removeBinaryData("./gender_merged_model_0.json")
+
+            age = baseFeatures.map { it.age }.average().roundToInt()
+            gender = baseFeatures.map { it.gender.value }.average().roundToInt()
+            height = baseFeatures.map { it.height }.average()
+            weight = baseFeatures.map { it.weight }.average()
         }
 
-        val baseFeatures = sampledData.pickedLandmarks.map { landmark ->
-            Port.predictBaseFea(landmark)
-        }
-
-        Port.removeBinaryData("./age_merged_model_0.json")
-        Port.removeBinaryData("./bmi_merged_model_0.json")
-        Port.removeBinaryData("./gender_merged_model_0.json")
-
-        val age: Int = baseFeatures.map { it.age }.average().roundToInt()
-        val gender: Int = baseFeatures.map { it.gender.value }.average().roundToInt()
-        val height: Double = baseFeatures.map { it.height }.average()
-        val weight: Double = baseFeatures.map { it.weight }.average()
 
         context.assets.open("bp.pt.bin").use {
             Port.storeBinaryData("bp.pt", decryptStream(it, appId))
