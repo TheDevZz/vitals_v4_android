@@ -1,8 +1,8 @@
 package com.vitals.sdk.api
 
 import android.content.Context
-import android.util.Log
 import com.vitals.lib.Port
+import com.vitals.sdk.bp.LandmarkTransformer
 import com.vitals.sdk.bp.Native
 import com.vitals.sdk.internal.CryptoUtils
 import com.vitals.sdk.parcel.ParcelableVitalsSampledData
@@ -83,8 +83,12 @@ object BloodPressureAnalyzer {
                 Port.storeBinaryData("./gender_merged_model_0.json", decryptStream(it, appId))
             }
 
+            val imgW = sampledData.pickedFrames[0].width
+            val imgH = sampledData.pickedFrames[0].height
+            val transformer = if (imgW != imgH) LandmarkTransformer(imgW, imgH) else null
+
             val baseFeatures = sampledData.pickedLandmarks.map { landmark ->
-                Port.predictBaseFea(landmark)
+                Port.predictBaseFea(transformer?.transformLandmarks(landmark)?.first ?: landmark)
             }
 
             Port.removeBinaryData("./age_merged_model_0.json")

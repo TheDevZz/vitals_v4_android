@@ -2,8 +2,8 @@
 # compiler_version: 8.3.37
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: f77e758
-# pg_map_hash: SHA-256 f77e7582dd8572bc1568d2b61ac6b60092903ceb400c91b0754be7f1037e6aeb
+# pg_map_id: 3507410
+# pg_map_hash: SHA-256 35074106e5ace8c541ba6eba02d1e8681983ad92e3d9e1c83691008470fd2cb3
 com.vitals.lib.Port -> com.vitals.lib.Port:
 # {"id":"sourceFile","fileName":"Port.kt"}
     com.vitals.lib.Port INSTANCE -> a
@@ -105,24 +105,53 @@ com.vitals.sdk.api.BloodPressureAnalyzer$MeasureResult -> com.vitals.sdk.api.Blo
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(float,float):0:0 -> <init>
     3:3:void <init>(float,float,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+com.vitals.sdk.bp.FaceSquareBounds -> vnb.b.a:
+# {"id":"sourceFile","fileName":"LandmarkTransformer.kt"}
+    float centerX -> a
+    float centerY -> b
+    float size -> c
+    1:1:void <init>(float,float,float):0:0 -> <init>
+    1:1:float component1():0:0 -> a
+    2:2:com.vitals.sdk.bp.FaceSquareBounds copy(float,float,float):0:0 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(FFF)Lvnb/b/a;"}
+    3:3:com.vitals.sdk.bp.FaceSquareBounds copy$default(com.vitals.sdk.bp.FaceSquareBounds,float,float,float,int,java.lang.Object):0:0 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnb/b/a;FFFILjava/lang/Object;)Lvnb/b/a;"}
+    4:4:com.vitals.sdk.bp.FaceSquareBounds copy(float,float,float):0:0 -> a
+    4:4:com.vitals.sdk.bp.FaceSquareBounds copy$default(com.vitals.sdk.bp.FaceSquareBounds,float,float,float,int,java.lang.Object):0 -> a
+    1:1:float component2():0:0 -> b
+    1:1:float component3():0:0 -> c
+    1:1:float getCenterX():0:0 -> d
+    1:1:float getCenterY():0:0 -> e
+    1:1:boolean equals(java.lang.Object):0:0 -> equals
+    1:1:float getSize():0:0 -> f
+    1:1:int hashCode():0:0 -> hashCode
+    1:1:java.lang.String toString():0:0 -> toString
+com.vitals.sdk.bp.LandmarkTransformer -> vnb.b.b:
+# {"id":"sourceFile","fileName":"LandmarkTransformer.kt"}
+    int imageWidth -> a
+    int imageHeight -> b
+    float expandRatio -> c
+    1:1:void <init>(int,int,float):0:0 -> <init>
+    2:2:void <init>(int,int,float,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    1:1:kotlin.Pair transformLandmarks(java.util.List):0:0 -> a
 com.vitals.sdk.bp.Native -> com.vitals.sdk.bp.Native:
 # {"id":"sourceFile","fileName":"Native.kt"}
     com.vitals.sdk.bp.Native INSTANCE -> a
     java.lang.String getKey(java.lang.String) -> a
     java.lang.String getKeyHash(java.lang.String) -> b
-com.vitals.sdk.internal.CryptoUtils -> vnb.b.a:
+com.vitals.sdk.internal.CryptoUtils -> vnb.c.a:
 # {"id":"sourceFile","fileName":"CryptoUtils.kt"}
     com.vitals.sdk.internal.CryptoUtils INSTANCE -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnb/b/a;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnb/c/a;"}
     1:1:void <clinit>():0:0 -> <clinit>
     1:1:void <init>():0:0 -> <init>
     1:1:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String):0:0 -> a
     2:2:java.io.InputStream decryptStream(java.io.InputStream,java.lang.String,byte[]):0:0 -> a
     3:3:java.lang.String hashSHA256(java.lang.String):0:0 -> a
-com.vitals.sdk.internal.CryptoUtils$hashSHA256$1 -> vnb.b.a$a:
+com.vitals.sdk.internal.CryptoUtils$hashSHA256$1 -> vnb.c.a$a:
 # {"id":"sourceFile","fileName":"CryptoUtils.kt"}
     com.vitals.sdk.internal.CryptoUtils$hashSHA256$1 INSTANCE -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnb/b/a$a;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnb/c/a$a;"}
     1:1:void <clinit>():0:0 -> <clinit>
     1:1:void <init>():0:0 -> <init>
     1:1:java.lang.CharSequence invoke(byte):0:0 -> a
