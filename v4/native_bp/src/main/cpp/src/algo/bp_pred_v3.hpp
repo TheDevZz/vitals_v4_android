@@ -6,6 +6,7 @@
 #include <utility>
 #include <cmath>
 
+#include "log.hpp"
 #include "signal_processing.hpp"
 #include "bp_refer.hpp"
 #include "binary_data_manager.hpp"
@@ -137,6 +138,10 @@ namespace vitals {
         std::tuple<double, double> bp_ref_2 = bp_refer_v2.get_refer_bp_bmi_gender(gender, bmi);
         std::tuple<double, double> bp_ref_3 = bp_refer_v2.get_refer_bp_bmi_age(age, bmi);
 
+        // LOGD("bp_ref_1: %.2f/%.2f", std::get<0>(bp_ref_1), std::get<1>(bp_ref_1));
+        // LOGD("bp_ref_2: %.2f/%.2f", std::get<0>(bp_ref_2), std::get<1>(bp_ref_2));
+        // LOGD("bp_ref_3: %.2f/%.2f", std::get<0>(bp_ref_3), std::get<1>(bp_ref_3));
+
         // 计算三组血压参考值的平均值
         double hbp_mean =
           (std::get<0>(bp_ref_1) + std::get<0>(bp_ref_2) + std::get<0>(bp_ref_3)) / 3.0;
@@ -218,6 +223,7 @@ namespace vitals {
         torch::jit::script::ExtraFilesMap extra_files;
         std::istringstream model_stream(std::string(model_data.begin(), model_data.end()));
         model = torch::jit::load(model_stream, torch::kCPU, extra_files);
+        model.eval();
 #else
         model = torch::jit::load(model_path, torch::kCPU);
 #endif
@@ -227,10 +233,12 @@ namespace vitals {
 
       std::pair<double, double> predict_bp(const std::vector<double> &fea) {
         // 归一化特征
-        std::vector<double> norm_fea(fea.size());
+        std::vector<float> norm_fea(fea.size()); // 输入层必须为float类型
         for (size_t i = 0; i < fea.size(); ++i) {
           norm_fea[i] = (fea[i] - norm_mean[i]) / norm_std[i];
         }
+
+        // norm_fea = {0.35191339419307693, 0.9099517874220513, 0.4988744949800761, 3.3775735627336987, -1.5419473076287422, 0.35669969751476344, 0.9435133771692078, 1.6573084971134748, 0.6145312517392454, 0.14887850549630965, 0.32424780912735085, -1.2666680697558625, -2.468763960432692, -0.3749763732046383, -0.10377453136871377, 6.153064040824958, 0.16829858103212866, -1.5414056685351945, 1.4059218361128587, 1.1915966301889076};
 
         // 转换为Tensor
         auto input = torch::from_blob(norm_fea.data(), {1, static_cast<int64_t>(norm_fea.size())},
@@ -279,6 +287,15 @@ namespace vitals {
           age, gender, bmi, hr_pred, peak_ratio,
           hbp_refer, lbp_refer
         );
+
+        // std::string fea_str = "Features: ";
+        // for (size_t i = 0; i < fea.size(); ++i) {
+        //     fea_str += std::to_string(fea[i]);
+        //     if (i < fea.size() - 1) fea_str += ", ";
+        // }
+        // LOGD("%s", fea_str.c_str());
+
+        // fea = {59, 1, 25, 106.66117866634494, 0.1605085064777376, 137.38, 83.38666666666667, 10.2, 5.0, 6.583333333333333, 4.5, 3.8095238095238093, 3.0, 4.105263157894737, 4.0, 1.4097944787134755, -0.8794893746727411, 0.1405545145294593, -0.14380166611649317, -0.9774192352931199};
 
         return fea2pred.predict_bp(fea);
       }

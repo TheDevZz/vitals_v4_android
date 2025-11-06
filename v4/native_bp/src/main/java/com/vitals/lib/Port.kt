@@ -1,8 +1,10 @@
 package com.vitals.lib
 
+import android.content.Context
 import android.graphics.PointF
 import com.vitals.sdk.parcel.BaseFeature
 import com.vitals.sdk.parcel.Gender
+import java.io.File
 import java.io.InputStream
 import java.nio.ByteBuffer
 

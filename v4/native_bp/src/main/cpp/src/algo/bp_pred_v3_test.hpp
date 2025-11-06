@@ -16,7 +16,8 @@ public:
       rapidcsv::LabelParams(0, -1));
     std::vector<double> sig_oval_pos_0 = df_sig2.GetColumn<double>("oval_pos_0");
 
-    vitals::measure::BPPredV3 bpPredV3(models_dir + "/bp.pt");
+    // vitals::measure::BPPredV3 bpPredV3(models_dir + "/bp.pt");
+    vitals::measure::BPPredV3 bpPredV3("bp.pt");
     int age = 59;
     int gender = 1;
     double bmi = 25;

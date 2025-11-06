@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.vitals.dev.bp.databinding.ActivityMainBinding
 import com.vitals.lib.Port
+import com.vitals.sdk.internal.CryptoUtils.decryptStream
 import kotlinx.coroutines.GlobalScope
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun runTest() {
+        // assets.open("bp.pt.bin").use {
+        //     Port.storeBinaryData("bp.pt", decryptStream(it, "255afad56fc64068dcc4d30dc6d660075931de288abda60019e0e71493443cb9"))
+        // }
         // Port.nativeRunTest(Port.copyBPModels(this))
     }
 }

@@ -232,6 +232,7 @@ Java_com_vitals_lib_Port_nativePredictBaseFea(
   return result;
 }
 
+// #define ENABLE_TEST_CODE 1
 #ifdef ENABLE_TEST_CODE
 extern "C" JNIEXPORT jboolean JNICALL
 Java_com_vitals_lib_Port_nativeSetupTest(
