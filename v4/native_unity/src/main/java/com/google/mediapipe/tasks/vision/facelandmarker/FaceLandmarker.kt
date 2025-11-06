@@ -19,6 +19,7 @@ class FaceLandmarker private constructor(options: FaceLandmarkerOptions) {
 
     init {
         instance.create(FaceLandmarkerContract.faceDetectionModelPath, FaceLandmarkerContract.faceLandmarkerModelPath)
+        instance.setNumFaces(options.numFaces)
     }
 
     fun detect(mpImage: MPImage): FaceLandmarkerResult {

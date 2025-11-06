@@ -60,6 +60,7 @@ class LiveSampler: AbsSampler(), VitalsSampler {
                             preFaceOutType = faceOutType
                             val faceState = when(faceOutType) {
                                 FaceOutType.FACE_OUT_TYPE_NO_FACE -> FaceState.NO_FACE
+                                FaceOutType.FACE_OUT_TYPE_MULTI_FACE -> FaceState.MULTI_FACE
                                 FaceOutType.FACE_OUT_TYPE_OUT_BOX -> FaceState.OUT_OF_FRAME
                                 FaceOutType.FACE_OUT_TYPE_FAR -> FaceState.TOO_FAR
                                 FaceOutType.FACE_OUT_TYPE_DARK -> FaceState.TOO_DARK

@@ -151,6 +151,7 @@ class FaceActivity : AppCompatActivity() {
     private fun getTips(faceState: FaceState): String {
         return when(faceState) {
             FaceState.NO_FACE -> "请面对镜头"
+            FaceState.MULTI_FACE -> "请单人检测"
             FaceState.OUT_OF_FRAME -> "请保持面部在取景框内"
             FaceState.TOO_FAR -> "请靠近"
             FaceState.TOO_DARK -> "光线太暗"

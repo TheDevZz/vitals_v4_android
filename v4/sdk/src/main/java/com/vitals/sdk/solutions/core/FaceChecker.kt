@@ -32,6 +32,7 @@ class FaceChecker {
 
     enum class FaceOutType {
         FACE_OUT_TYPE_NO_FACE,
+        FACE_OUT_TYPE_MULTI_FACE,
         FACE_OUT_TYPE_OUT_BOX,
         FACE_OUT_TYPE_FAR,
         FACE_OUT_TYPE_DARK,
@@ -109,6 +110,10 @@ class FaceChecker {
 
         if (result.faceLandmarks().size == 0) {
             return faceCheckResult.setFaceOutType(FaceOutType.FACE_OUT_TYPE_NO_FACE)
+        }
+
+        if (result.faceLandmarks().size > 1) {
+            return faceCheckResult.setFaceOutType(FaceOutType.FACE_OUT_TYPE_MULTI_FACE)
         }
 
         val normalizedLandmarks = result.faceLandmarks()[0]

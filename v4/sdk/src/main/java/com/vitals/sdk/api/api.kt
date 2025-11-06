@@ -31,6 +31,7 @@ data class BaseFeature(
 enum class FaceState {
     OK, // 满足面部采集要求
     NO_FACE, // 没有面部数据
+    MULTI_FACE, // 多人面部
     OUT_OF_FRAME, // 面部出框
     TOO_FAR, // 距离太远
     TOO_DARK, // 面部区域太暗

@@ -616,7 +616,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
             .setBaseOptions(baseOptions)
             .setRunningMode(RunningMode.VIDEO)
 //            .setRunningMode(RunningMode.IMAGE)
-            .setNumFaces(1)
+            .setNumFaces(2)
             .setOutputFaceBlendshapes(false)
             .setErrorListener(this::onFaceLandmarkError)
             .build()
