@@ -54,7 +54,7 @@ android {
     packaging {
         resources  {
             // pytorch的jni库会调用java中的类，因此需要在dependencies中另外引入pytorch，
-            // 所以这里可以排除pytorch的库，以减小aar包体积
+            // 所以这里可以排除pytorch的库，以减小aar包体积 (此配置对aar包无效)
 //            excludes += ['**/libpytorch_jni.so', '**/libfbjni.so']
         }
     }

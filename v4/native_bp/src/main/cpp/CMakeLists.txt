@@ -80,7 +80,7 @@ target_link_libraries("vitals_bp"
         android
         log
         jnigraphics
-        pytorch
+        pytorch_link_only
 )
 
 add_definitions(-DENABLE_BP)
