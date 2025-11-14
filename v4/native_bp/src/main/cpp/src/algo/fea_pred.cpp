@@ -296,9 +296,9 @@ Eigen::MatrixXd Fea2Pred::apply_model(
   // 直接使用转置后的 mean 和 std，无需复制
   Eigen::MatrixXd x = ((fea.array() - mean_row.array()) / (std_row.array() + 1e-10)).matrix();
 
-  LOGD("x shape: %d x %d", x.rows(), x.cols());
-  LOGD("mean_row shape: %d x %d", mean_row.rows(), mean_row.cols());
-  LOGD("std_row shape: %d x %d", std_row.rows(), std_row.cols());
+    // LOGD("x shape: %d x %d", x.rows(), x.cols());
+    // LOGD("mean_row shape: %d x %d", mean_row.rows(), mean_row.cols());
+    // LOGD("std_row shape: %d x %d", std_row.rows(), std_row.cols());
 
   // First dense layer
   x = (x * model.dense1_weight).rowwise() + model.dense1_bias.transpose();
