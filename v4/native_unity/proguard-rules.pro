@@ -20,6 +20,12 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-keepattributes *Annotation*
+-keep @androidx.annotation.Keep class **{
+    @androidx.annotation.Keep <fields>;
+    @androidx.annotation.Keep <methods>;
+}
+
 -dontshrink
 -flattenpackagehierarchy vnl
 -printmapping pgmap.txt

@@ -29,6 +29,11 @@ set(OpenCV_SHARED OFF)
 set(ANDROID_ARM_NEON ON)
 find_package(OpenCV REQUIRED)
 
+add_subdirectory(ncnn)
+
+# 需要先引入opencv和ncnn后再引入anti_spoofing，因为其依赖opencv和ncnn
+add_subdirectory(anti_spoofing)
+
 # MARK: - Build Configuration
 
 if (NOT DEFINED PROJECT_BUILD_TYPE)
@@ -64,6 +69,7 @@ set(ALGO_SOURCES
         src/algo/signal_processing.cpp
         src/algo/test_helper.cpp
         src/algo/utils.cpp
+        ${ENGINE_JNI_INTERFACE_SOURCE}
 )
 
 set(ALGO_LIBS
@@ -73,6 +79,7 @@ set(ALGO_LIBS
         android
         log
         jnigraphics
+        engine
 )
 
 if (ENABLE_BP)

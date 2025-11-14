@@ -30,6 +30,7 @@ import com.google.mediapipe.tasks.core.Delegate
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker
 import com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult
+import com.mv.engine.EngineWrapper
 import com.vitals.lib.Port
 import com.vitals.sdk.framework.ErrCode
 import com.vitals.sdk.framework.FakeLog
@@ -39,6 +40,7 @@ import com.vitals.sdk.framework.StatsReporter
 import com.vitals.sdk.framework.VitalsException
 import com.vitals.sdk.solutions.core.FaceChecker
 import com.vitals.sdk.solutions.live.LiveSampledData
+import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -102,6 +104,8 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         LinkedBlockingQueue()
     )
 
+    private lateinit var liveEngine: EngineWrapper
+
     private var faceLandmarker: FaceLandmarker? = null
 
     private val faceChecker = FaceChecker()
@@ -150,6 +154,8 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
     private var incrementFrameId = AtomicInteger(0)
     private var faceProcessCount = AtomicInteger(0)
 
+    private var livenessConfidences = ConcurrentLinkedQueue<Float>()
+
     private var clipSize: Size? = null
     private var cropRect: Rect? = null
 
@@ -181,6 +187,8 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
         mainExecutor = ContextCompat.getMainExecutor(context)
+        liveEngine = EngineWrapper(context.assets)
+        liveEngine.init()
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
@@ -205,6 +213,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
                     val faceLandmarkerLocal = faceLandmarker
                     faceLandmarker = null
                     faceLandmarkerLocal?.close()
+                    liveEngine.destroy()
                     analysisExecutor.shutdown()
                     handleExecutor.shutdown()
                     poolExecutor.shutdown()
@@ -471,6 +480,8 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
                     postPixelsBlock(preFaceFrameIdx, frame.idx)
                     if (now - handleStartTime > Threshold.recordTimeLimit) {
                         stopHandle()
+                    } else {
+                        postDetectLiveness(frame)
                     }
                 } else {
                     restartHandle()
@@ -505,6 +516,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         lastFaceFrameIdx  = -1
         preFaceFrameIdx = -1
         frameQueue = ArrayList()
+        livenessConfidences = ConcurrentLinkedQueue()
         toState(State.HANDLE)
     }
 
@@ -534,6 +546,28 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
     private fun resumeHandle() {
         if (state == State.PAUSE) {
             toState(State.IDLE)
+        }
+    }
+
+    private fun postDetectLiveness(frame: Frame) {
+        poolExecutor.execute {
+            detectLiveness(frame)
+        }
+    }
+
+    private fun detectLiveness(frame: Frame) {
+        frame.frame?.let {
+            val res = liveEngine.detect(it)
+            if (res.hasFace) {
+                livenessConfidences.add(res.confidence)
+//                if (res.confidence > 0.915f) {
+//                    logger.i(TAG, "detectLiveness TTT ${res.confidence}") // DEBUG
+//                } else {
+//                    logger.e(TAG, "detectLiveness FFF ${res.confidence}") // DEBUG
+//                }
+            } else {
+//                logger.e(TAG, "detectLiveness no face") // DEBUG
+            }
         }
     }
 
@@ -604,6 +638,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
             ArrayList(frameQueue),
             ArrayList(pickedLandmarks),
             ArrayList(pickedFrames),
+            ArrayList(livenessConfidences),
         ))
     }
 

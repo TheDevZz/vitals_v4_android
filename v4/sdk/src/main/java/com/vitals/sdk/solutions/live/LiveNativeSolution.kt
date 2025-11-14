@@ -18,6 +18,7 @@ interface ILiveNativeSolution {
     fun createSampler(): VitalsSampler
     fun analyze(sampleData: VitalsSampledData, age: Int, gender: Gender, height: Double, weight: Double): Result<MeasureResult>
     fun genParcelableSampledData(sampleData: VitalsSampledData): ParcelableVitalsSampledData
+    fun verifyLiveness(sampleData: VitalsSampledData): Boolean
 }
 
 class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
@@ -81,4 +82,20 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
         return parcelableVitalsSampledData
     }
 
+    override fun verifyLiveness(sampleData: VitalsSampledData): Boolean {
+        val liveSampledData = sampleData as LiveSampledData
+        val livenessConfidences = liveSampledData.livenessConfidences
+        val mean = livenessConfidences.filter { it > 0 }.average()
+        val threshold = 0.915
+//        android.util.Log.d("ZZZ", "verifyLiveness mean=$mean, size=${livenessConfidences.size} : $livenessConfidences") // DEBUG
+        if (mean <= threshold) {
+            return false
+        }
+        val lowConfidences = livenessConfidences.filter { it <= threshold }
+        val lowCount = lowConfidences.size
+        val total = livenessConfidences.size
+        val lowRatio = lowCount.toDouble() / total
+//        android.util.Log.d("ZZZ", "verifyLiveness low confidences, ratio=${lowRatio} size=${lowConfidences.size} : $lowConfidences") // DEBUG
+        return lowRatio < 0.01
+    }
 }

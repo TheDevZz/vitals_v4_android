@@ -15,7 +15,6 @@ import com.vitals.sdk.api.MeasureResult
 import com.vitals.sdk.api.Result
 import com.vitals.sdk.api.Vitals
 import com.vitals.sdk.api.VitalsSampledData
-import com.vitals.sdk.parcel.BaseFeature
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -57,8 +56,11 @@ class ResultActivity : AppCompatActivity() {
             sampledData = it
             // DataBridge.sampledData = null
             GlobalScope.launch {
-                val analyzeResult = Vitals.getSdkInstance().getSolution().analyze(sampledData, 30, Gender.Male, 1.75, 60.0)
+                val solution = Vitals.getSdkInstance().getSolution()
+                val isLive = solution.verifyLiveness(sampledData)
+                val analyzeResult = solution.analyze(sampledData, 30, Gender.Male, 1.75, 60.0)
                 runOnUiThread {
+                    viewBinding.resultText.append("\n活体检测结果: $isLive\n")
                     showMeasureResult(analyzeResult)
                 }
             }
@@ -113,7 +115,7 @@ class ResultActivity : AppCompatActivity() {
 
     private fun showServiceMeasureResult(result: BloodPressureMeasureResult) {
         viewBinding.resultText.append(
-            "跨进程服务血压分析结果：\n" +
+            "\n跨进程服务血压分析结果：\n" +
             "收缩压：" + result.systolicBloodPressure + " mmHg\n" +
             "舒张压：" + result.diastolicBloodPressure + " mmHg\n"
         )

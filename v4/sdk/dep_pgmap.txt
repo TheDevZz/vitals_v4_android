@@ -1,25 +1,18 @@
 # compiler: R8
-# compiler_version: 8.6.27
 # compiler_version: 8.3.37
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 9cfed58
-# pg_map_hash: SHA-256 9cfed58bd78e4924596ee3b20e625fd5594a978c216f60e02df72fc603084791
-# pg_map_id: d39f13f
-# pg_map_hash: SHA-256 d39f13f242a104c88f46e99c37f85a351cbed4f73bbef612b9514024ec8e928c
+# pg_map_id: be1a084
+# pg_map_hash: SHA-256 be1a084a15a4f0b36d2227c87ac357705cbbdd5c6f16d0c1afe59701512bf12b
 com.google.mediapipe.framework.image.BitmapImageBuilder -> vnl.a.a:
 # {"id":"sourceFile","fileName":"BitmapImageBuilder.kt"}
     android.graphics.Bitmap bitmap -> a
-    1:1:void <init>(android.graphics.Bitmap):5:5 -> <init>
-    1:1:com.google.mediapipe.framework.image.MPImage build():7:7 -> a
     1:1:void <init>(android.graphics.Bitmap):0:0 -> <init>
     1:1:com.google.mediapipe.framework.image.MPImage build():0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/a/b;"}
 com.google.mediapipe.framework.image.MPImage -> vnl.a.b:
 # {"id":"sourceFile","fileName":"MPImage.kt"}
     android.graphics.Bitmap bitmap -> a
-    1:1:void <init>(android.graphics.Bitmap):5:5 -> <init>
-    1:1:android.graphics.Bitmap getBitmap():5:5 -> a
     1:1:void <init>(android.graphics.Bitmap):0:0 -> <init>
     1:1:android.graphics.Bitmap getBitmap():0:0 -> a
 com.google.mediapipe.tasks.components.containers.NormalizedLandmarkKt -> vnl.b.a:
@@ -32,9 +25,6 @@ com.google.mediapipe.tasks.core.BaseOptions -> vnl.c.a:
     com.google.mediapipe.tasks.core.BaseOptions$Companion Companion -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/c/a$c;"}
     1:1:void <clinit>():0:0 -> <clinit>
-    1:1:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
-    2:4:void <init>():3:5 -> <init>
-    1:1:com.google.mediapipe.tasks.core.Delegate getDelegate():4:4 -> a
     2:2:void com.google.mediapipe.tasks.core.BaseOptions$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
     2:2:void <clinit>():0 -> <clinit>
     3:3:void <clinit>():0:0 -> <clinit>
@@ -42,16 +32,12 @@ com.google.mediapipe.tasks.core.BaseOptions -> vnl.c.a:
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     1:1:com.google.mediapipe.tasks.core.Delegate getDelegate():0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/c/b;"}
-    2:2:void setDelegate(com.google.mediapipe.tasks.core.Delegate):4:4 -> a
     2:2:void setDelegate(com.google.mediapipe.tasks.core.Delegate):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/c/b;)V"}
-    3:3:void setModelAssetPath(java.lang.String):5:5 -> a
-    1:1:java.lang.String getModelAssetPath():5:5 -> b
     3:3:void setModelAssetPath(java.lang.String):0:0 -> a
     1:1:java.lang.String getModelAssetPath():0:0 -> b
 com.google.mediapipe.tasks.core.BaseOptions$Builder -> vnl.c.a$a:
 # {"id":"sourceFile","fileName":"BaseOptions.kt"}
-    1:1:void <init>():13:13 -> <init>
     1:1:void <init>():0:0 -> <init>
     com.google.mediapipe.tasks.core.BaseOptions build() -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/c/a;"}
@@ -64,8 +50,6 @@ com.google.mediapipe.tasks.core.BaseOptions$BuilderImp -> vnl.c.a$b:
     com.google.mediapipe.tasks.core.Delegate delegate -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/c/b;"}
     java.lang.String modelAssetPath -> b
-    1:3:void <init>():19:21 -> <init>
-    1:1:com.google.mediapipe.tasks.core.BaseOptions$Builder setDelegate(com.google.mediapipe.tasks.core.Delegate):24:24 -> a
     1:1:void <init>():0:0 -> <init>
     1:1:com.google.mediapipe.tasks.core.BaseOptions build():0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/c/a;"}
@@ -79,25 +63,10 @@ com.google.mediapipe.tasks.core.BaseOptions$BuilderImp -> vnl.c.a$b:
     6:6:com.google.mediapipe.tasks.core.BaseOptions build():0 -> a
     7:7:com.google.mediapipe.tasks.core.BaseOptions$Builder setDelegate(com.google.mediapipe.tasks.core.Delegate):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/c/b;)Lvnl/c/a$a;"}
-    2:2:com.google.mediapipe.tasks.core.BaseOptions$Builder setModelAssetPath(java.lang.String):29:29 -> a
     8:8:com.google.mediapipe.tasks.core.BaseOptions$Builder setModelAssetPath(java.lang.String):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/lang/String;)Lvnl/c/a$a;"}
-    3:3:com.google.mediapipe.tasks.core.BaseOptions build():34:34 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/c/a;"}
-    4:4:void com.google.mediapipe.tasks.core.BaseOptions.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> a
-    4:4:com.google.mediapipe.tasks.core.BaseOptions build():34 -> a
-    5:5:com.google.mediapipe.tasks.core.BaseOptions build():35:35 -> a
-    6:10:void com.google.mediapipe.tasks.core.BaseOptions.setDelegate(com.google.mediapipe.tasks.core.Delegate):0:4 -> a
-    6:10:com.google.mediapipe.tasks.core.BaseOptions build():35 -> a
-    11:11:com.google.mediapipe.tasks.core.BaseOptions build():36:36 -> a
-    12:17:void com.google.mediapipe.tasks.core.BaseOptions.setModelAssetPath(java.lang.String):0:5 -> a
-    12:17:com.google.mediapipe.tasks.core.BaseOptions build():36 -> a
 com.google.mediapipe.tasks.core.BaseOptions$Companion -> vnl.c.a$c:
 # {"id":"sourceFile","fileName":"BaseOptions.kt"}
-    1:1:void <init>():7:7 -> <init>
-    2:2:void <init>():7:7 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0 -> <init>
-    1:1:com.google.mediapipe.tasks.core.BaseOptions$Builder builder():9:9 -> a
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     1:1:com.google.mediapipe.tasks.core.BaseOptions$Builder builder():0:0 -> a
@@ -111,11 +80,6 @@ com.google.mediapipe.tasks.core.Delegate -> vnl.c.b:
     com.google.mediapipe.tasks.core.Delegate[] $VALUES -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"[Lvnl/c/b;"}
     kotlin.enums.EnumEntries $ENTRIES -> d
-    1:2:void <clinit>():4:5 -> <clinit>
-    3:3:com.google.mediapipe.tasks.core.Delegate[] $values():0:0 -> <clinit>
-    3:3:void <clinit>():5 -> <clinit>
-    4:4:void <clinit>():5:5 -> <clinit>
-    1:1:void <init>(java.lang.String,int):3:3 -> <init>
     1:1:void <clinit>():0:0 -> <clinit>
     2:2:com.google.mediapipe.tasks.core.Delegate[] $values():0:0 -> <clinit>
     2:2:void <clinit>():0 -> <clinit>
@@ -142,11 +106,6 @@ com.google.mediapipe.tasks.vision.core.RunningMode -> vnl.d.b:
     com.google.mediapipe.tasks.vision.core.RunningMode[] $VALUES -> d
       # {"id":"com.android.tools.r8.residualsignature","signature":"[Lvnl/d/b;"}
     kotlin.enums.EnumEntries $ENTRIES -> e
-    1:3:void <clinit>():4:6 -> <clinit>
-    4:4:com.google.mediapipe.tasks.vision.core.RunningMode[] $values():0:0 -> <clinit>
-    4:4:void <clinit>():6 -> <clinit>
-    5:5:void <clinit>():6:6 -> <clinit>
-    1:1:void <init>(java.lang.String,int):3:3 -> <init>
     1:1:void <clinit>():0:0 -> <clinit>
     2:2:com.google.mediapipe.tasks.vision.core.RunningMode[] $values():0:0 -> <clinit>
     2:2:void <clinit>():0 -> <clinit>
@@ -165,49 +124,29 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker -> vnl.e.a:
     com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$Companion Companion -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/e/a$a;"}
     1:1:void <clinit>():0:0 -> <clinit>
-    1:1:void <init>(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/e/a$b;Lkotlin/jvm/internal/DefaultConstructorMarker;)V"}
-    2:12:void <init>(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):11:21 -> <init>
     2:2:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
     2:2:void <clinit>():0 -> <clinit>
     3:3:void <clinit>():0:0 -> <clinit>
     1:1:void <init>(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):0:0 -> <init>
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/e/a$b;)V"}
-    13:13:java.lang.String com.vitals.sdk.lib.FaceLandmarkerContract.getFaceDetectionModelPath():4:4 -> <init>
-    13:13:void <init>(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):21 -> <init>
-    14:14:void <init>(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):21:21 -> <init>
-    15:15:java.lang.String com.vitals.sdk.lib.FaceLandmarkerContract.getFaceLandmarkerModelPath():5:5 -> <init>
-    15:15:void <init>(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):21 -> <init>
-    16:16:void <init>(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):21:21 -> <init>
-    1:1:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult detect(com.google.mediapipe.framework.image.MPImage):26:26 -> a
     2:2:void <init>(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/e/a$b;Lkotlin/jvm/internal/DefaultConstructorMarker;)V"}
     1:1:void close():0:0 -> a
     2:2:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult detect(com.google.mediapipe.framework.image.MPImage):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/a/b;)Lvnl/e/b;"}
-    2:2:android.graphics.Bitmap com.google.mediapipe.framework.image.MPImage.getBitmap():5:5 -> a
-    2:2:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult detect(com.google.mediapipe.framework.image.MPImage):26 -> a
     3:3:android.graphics.Bitmap com.google.mediapipe.framework.image.MPImage.getBitmap():0:0 -> a
     3:3:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult detect(com.google.mediapipe.framework.image.MPImage):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    3:4:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult detect(com.google.mediapipe.framework.image.MPImage):26:27 -> a
-    5:5:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult detectForVideo(com.google.mediapipe.framework.image.MPImage,long):31:31 -> a
     4:4:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult detect(com.google.mediapipe.framework.image.MPImage):0:0 -> a
     5:5:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult detectForVideo(com.google.mediapipe.framework.image.MPImage,long):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/a/b;J)Lvnl/e/b;"}
-    6:6:void close():35:35 -> a
 com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$Companion -> vnl.e.a$a:
 # {"id":"sourceFile","fileName":"FaceLandmarker.kt"}
-    1:1:void <init>():12:12 -> <init>
-    2:2:void <init>():12:12 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0 -> <init>
-    1:1:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker createFromOptions(android.content.Context,com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):14:14 -> a
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     1:1:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker createFromOptions(android.content.Context,com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/content/Context;Lvnl/e/a$b;)Lvnl/e/a;"}
     2:2:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker.<init>(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> a
-    2:2:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker createFromOptions(android.content.Context,com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):14 -> a
     2:2:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker createFromOptions(android.content.Context,com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions):0 -> a
 com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions -> vnl.e.a$b:
 # {"id":"sourceFile","fileName":"FaceLandmarker.kt"}
@@ -226,9 +165,6 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
     com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Companion Companion -> j
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/e/a$b$c;"}
     1:1:void <clinit>():0:0 -> <clinit>
-    1:1:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
-    2:8:void <init>():38:44 -> <init>
-    1:1:com.google.mediapipe.tasks.core.BaseOptions getBaseOptions():39:39 -> a
     2:2:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
     2:2:void <clinit>():0 -> <clinit>
     3:3:void <clinit>():0:0 -> <clinit>
@@ -236,20 +172,10 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     1:1:com.google.mediapipe.tasks.core.BaseOptions getBaseOptions():0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/c/a;"}
-    2:2:void setBaseOptions(com.google.mediapipe.tasks.core.BaseOptions):39:39 -> a
     2:2:void setBaseOptions(com.google.mediapipe.tasks.core.BaseOptions):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/c/a;)V"}
-    3:3:void setRunningMode(com.google.mediapipe.tasks.vision.core.RunningMode):40:40 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/d/b;)V"}
-    4:4:void setNumFaces(int):41:41 -> a
-    5:5:void setMinFaceDetectionConfidence(float):42:42 -> a
-    6:6:void setOutputFaceBlendshapes(boolean):45:45 -> a
-    7:7:void setErrorListener(com.google.mediapipe.tasks.vision.core.ErrorListener):47:47 -> a
     3:3:void setErrorListener(com.google.mediapipe.tasks.vision.core.ErrorListener):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/d/a;)V"}
-    1:1:void setMinFacePresenceConfidence(float):43:43 -> b
-    2:2:void setOutputFacialTransformationMatrixes(boolean):46:46 -> b
-    3:3:com.google.mediapipe.tasks.vision.core.ErrorListener getErrorListener():47:47 -> b
     4:4:void setMinFaceDetectionConfidence(float):0:0 -> a
     5:5:void setNumFaces(int):0:0 -> a
     6:6:void setOutputFaceBlendshapes(boolean):0:0 -> a
@@ -257,14 +183,6 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/d/b;)V"}
     1:1:com.google.mediapipe.tasks.vision.core.ErrorListener getErrorListener():0:0 -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/d/a;"}
-    1:1:float getMinFaceDetectionConfidence():42:42 -> c
-    2:2:void setMinTrackingConfidence(float):44:44 -> c
-    1:1:float getMinFacePresenceConfidence():43:43 -> d
-    1:1:float getMinTrackingConfidence():44:44 -> e
-    1:1:int getNumFaces():41:41 -> f
-    1:1:boolean getOutputFaceBlendshapes():45:45 -> g
-    1:1:boolean getOutputFacialTransformationMatrixes():46:46 -> h
-    1:1:com.google.mediapipe.tasks.vision.core.RunningMode getRunningMode():40:40 -> i
     2:2:void setMinFacePresenceConfidence(float):0:0 -> b
     3:3:void setOutputFacialTransformationMatrixes(boolean):0:0 -> b
     1:1:float getMinFaceDetectionConfidence():0:0 -> c
@@ -278,7 +196,6 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/d/b;"}
 com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder -> vnl.e.a$b$a:
 # {"id":"sourceFile","fileName":"FaceLandmarker.kt"}
-    1:1:void <init>():55:55 -> <init>
     1:1:void <init>():0:0 -> <init>
     com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build() -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/e/a$b;"}
@@ -308,9 +225,6 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
     boolean outputFacialTransformationMatrixes -> h
     com.google.mediapipe.tasks.vision.core.ErrorListener errorListener -> i
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/d/a;"}
-    1:7:void <init>():65:71 -> <init>
-    1:1:void setMinFaceDetectionConfidence(float):69:69 -> a
-    2:2:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setBaseOptions(com.google.mediapipe.tasks.core.BaseOptions):78:78 -> a
     1:1:void <init>():0:0 -> <init>
     1:1:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/e/a$b;"}
@@ -345,9 +259,6 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
     20:20:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():0 -> a
     21:21:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setBaseOptions(com.google.mediapipe.tasks.core.BaseOptions):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/c/a;)Lvnl/e/a$b$a;"}
-    3:3:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setRunningMode(com.google.mediapipe.tasks.vision.core.RunningMode):83:83 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/d/b;)Lvnl/e/a$b$a;"}
-    4:4:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setNumFaces(int):88:88 -> a
     22:22:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setErrorListener(kotlin.jvm.functions.Function1):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lkotlin/jvm/functions/Function1;)Lvnl/e/a$b$a;"}
     23:23:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setErrorListener(com.google.mediapipe.tasks.vision.core.ErrorListener):0:0 -> a
@@ -355,53 +266,14 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
     24:24:void setMinFaceDetectionConfidence(float):0:0 -> a
     25:25:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setNumFaces(int):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(I)Lvnl/e/a$b$a;"}
-    5:5:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setOutputFaceBlendshapes(boolean):93:93 -> a
     26:26:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setOutputFaceBlendshapes(boolean):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Z)Lvnl/e/a$b$a;"}
-    6:6:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setErrorListener(com.google.mediapipe.tasks.vision.core.ErrorListener):98:98 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/d/a;)Lvnl/e/a$b$a;"}
-    7:7:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setErrorListener(kotlin.jvm.functions.Function1):103:103 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lkotlin/jvm/functions/Function1;)Lvnl/e/a$b$a;"}
-    8:8:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():110:110 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/e/a$b;"}
-    9:9:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> a
-    9:9:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():110 -> a
-    10:10:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():111:111 -> a
-    11:11:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.setBaseOptions(com.google.mediapipe.tasks.core.BaseOptions):39:39 -> a
-    11:11:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():111 -> a
-    12:12:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():112:112 -> a
-    13:53:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.setRunningMode(com.google.mediapipe.tasks.vision.core.RunningMode):0:40 -> a
-    13:53:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():112 -> a
-    54:54:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():113:113 -> a
-    55:55:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.setNumFaces(int):41:41 -> a
-    55:55:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():113 -> a
-    56:56:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():114:114 -> a
-    57:57:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.setMinFaceDetectionConfidence(float):42:42 -> a
-    57:57:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():114 -> a
-    58:58:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():115:115 -> a
-    59:59:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.setMinFacePresenceConfidence(float):43:43 -> a
-    59:59:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():115 -> a
-    60:60:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():116:116 -> a
-    61:61:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.setMinTrackingConfidence(float):44:44 -> a
-    61:61:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():116 -> a
-    62:62:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():117:117 -> a
-    63:63:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.setOutputFaceBlendshapes(boolean):45:45 -> a
-    63:63:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():117 -> a
-    64:64:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():118:118 -> a
-    65:65:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.setOutputFacialTransformationMatrixes(boolean):46:46 -> a
-    65:65:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():118 -> a
-    66:66:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():119:119 -> a
-    67:67:void com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions.setErrorListener(com.google.mediapipe.tasks.vision.core.ErrorListener):47:47 -> a
-    67:67:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions build():119 -> a
-    1:1:com.google.mediapipe.tasks.core.BaseOptions getBaseOptions():66:66 -> b
     27:27:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder setRunningMode(com.google.mediapipe.tasks.vision.core.RunningMode):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/d/b;)Lvnl/e/a$b$a;"}
     1:1:com.google.mediapipe.tasks.core.BaseOptions getBaseOptions():0:0 -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/c/a;"}
-    2:2:void setBaseOptions(com.google.mediapipe.tasks.core.BaseOptions):66:66 -> b
     2:2:void setBaseOptions(com.google.mediapipe.tasks.core.BaseOptions):0:0 -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/c/a;)V"}
-    3:3:void setRunningMode(com.google.mediapipe.tasks.vision.core.RunningMode):67:67 -> b
     3:3:void setErrorListener(com.google.mediapipe.tasks.vision.core.ErrorListener):0:0 -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/d/a;)V"}
     4:4:void setMinFacePresenceConfidence(float):0:0 -> b
@@ -409,23 +281,8 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
     6:6:void setOutputFaceBlendshapes(boolean):0:0 -> b
     7:7:void setRunningMode(com.google.mediapipe.tasks.vision.core.RunningMode):0:0 -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/d/b;)V"}
-    4:4:void setNumFaces(int):68:68 -> b
-    5:5:void setMinFacePresenceConfidence(float):70:70 -> b
-    6:6:void setOutputFaceBlendshapes(boolean):72:72 -> b
-    7:7:void setErrorListener(com.google.mediapipe.tasks.vision.core.ErrorListener):74:74 -> b
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/d/a;)V"}
-    1:1:void setMinTrackingConfidence(float):71:71 -> c
-    2:2:void setOutputFacialTransformationMatrixes(boolean):73:73 -> c
-    3:3:com.google.mediapipe.tasks.vision.core.ErrorListener getErrorListener():74:74 -> c
     1:1:com.google.mediapipe.tasks.vision.core.ErrorListener getErrorListener():0:0 -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/d/a;"}
-    1:1:float getMinFaceDetectionConfidence():69:69 -> d
-    1:1:float getMinFacePresenceConfidence():70:70 -> e
-    1:1:float getMinTrackingConfidence():71:71 -> f
-    1:1:int getNumFaces():68:68 -> g
-    1:1:boolean getOutputFaceBlendshapes():72:72 -> h
-    1:1:boolean getOutputFacialTransformationMatrixes():73:73 -> i
-    1:1:com.google.mediapipe.tasks.vision.core.RunningMode getRunningMode():67:67 -> j
     2:2:void setMinTrackingConfidence(float):0:0 -> c
     3:3:void setOutputFacialTransformationMatrixes(boolean):0:0 -> c
     1:1:float getMinFaceDetectionConfidence():0:0 -> d
@@ -439,16 +296,10 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
 com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$BuilderImp$setErrorListener$1 -> vnl.e.a$b$b$a:
 # {"id":"sourceFile","fileName":"FaceLandmarker.kt"}
     kotlin.jvm.functions.Function1 $listener -> a
-    1:1:void <init>(kotlin.jvm.functions.Function1):103:103 -> <init>
-    1:1:void onError(java.lang.RuntimeException):104:104 -> a
     1:1:void <init>(kotlin.jvm.functions.Function1):0:0 -> <init>
     1:1:void onError(java.lang.RuntimeException):0:0 -> a
 com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Companion -> vnl.e.a$b$c:
 # {"id":"sourceFile","fileName":"FaceLandmarker.kt"}
-    1:1:void <init>():49:49 -> <init>
-    2:2:void <init>():49:49 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0 -> <init>
-    1:1:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder builder():51:51 -> a
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     1:1:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOptions$Builder builder():0:0 -> a
@@ -456,17 +307,120 @@ com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker$FaceLandmarkerOp
 com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult -> vnl.e.b:
 # {"id":"sourceFile","fileName":"FaceLandmarkerResult.kt"}
     java.util.List faceLandmarks -> a
-    1:1:void <init>(java.util.List):5:5 -> <init>
-    1:1:java.util.List faceLandmarks():7:7 -> a
     1:1:void <init>(java.util.List):0:0 -> <init>
     1:1:java.util.List faceLandmarks():0:0 -> a
+com.mv.engine.Component -> com.mv.engine.a:
+# {"id":"sourceFile","fileName":"Component.kt"}
+    com.mv.engine.Component$Companion Companion -> Companion
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lcom/mv/engine/a$a;"}
+    1:1:void com.mv.engine.Component$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
+    1:1:void <clinit>():0 -> <clinit>
+    2:2:void <clinit>():0:0 -> <clinit>
+com.mv.engine.Component$Companion -> com.mv.engine.a$a:
+# {"id":"sourceFile","fileName":"Component.kt"}
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+    1:1:boolean getLibraryFound():0:0 -> a
+    2:2:void setLibraryFound(boolean):0:0 -> a
+com.mv.engine.DetectionResult -> vnl.f.a:
+# {"id":"sourceFile","fileName":"DetectionResult.kt"}
+    int left -> a
+    int top -> b
+    int right -> c
+    int bottom -> d
+    float confidence -> e
+    long time -> f
+    float threshold -> g
+    boolean hasFace -> h
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(com.mv.engine.FaceBox,long,boolean):0:0 -> <init>
+    1:1:int getBottom():0:0 -> a
+    2:2:void setBottom(int):0:0 -> a
+    3:3:void setConfidence(float):0:0 -> a
+    4:4:void setHasFace(boolean):0:0 -> a
+    5:5:void setTime(long):0:0 -> a
+    6:6:com.mv.engine.DetectionResult updateLocation(android.graphics.Rect):0:0 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Rect;)Lvnl/f/a;"}
+    1:1:float getConfidence():0:0 -> b
+    2:2:void setLeft(int):0:0 -> b
+    3:3:void setThreshold(float):0:0 -> b
+    1:1:boolean getHasFace():0:0 -> c
+    2:2:void setRight(int):0:0 -> c
+    1:1:int getLeft():0:0 -> d
+    2:2:void setTop(int):0:0 -> d
+    1:1:int getRight():0:0 -> e
+    1:1:float getThreshold():0:0 -> f
+    1:1:long getTime():0:0 -> g
+    1:1:int getTop():0:0 -> h
+    1:1:java.lang.String toString():0:0 -> toString
+com.mv.engine.EngineWrapper -> vnl.f.b:
+# {"id":"sourceFile","fileName":"EngineWrapper.kt"}
+    android.content.res.AssetManager assetManager -> a
+    com.mv.engine.FaceDetector faceDetector -> b
+    com.mv.engine.Live live -> c
+    1:1:void <init>(android.content.res.AssetManager):0:0 -> <init>
+    1:1:void destroy():0:0 -> a
+    2:2:com.mv.engine.DetectionResult detect(android.graphics.Bitmap):0:0 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Bitmap;)Lvnl/f/a;"}
+    3:3:java.util.List detectFace(android.graphics.Bitmap):0:0 -> a
+    3:3:com.mv.engine.DetectionResult detect(android.graphics.Bitmap):0 -> a
+    4:4:com.mv.engine.DetectionResult detect(android.graphics.Bitmap):0:0 -> a
+    5:5:float detectLive(android.graphics.Bitmap,com.mv.engine.FaceBox):0:0 -> a
+    5:5:com.mv.engine.DetectionResult detect(android.graphics.Bitmap):0 -> a
+    6:6:com.mv.engine.DetectionResult detect(android.graphics.Bitmap):0:0 -> a
+    7:7:com.mv.engine.DetectionResult detect(byte[],int,int,int):0:0 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"([BIII)Lvnl/f/a;"}
+    8:8:java.util.List detectFace(byte[],int,int,int):0:0 -> a
+    8:8:com.mv.engine.DetectionResult detect(byte[],int,int,int):0 -> a
+    9:9:com.mv.engine.DetectionResult detect(byte[],int,int,int):0:0 -> a
+    10:10:float detectLive(byte[],int,int,int,com.mv.engine.FaceBox):0:0 -> a
+    10:10:com.mv.engine.DetectionResult detect(byte[],int,int,int):0 -> a
+    11:11:com.mv.engine.DetectionResult detect(byte[],int,int,int):0:0 -> a
+    12:12:float detectLive(android.graphics.Bitmap,com.mv.engine.FaceBox):0:0 -> a
+    13:13:float detectLive(byte[],int,int,int,com.mv.engine.FaceBox):0:0 -> a
+    14:14:void setFaceDetector(com.mv.engine.FaceDetector):0:0 -> a
+    15:15:void setLive(com.mv.engine.Live):0:0 -> a
+    1:1:java.util.List detectFace(android.graphics.Bitmap):0:0 -> b
+    2:2:java.util.List detectFace(byte[],int,int,int):0:0 -> b
+    3:3:com.mv.engine.FaceDetector getFaceDetector():0:0 -> b
+    1:1:com.mv.engine.Live getLive():0:0 -> c
+    1:1:boolean init():0:0 -> d
+com.mv.engine.FaceBox -> com.mv.engine.FaceBox:
+# {"id":"sourceFile","fileName":"FaceBox.kt"}
+com.mv.engine.FaceDetector -> com.mv.engine.FaceDetector:
+# {"id":"sourceFile","fileName":"FaceDetector.kt"}
+    1:1:java.util.List detect(android.graphics.Bitmap):0:0 -> detect
+    2:2:java.util.List detect(byte[],int,int,int):0:0 -> detect
+com.mv.engine.FaceDetector$WhenMappings -> com.mv.engine.FaceDetector$a:
+# {"id":"sourceFile","fileName":"FaceDetector.kt"}
+    int[] $EnumSwitchMapping$0 -> a
+com.mv.engine.Live -> com.mv.engine.Live:
+# {"id":"sourceFile","fileName":"Live.kt"}
+    com.mv.engine.Live$Companion Companion -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lcom/mv/engine/Live$a;"}
+    java.lang.String tag -> b
+    1:1:void com.mv.engine.Live$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
+    1:1:void <clinit>():0 -> <clinit>
+    2:2:void <clinit>():0:0 -> <clinit>
+    1:1:float detect(android.graphics.Bitmap,com.mv.engine.FaceBox):0:0 -> a
+    2:2:float detect(byte[],int,int,int,com.mv.engine.FaceBox):0:0 -> a
+    3:3:java.util.List parseConfig(android.content.res.AssetManager):0:0 -> a
+com.mv.engine.Live$Companion -> com.mv.engine.Live$a:
+# {"id":"sourceFile","fileName":"Live.kt"}
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
+com.mv.engine.Live$WhenMappings -> com.mv.engine.Live$b:
+# {"id":"sourceFile","fileName":"Live.kt"}
+    int[] $EnumSwitchMapping$0 -> a
+com.mv.engine.ModelConfig -> com.mv.engine.ModelConfig:
+# {"id":"sourceFile","fileName":"ModelConfig.kt"}
+    1:1:void <init>():0:0 -> <init>
+    2:2:void <init>(float,float,float,int,int,java.lang.String,boolean):0:0 -> <init>
+    3:3:void <init>(float,float,float,int,int,java.lang.String,boolean,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
 com.vitals.lib.Port -> com.vitals.lib.Port:
 # {"id":"sourceFile","fileName":"Port.kt"}
     com.vitals.lib.Port INSTANCE -> a
     kotlin.Lazy pixelsExtractor$delegate -> b
-    1:4:void <clinit>():11:14 -> <clinit>
-    1:1:void <init>():9:9 -> <init>
-    1:1:com.vitals.sdk.lib.ReusePixelsExtractor getPixelsExtractor():14:14 -> a
     1:1:java.lang.String copyBPModels(android.content.Context):0:0 -> a
     2:2:com.vitals.sdk.lib.ReusePixelsExtractor getPixelsExtractor():0:0 -> a
     2:2:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0 -> a
@@ -476,46 +430,18 @@ com.vitals.lib.Port -> com.vitals.lib.Port:
     4:4:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0 -> a
     5:5:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0:0 -> a
     6:6:com.vitals.sdk.lib.ReusePixelsExtractor getPixelsExtractor():0:0 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/h/c;"}
-    2:65:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):70:133 -> a
-    66:67:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):73:74 -> a
-    68:68:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):71:71 -> a
-    69:125:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):79:135 -> a
-    126:127:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):82:83 -> a
-    128:128:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):80:80 -> a
-    129:131:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):95:97 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Bitmap;Ljava/util/List;)Lcom/vitals/lib/Port$a;"}
-    132:132:com.vitals.sdk.lib.ReusePixelsExtractor getPixelsExtractor():14:14 -> a
-    132:132:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):99 -> a
-    133:173:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):99:139 -> a
-    174:213:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):100:139 -> a
-    214:214:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):100:100 -> a
-    215:215:void com.vitals.lib.Port$CombinedPixels.setV2(java.util.List):91:91 -> a
-    215:215:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):100 -> a
-    216:216:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):101:101 -> a
-    217:217:java.lang.String copyBPModels(android.content.Context):130:130 -> a
-    1:1:java.util.List extractPixels(android.graphics.Bitmap,java.util.List):108:108 -> b
-    2:2:java.util.List com.vitals.lib.Port$CombinedPixels.getV2():91:91 -> b
-    2:2:java.util.List extractPixels(android.graphics.Bitmap,java.util.List):108 -> b
+      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/i/c;"}
     7:7:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):0:0 -> a
     8:8:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):0:0 -> a
     1:1:java.util.List com.vitals.lib.Port$CombinedPixels.getV2():0:0 -> b
     1:1:java.util.List extractPixels(android.graphics.Bitmap,java.util.List):0 -> b
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    3:3:java.util.List extractPixels(android.graphics.Bitmap,java.util.List):108:108 -> b
     2:2:java.util.List extractPixels(android.graphics.Bitmap,java.util.List):0:0 -> b
 com.vitals.lib.Port$CombinedPixels -> com.vitals.lib.Port$a:
 # {"id":"sourceFile","fileName":"Port.kt"}
     java.util.List v1 -> a
     java.util.List v2 -> b
     1:1:void <init>():0:0 -> <init>
-    2:4:void <init>(java.util.List,java.util.List):89:91 -> <init>
-    5:7:void <init>(java.util.List,java.util.List):89:91 -> <init>
-    5:7:void <init>(java.util.List,java.util.List,int,kotlin.jvm.internal.DefaultConstructorMarker):89 -> <init>
-    1:1:java.util.List getV1():90:90 -> a
-    2:2:void setV1(java.util.List):90:90 -> a
-    1:1:java.util.List getV2():91:91 -> b
-    2:2:void setV2(java.util.List):91:91 -> b
     2:2:void <init>(java.util.List,java.util.List):0:0 -> <init>
     3:3:void <init>(java.util.List,java.util.List,int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     1:1:java.util.List getV1():0:0 -> a
@@ -533,24 +459,6 @@ com.vitals.lib.Port$MeasureResult -> com.vitals.lib.Port$MeasureResult:
     double lbp -> g
     double ratio -> h
     com.vitals.lib.Port$MeasureResult$Companion Companion -> i
-    1:1:void <init>():21:21 -> <init>
-    1:1:double getHbp():29:29 -> a
-    2:2:void setHbp(double):29:29 -> a
-    1:1:double getHr():22:22 -> b
-    2:2:void setHr(double):22:22 -> b
-    1:1:double getHrv():23:23 -> c
-    2:2:void setHrv(double):23:23 -> c
-    1:1:double getLbp():30:30 -> d
-    2:2:void setLbp(double):30:30 -> d
-    1:1:double getRatio():32:32 -> e
-    2:2:void setRatio(double):32:32 -> e
-    1:1:double getRr():24:24 -> f
-    2:2:void setRr(double):24:24 -> f
-    1:1:double getSpo2():25:25 -> g
-    2:2:void setSpo2(double):25:25 -> g
-    1:1:double getStress():27:27 -> h
-    2:2:void setStress(double):27:27 -> h
-    1:1:java.lang.String toString():65:65 -> toString
     1:1:void com.vitals.lib.Port$MeasureResult$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
     1:1:void <clinit>():0 -> <clinit>
     2:2:void <clinit>():0:0 -> <clinit>
@@ -572,35 +480,6 @@ com.vitals.lib.Port$MeasureResult -> com.vitals.lib.Port$MeasureResult:
     2:2:void setStress(double):0:0 -> h
 com.vitals.lib.Port$MeasureResult$Companion -> com.vitals.lib.Port$MeasureResult$Companion:
 # {"id":"sourceFile","fileName":"Port.kt"}
-    1:1:void <init>():34:34 -> <init>
-    2:2:void <init>():34:34 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0 -> <init>
-    1:2:com.vitals.lib.Port$MeasureResult create(long):36:37 -> a
-    3:3:void com.vitals.lib.Port$MeasureResult.setHr(double):22:22 -> a
-    3:3:com.vitals.lib.Port$MeasureResult create(long):37 -> a
-    4:4:com.vitals.lib.Port$MeasureResult create(long):38:38 -> a
-    5:5:void com.vitals.lib.Port$MeasureResult.setHrv(double):23:23 -> a
-    5:5:com.vitals.lib.Port$MeasureResult create(long):38 -> a
-    6:6:com.vitals.lib.Port$MeasureResult create(long):39:39 -> a
-    7:7:void com.vitals.lib.Port$MeasureResult.setRr(double):24:24 -> a
-    7:7:com.vitals.lib.Port$MeasureResult create(long):39 -> a
-    8:8:com.vitals.lib.Port$MeasureResult create(long):40:40 -> a
-    9:9:void com.vitals.lib.Port$MeasureResult.setSpo2(double):25:25 -> a
-    9:9:com.vitals.lib.Port$MeasureResult create(long):40 -> a
-    10:10:com.vitals.lib.Port$MeasureResult create(long):41:41 -> a
-    11:11:void com.vitals.lib.Port$MeasureResult.setStress(double):27:27 -> a
-    11:11:com.vitals.lib.Port$MeasureResult create(long):41 -> a
-    12:12:com.vitals.lib.Port$MeasureResult create(long):42:42 -> a
-    13:13:void com.vitals.lib.Port$MeasureResult.setHbp(double):29:29 -> a
-    13:13:com.vitals.lib.Port$MeasureResult create(long):42 -> a
-    14:14:com.vitals.lib.Port$MeasureResult create(long):43:43 -> a
-    15:15:void com.vitals.lib.Port$MeasureResult.setLbp(double):30:30 -> a
-    15:15:com.vitals.lib.Port$MeasureResult create(long):43 -> a
-    16:16:com.vitals.lib.Port$MeasureResult create(long):44:44 -> a
-    17:17:void com.vitals.lib.Port$MeasureResult.setRatio(double):32:32 -> a
-    17:17:com.vitals.lib.Port$MeasureResult create(long):44 -> a
-    18:18:com.vitals.lib.Port$MeasureResult create(long):45:45 -> a
-    1:1:com.vitals.lib.Port$MeasureResult createOrNull(long):50:50 -> b
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     1:1:void com.vitals.lib.Port$MeasureResult.setHr(double):0:0 -> a
@@ -632,45 +511,29 @@ com.vitals.lib.Port$pixelsExtractor$2 -> com.vitals.lib.Port$b:
 # {"id":"sourceFile","fileName":"Port.kt"}
     com.vitals.lib.Port$pixelsExtractor$2 INSTANCE -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lcom/vitals/lib/Port$b;"}
-    1:4:com.vitals.sdk.lib.ReusePixelsExtractor invoke():15:18 -> a
     1:1:com.vitals.sdk.lib.ReusePixelsExtractor invoke():0:0 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/h/c;"}
-    1:1:java.lang.Object invoke():14:14 -> invoke
-com.vitals.lib.VitalsNativeException -> vnl.f.a:
+      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/i/c;"}
+com.vitals.lib.VitalsNativeException -> vnl.g.a:
 # {"id":"sourceFile","fileName":"VitalsNativeException.kt"}
     java.lang.String errCode -> a
-    1:1:void <init>(java.lang.String,java.lang.String):3:3 -> <init>
-    1:1:java.lang.String getErrCode():3:3 -> a
-    2:2:void setErrCode(java.lang.String):3:3 -> a
     1:1:void <init>(java.lang.String,java.lang.String):0:0 -> <init>
     1:1:java.lang.String getErrCode():0:0 -> a
     2:2:void setErrCode(java.lang.String):0:0 -> a
-com.vitals.lib.model.VitalsModelManager -> vnl.g.a:
+com.vitals.lib.model.VitalsModelManager -> vnl.h.a:
 # {"id":"sourceFile","fileName":"VitalsModelManager.kt"}
     com.vitals.lib.model.VitalsModelManager INSTANCE -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/g/a;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/h/a;"}
     java.util.ArrayList modelNameList -> b
-    1:1:void <clinit>():16:16 -> <clinit>
-    1:1:void <init>():6:6 -> <init>
-    1:1:java.util.ArrayList getModelNameList():16:16 -> a
-    2:28:java.lang.String prepareModels(android.content.Context):26:52 -> a
-    29:34:java.lang.String prepareModels(android.content.Context):30:35 -> a
-    35:50:com.vitals.lib.model.VitalsModelManager$CheckResult checkModels(java.lang.String):39:54 -> a
     1:1:void <clinit>():0:0 -> <clinit>
     1:1:void <init>():0:0 -> <init>
     1:1:com.vitals.lib.model.VitalsModelManager$CheckResult checkModels(java.lang.String):0:0 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/lang/String;)Lvnl/g/a$a;"}
-    51:58:com.vitals.lib.model.VitalsModelManager$CheckResult checkModels(java.lang.String):42:49 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/lang/String;)Lvnl/h/a$a;"}
     2:2:java.util.ArrayList getModelNameList():0:0 -> a
     3:3:java.lang.String prepareModels(android.content.Context):0:0 -> a
-com.vitals.lib.model.VitalsModelManager$CheckResult -> vnl.g.a$a:
+com.vitals.lib.model.VitalsModelManager$CheckResult -> vnl.h.a$a:
 # {"id":"sourceFile","fileName":"VitalsModelManager.kt"}
     java.util.List fineList -> a
     java.util.List missList -> b
-    1:3:void <init>(java.util.List,java.util.List):8:10 -> <init>
-    1:1:java.util.List getFineList():9:9 -> a
-    1:1:java.util.List getMissList():10:10 -> b
-    1:1:boolean getOk():13:13 -> c
     1:1:void <init>(java.util.List,java.util.List):0:0 -> <init>
     1:1:java.util.List getFineList():0:0 -> a
     1:1:java.util.List getMissList():0:0 -> b
@@ -680,30 +543,16 @@ com.vitals.sdk.lib.FaceLandmarker -> com.vitals.sdk.lib.FaceLandmarker:
     long mNativePtr -> a
     com.vitals.sdk.lib.FaceLandmarker$Companion Companion -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lcom/vitals/sdk/lib/FaceLandmarker$a;"}
-    1:1:void <clinit>():8:8 -> <clinit>
-    1:1:void <init>():5:5 -> <init>
-    1:2:void create(java.lang.String,java.lang.String):23:24 -> a
-    3:4:void release():29:30 -> a
-    5:5:void setNumFaces(int):35:35 -> a
-    6:6:java.util.List detect(com.vitals.sdk.lib.Image):39:39 -> a
     1:1:void com.vitals.sdk.lib.FaceLandmarker$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
     1:1:void <clinit>():0 -> <clinit>
     2:2:void <clinit>():0:0 -> <clinit>
     1:1:void create(java.lang.String,java.lang.String):0:0 -> a
     2:2:java.util.List detect(android.graphics.Bitmap):0:0 -> a
     3:3:java.util.List detect(com.vitals.sdk.lib.Image):0:0 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/h/b;)Ljava/util/List;"}
-    7:7:byte[] com.vitals.sdk.lib.Image.getData():9:9 -> a
-    7:7:java.util.List detect(com.vitals.sdk.lib.Image):39 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/i/b;)Ljava/util/List;"}
     4:4:byte[] com.vitals.sdk.lib.Image.getData():0:0 -> a
     4:4:java.util.List detect(com.vitals.sdk.lib.Image):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    8:8:int com.vitals.sdk.lib.Image.getWidth():9:9 -> a
-    8:8:java.util.List detect(com.vitals.sdk.lib.Image):39 -> a
-    9:9:int com.vitals.sdk.lib.Image.getHeight() -> a
-    9:9:java.util.List detect(com.vitals.sdk.lib.Image):39 -> a
-    10:26:java.util.List detect(com.vitals.sdk.lib.Image):39:55 -> a
-    27:43:java.util.List detect(android.graphics.Bitmap):60:76 -> a
     5:5:int com.vitals.sdk.lib.Image.getWidth():0:0 -> a
     5:5:java.util.List detect(com.vitals.sdk.lib.Image):0 -> a
     6:6:int com.vitals.sdk.lib.Image.getHeight():0:0 -> a
@@ -713,9 +562,6 @@ com.vitals.sdk.lib.FaceLandmarker -> com.vitals.sdk.lib.FaceLandmarker:
     9:9:void setNumFaces(int):0:0 -> a
 com.vitals.sdk.lib.FaceLandmarker$Companion -> com.vitals.sdk.lib.FaceLandmarker$a:
 # {"id":"sourceFile","fileName":"FaceLandmarker.kt"}
-    1:1:void <init>():6:6 -> <init>
-    2:2:void <init>():6:6 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0 -> <init>
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
 com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark -> com.vitals.sdk.lib.FaceLandmarker$b:
@@ -724,7 +570,6 @@ com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark -> com.vitals.sdk.lib.FaceL
     float y -> b
     com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark$Companion Companion -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lcom/vitals/sdk/lib/FaceLandmarker$b$a;"}
-    1:1:void <init>(float,float):98:98 -> <init>
     1:1:void com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
     1:1:void <clinit>():0 -> <clinit>
     2:2:void <clinit>():0:0 -> <clinit>
@@ -734,14 +579,8 @@ com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark -> com.vitals.sdk.lib.FaceL
     3:3:com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark copy(float,float):0:0 -> a
     3:3:com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark copy$default(com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark,float,float,int,java.lang.Object):0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lcom/vitals/sdk/lib/FaceLandmarker$b;FFILjava/lang/Object;)Lcom/vitals/sdk/lib/FaceLandmarker$b;"}
-    4:4:void setX(float):98:98 -> a
     4:4:void setX(float):0:0 -> a
     1:1:float component2():0:0 -> b
-    2:2:void setY(float):98:98 -> b
-    1:1:float getX():98:98 -> c
-    1:1:float getY():98:98 -> d
-    1:1:float x():99:99 -> e
-    1:1:float y():100:100 -> f
     2:2:void setY(float):0:0 -> b
     float getX() -> c
     float getY() -> d
@@ -749,10 +588,6 @@ com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark -> com.vitals.sdk.lib.FaceL
     float y() -> f
 com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark$Companion -> com.vitals.sdk.lib.FaceLandmarker$b$a:
 # {"id":"sourceFile","fileName":"FaceLandmarker.kt"}
-    1:1:void <init>():102:102 -> <init>
-    2:2:void <init>():102:102 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0 -> <init>
-    1:1:com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark create(float,float):104:104 -> a
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     com.vitals.sdk.lib.FaceLandmarker$NormalizedLandmark create(float,float) -> a
@@ -766,46 +601,32 @@ com.vitals.sdk.lib.FaceLandmarker$RunningMode -> com.vitals.sdk.lib.FaceLandmark
     com.vitals.sdk.lib.FaceLandmarker$RunningMode[] $VALUES -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"[Lcom/vitals/sdk/lib/FaceLandmarker$c;"}
     kotlin.enums.EnumEntries $ENTRIES -> d
-    1:2:void <clinit>():15:16 -> <clinit>
-    3:3:com.vitals.sdk.lib.FaceLandmarker$RunningMode[] $values():0:0 -> <clinit>
-    3:3:void <clinit>():16 -> <clinit>
-    4:4:void <clinit>():16:16 -> <clinit>
-    1:1:void <init>(java.lang.String,int):14:14 -> <init>
     1:1:com.vitals.sdk.lib.FaceLandmarker$RunningMode[] $values():0:0 -> <clinit>
     1:1:void <clinit>():0 -> <clinit>
     2:2:void <clinit>():0:0 -> <clinit>
     com.vitals.sdk.lib.FaceLandmarker$RunningMode[] $values() -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"()[Lcom/vitals/sdk/lib/FaceLandmarker$c;"}
     kotlin.enums.EnumEntries getEntries() -> b
-com.vitals.sdk.lib.FaceLandmarkerContract -> vnl.h.a:
+com.vitals.sdk.lib.FaceLandmarkerContract -> vnl.i.a:
 # {"id":"sourceFile","fileName":"FaceLandmarkerContract.kt"}
     com.vitals.sdk.lib.FaceLandmarkerContract INSTANCE -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/h/a;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/i/a;"}
     java.lang.String faceDetectionModelPath -> b
     java.lang.String faceLandmarkerModelPath -> c
-    1:2:void <clinit>():4:5 -> <clinit>
-    1:1:void <init>():3:3 -> <init>
-    1:1:java.lang.String getFaceDetectionModelPath():4:4 -> a
-    2:2:void setFaceDetectionModelPath(java.lang.String):4:4 -> a
-    1:1:java.lang.String getFaceLandmarkerModelPath():5:5 -> b
-    2:2:void setFaceLandmarkerModelPath(java.lang.String):5:5 -> b
     1:1:void <clinit>():0:0 -> <clinit>
     1:1:void <init>():0:0 -> <init>
     1:1:java.lang.String getFaceDetectionModelPath():0:0 -> a
     2:2:void setFaceDetectionModelPath(java.lang.String):0:0 -> a
     1:1:java.lang.String getFaceLandmarkerModelPath():0:0 -> b
     2:2:void setFaceLandmarkerModelPath(java.lang.String):0:0 -> b
-com.vitals.sdk.lib.Image -> vnl.h.b:
+com.vitals.sdk.lib.Image -> vnl.i.b:
 # {"id":"sourceFile","fileName":"Image.kt"}
     int width -> a
     int height -> b
     byte[] data -> c
     com.vitals.sdk.lib.Image$Companion Companion -> d
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/h/b$a;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/i/b$a;"}
     1:1:void <clinit>():0:0 -> <clinit>
-    1:1:void <init>(int,int,byte[]):9:9 -> <init>
-    2:2:void <init>(int,int,byte[],int,kotlin.jvm.internal.DefaultConstructorMarker):9:9 -> <init>
-    3:3:void <init>(com.vitals.sdk.lib.Image):11:11 -> <init>
     2:2:void com.vitals.sdk.lib.Image$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
     2:2:void <clinit>():0 -> <clinit>
     3:3:void <clinit>():0:0 -> <clinit>
@@ -813,67 +634,39 @@ com.vitals.sdk.lib.Image -> vnl.h.b:
     2:2:void <init>(int,int,byte[],int,kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     3:3:void <init>(android.graphics.Bitmap):0:0 -> <init>
     4:4:void <init>(com.vitals.sdk.lib.Image):0:0 -> <init>
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/h/b;)V"}
-    4:6:void <init>(android.graphics.Bitmap):13:15 -> <init>
-    7:11:void <init>(android.graphics.Bitmap):13:17 -> <init>
-    1:1:byte[] getData():9:9 -> a
-    1:1:int getHeight():9:9 -> b
-    1:1:int getWidth():9:9 -> c
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/i/b;)V"}
     1:1:byte[] getData():0:0 -> a
     1:1:int getHeight():0:0 -> b
     1:1:int getWidth():0:0 -> c
-com.vitals.sdk.lib.Image$Companion -> vnl.h.b$a:
+com.vitals.sdk.lib.Image$Companion -> vnl.i.b$a:
 # {"id":"sourceFile","fileName":"Image.kt"}
-    1:1:void <init>():21:21 -> <init>
-    2:2:void <init>():21:21 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0 -> <init>
-    1:12:byte[] convertByByteBuffer(android.graphics.Bitmap):54:65 -> a
-    1:15:byte[] convertByByteBufferInt(android.graphics.Bitmap):71:85 -> b
-    1:10:byte[] convertByGetPixels(android.graphics.Bitmap):23:32 -> c
-    1:11:byte[] convertByIntBuffer(android.graphics.Bitmap):38:48 -> d
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <init>
     1:1:byte[] convertByByteBuffer(android.graphics.Bitmap):0:0 -> a
     1:1:byte[] convertByByteBufferInt(android.graphics.Bitmap):0:0 -> b
     1:1:byte[] convertByGetPixels(android.graphics.Bitmap):0:0 -> c
     1:1:byte[] convertByIntBuffer(android.graphics.Bitmap):0:0 -> d
-com.vitals.sdk.lib.ReusePixelsExtractor -> vnl.h.c:
+com.vitals.sdk.lib.ReusePixelsExtractor -> vnl.i.c:
 # {"id":"sourceFile","fileName":"ReusePixelsExtractor.kt"}
     int[] roiIds -> a
     com.vitals.sdk.lib.ReusePixelsExtractor$Pos[] sharePos -> b
-      # {"id":"com.android.tools.r8.residualsignature","signature":"[Lvnl/h/c$a;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"[Lvnl/i/c$a;"}
     int[] shareIntArray -> c
-    1:3:void <init>(int[]):10:12 -> <init>
-    1:4:java.util.List extract(android.graphics.Bitmap,java.util.List):16:19 -> a
-    5:9:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):86:90 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Bitmap;Lkotlin/ranges/IntRange;[Lvnl/h/c$b;[I)V"}
-    10:10:com.vitals.sdk.lib.ReusePixelsExtractor$Pos com.vitals.sdk.lib.ReusePixelsExtractor$Segment.getP1():165:165 -> a
-    10:10:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):91 -> a
     1:1:void <init>(int[]):0:0 -> <init>
     1:1:java.util.List extract(android.graphics.Bitmap,java.util.List):0:0 -> a
     2:2:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0:0 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Bitmap;[Lvnl/h/c$a;)Ljava/util/List;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Bitmap;[Lvnl/i/c$a;)Ljava/util/List;"}
     3:3:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():0:0 -> a
     3:3:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    11:11:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():149:149 -> a
-    11:11:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):91 -> a
     4:4:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0:0 -> a
     5:5:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():0:0 -> a
     5:5:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    12:12:com.vitals.sdk.lib.ReusePixelsExtractor$Pos com.vitals.sdk.lib.ReusePixelsExtractor$Segment.getP2():165:165 -> a
-    12:12:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):91 -> a
-    13:13:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():149:149 -> a
-    13:13:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):91 -> a
     6:6:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0:0 -> a
     7:7:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():0:0 -> a
     7:7:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    14:14:float com.vitals.sdk.lib.ReusePixelsExtractor$Segment.getSlope():166:166 -> a
-    14:14:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):97 -> a
-    15:15:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFx():149:149 -> a
-    15:15:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):98 -> a
     8:8:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0:0 -> a
     9:9:void com.vitals.sdk.lib.ReusePixelsExtractor$Pos.<init>():0:0 -> a
     9:9:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0 -> a
@@ -881,72 +674,34 @@ com.vitals.sdk.lib.ReusePixelsExtractor -> vnl.h.c:
     11:11:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():0:0 -> a
     11:11:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    16:16:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFx():149:149 -> a
-    16:16:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):100 -> a
     12:12:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0:0 -> a
     13:13:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():0:0 -> a
     13:13:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    17:18:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):102:103 -> a
-    19:22:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):92:95 -> a
-    23:23:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):176:176 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Bitmap;[Lvnl/h/c$a;)Ljava/util/List;"}
-    24:24:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():149:149 -> a
-    24:24:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):29 -> a
     14:14:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):0:0 -> a
     15:15:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):0:0 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Bitmap;Lkotlin/ranges/IntRange;[Lvnl/h/c$b;[I)V"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Bitmap;Lkotlin/ranges/IntRange;[Lvnl/i/c$b;[I)V"}
     16:16:com.vitals.sdk.lib.ReusePixelsExtractor$Pos com.vitals.sdk.lib.ReusePixelsExtractor$Segment.getP1():0:0 -> a
     16:16:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    25:25:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):29:29 -> a
-    26:26:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():149:149 -> a
-    26:26:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):29 -> a
     17:17:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():0:0 -> a
     17:17:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    27:27:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):32:32 -> a
-    28:28:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():149:149 -> a
-    28:28:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):32 -> a
     18:18:com.vitals.sdk.lib.ReusePixelsExtractor$Pos com.vitals.sdk.lib.ReusePixelsExtractor$Segment.getP2():0:0 -> a
     18:18:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):0 -> a
     19:19:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():0:0 -> a
     19:19:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    29:57:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):48:76 -> a
-    58:58:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():149:149 -> a
-    58:58:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):76 -> a
     20:20:float com.vitals.sdk.lib.ReusePixelsExtractor$Segment.getSlope():0:0 -> a
     20:20:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):0 -> a
     21:22:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFx():0:0 -> a
     21:22:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    59:60:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):76:77 -> a
-    61:61:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():149:149 -> a
-    61:61:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):77 -> a
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    62:164:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):77:179 -> a
-    165:199:java.util.List extract(android.graphics.Bitmap,com.vitals.sdk.lib.ReusePixelsExtractor$Pos[]):146:180 -> a
     23:23:void extract$interpolation(android.graphics.Bitmap,kotlin.ranges.IntRange,com.vitals.sdk.lib.ReusePixelsExtractor$Segment[],int[]):0:0 -> a
-com.vitals.sdk.lib.ReusePixelsExtractor$Pos -> vnl.h.c$a:
+com.vitals.sdk.lib.ReusePixelsExtractor$Pos -> vnl.i.c$a:
 # {"id":"sourceFile","fileName":"ReusePixelsExtractor.kt"}
     float fx -> a
     float fy -> b
-    1:1:void <init>(float,float):149:149 -> <init>
-    1:1:void <init>():150 -> <init>
-    2:2:void <init>(float,float):149:149 -> <init>
-    3:3:void <init>(android.graphics.PointF):151:151 -> <init>
-    4:4:void <init>(float,float):149:149 -> <init>
-    4:4:void <init>(android.graphics.PointF):151 -> <init>
-    5:5:void <init>(android.graphics.Point):152:152 -> <init>
-    6:6:void <init>(float,float):149:149 -> <init>
-    6:6:void <init>(android.graphics.Point):152 -> <init>
-    1:1:float getFx():149:149 -> a
-    2:2:void setFx(float):149:149 -> a
-    3:4:void assign(android.graphics.Point):155:156 -> a
-    5:6:void assign(android.graphics.PointF):160:161 -> a
-    1:1:float getFy():149:149 -> b
-    2:2:void setFy(float):149:149 -> b
     1:1:void <init>():0:0 -> <init>
     2:2:void <init>(float,float):0:0 -> <init>
     3:3:void <init>(android.graphics.Point):0:0 -> <init>
@@ -957,29 +712,17 @@ com.vitals.sdk.lib.ReusePixelsExtractor$Pos -> vnl.h.c$a:
     4:4:void setFx(float):0:0 -> a
     1:1:float getFy():0:0 -> b
     2:2:void setFy(float):0:0 -> b
-com.vitals.sdk.lib.ReusePixelsExtractor$Segment -> vnl.h.c$b:
+com.vitals.sdk.lib.ReusePixelsExtractor$Segment -> vnl.i.c$b:
 # {"id":"sourceFile","fileName":"ReusePixelsExtractor.kt"}
     com.vitals.sdk.lib.ReusePixelsExtractor$Pos p1 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/h/c$a;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/i/c$a;"}
     com.vitals.sdk.lib.ReusePixelsExtractor$Pos p2 -> b
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/h/c$a;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvnl/i/c$a;"}
     float slope -> c
-    1:1:void <init>(com.vitals.sdk.lib.ReusePixelsExtractor$Pos,com.vitals.sdk.lib.ReusePixelsExtractor$Pos):165:165 -> <init>
     1:1:void <init>(com.vitals.sdk.lib.ReusePixelsExtractor$Pos,com.vitals.sdk.lib.ReusePixelsExtractor$Pos):0:0 -> <init>
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/h/c$a;Lvnl/h/c$a;)V"}
-    2:2:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFx():149:149 -> <init>
-    2:2:void <init>(com.vitals.sdk.lib.ReusePixelsExtractor$Pos,com.vitals.sdk.lib.ReusePixelsExtractor$Pos):167 -> <init>
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    3:3:float com.vitals.sdk.lib.ReusePixelsExtractor$Pos.getFy():149:149 -> <init>
-    3:3:void <init>(com.vitals.sdk.lib.ReusePixelsExtractor$Pos,com.vitals.sdk.lib.ReusePixelsExtractor$Pos):171 -> <init>
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    4:4:void <init>(com.vitals.sdk.lib.ReusePixelsExtractor$Pos,com.vitals.sdk.lib.ReusePixelsExtractor$Pos):166:166 -> <init>
-    1:1:com.vitals.sdk.lib.ReusePixelsExtractor$Pos getP1():165:165 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvnl/i/c$a;Lvnl/i/c$a;)V"}
     1:1:com.vitals.sdk.lib.ReusePixelsExtractor$Pos getP1():0:0 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/h/c$a;"}
-    1:1:com.vitals.sdk.lib.ReusePixelsExtractor$Pos getP2():165:165 -> b
+      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/i/c$a;"}
     1:1:com.vitals.sdk.lib.ReusePixelsExtractor$Pos getP2():0:0 -> b
-      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/h/c$a;"}
-    1:1:float getSlope():166:166 -> c
+      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/i/c$a;"}
     1:1:float getSlope():0:0 -> c
-

@@ -1,0 +1,5 @@
+add_library(ncnn STATIC IMPORTED GLOBAL)
+set_target_properties(ncnn PROPERTIES
+        IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/staticlibs/${ANDROID_ABI}/libncnn.a
+        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
