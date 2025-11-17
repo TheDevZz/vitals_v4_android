@@ -73,7 +73,7 @@ class Live : Component() {
     private fun parseConfig(assetManager: AssetManager): List<ModelConfig> {
         val inputStream = assetManager.open("live/config.json")
         val br = BufferedReader(InputStreamReader(inputStream))
-        val line = br.readLine()
+        val line = br.readText()
 
         val jsonArray = JSONArray(line)
 
