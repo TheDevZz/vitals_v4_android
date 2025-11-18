@@ -125,7 +125,7 @@ class ParcelableVitalsSampledData(
     val signalData: SignalData,
     val pickedLandmarks: List<List<PointF>>,
     val pickedFrames: List<Bitmap>,
-    val baseFeature: BaseFeature? = null,
+    var baseFeature: BaseFeature? = null,
 ): Parcelable {
     override fun describeContents(): Int {
         return 0
