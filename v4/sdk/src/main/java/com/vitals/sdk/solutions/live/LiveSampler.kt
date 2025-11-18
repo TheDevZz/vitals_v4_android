@@ -16,6 +16,7 @@ import com.vitals.sdk.solutions.live.imp.LiveSolution
 
 interface ILiveSampler {
     fun bindToLifecycle(context: Context, lifecycleOwner: LifecycleOwner, previewView: PreviewView)
+    fun reset()
 }
 
 class LiveSampler: AbsSampler(), VitalsSampler {
@@ -95,5 +96,9 @@ class LiveSampler: AbsSampler(), VitalsSampler {
                 }
             }
         }
+    }
+
+    override fun reset() {
+        mSolution?.reset()
     }
 }

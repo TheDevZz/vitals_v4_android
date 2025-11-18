@@ -15,6 +15,7 @@ import com.vitals.sdk.api.MeasureResult
 import com.vitals.sdk.api.Result
 import com.vitals.sdk.api.Vitals
 import com.vitals.sdk.api.VitalsSampledData
+import com.vitals.sdk.parcel.ParcelableVitalsSampledData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -87,6 +88,7 @@ class ResultActivity : AppCompatActivity() {
                 try {
                     val parcelableSampledData = Vitals.getSdkInstance().getSolution().genParcelableSampledData(sampledData)
                     // DataBridge.writeParcelableToFile(parcelableSampledData, File(cacheDir, "sampled_data_${System.currentTimeMillis()}.parcelable"))
+                    inspectSampledData(parcelableSampledData)
                     Log.d(TAG, "调用远程服务进行血压分析")
                     // parcelableSampledData.baseFeature = BaseFeature(58, com.vitals.sdk.parcel.Gender.Male, 1.75, 90.0)
                     val result = bloodPressureService?.analyzeBloodPressure(parcelableSampledData)
@@ -110,6 +112,42 @@ class ResultActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    private fun inspectSampledData(data: ParcelableVitalsSampledData) {
+        val sb = StringBuilder()
+        sb.append("\n")
+        sb.append("Signal:\n")
+        sb.append("  startTime: ${data.signalData.startTime}\n")
+        sb.append("  endTime: ${data.signalData.endTime}\n")
+        sb.append("  fps: ${data.signalData.fps}\n")
+        sb.append("  shape: ${data.signalData.shape.joinToString(",")}\n")
+        sb.append("  pixels size: ${data.signalData.pixels.size}\n")
+        val shapeSize = data.signalData.shape.reduce { acc, i -> i * acc }
+        sb.append("  verify pixels size: ${shapeSize == data.signalData.pixels.size}\n")
+        sb.append("Picked:\n")
+        sb.append("  pickedFrames size: ${data.pickedFrames.size}\n")
+        if (data.pickedFrames.isNotEmpty()) {
+            sb.append("  pickedFrame width & height: ${data.pickedFrames[0].width} x ${data.pickedFrames[0].height}\n")
+        }
+        sb.append("  pickedLandmarks size: ${data.pickedLandmarks.size}\n")
+        if (data.pickedLandmarks.isNotEmpty()) {
+            sb.append("  pickedLandmarks[0] size: ${data.pickedLandmarks[0].size}\n")
+        }
+        sb.append("Credential:\n")
+        sb.append("  appId: ${data.credential.appId}\n")
+        sb.append("  timestamp: ${data.credential.timestamp}\n")
+        sb.append("  sign: ${data.credential.sign}\n")
+        sb.append("BaseFeature:\n")
+        data.baseFeature?.let {
+            sb.append("  age: ${it.age}\n")
+            sb.append("  gender: ${it.gender}\n")
+            sb.append("  height: ${it.height}\n")
+            sb.append("  weight: ${it.weight}\n")
+        } ?: sb.append("  null\n")
+        runOnUiThread {
+            viewBinding.resultText.append(sb.toString())
         }
     }
 

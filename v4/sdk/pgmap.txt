@@ -2,8 +2,8 @@
 # compiler_version: 8.3.37
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: ffe121c
-# pg_map_hash: SHA-256 ffe121c246bd056c7310ed76fed0bccfe3c2214f7db03150fe1f8b689ecf390c
+# pg_map_id: 08f7ddf
+# pg_map_hash: SHA-256 08f7ddf8a20b271a43e94bc44959b33cd531964d55969471b25cf555e9c48397
 com.vitals.sdk.api.AnalyzeResult -> com.vitals.sdk.api.AnalyzeResult:
 # {"id":"sourceFile","fileName":"api.kt"}
     com.vitals.sdk.api.MeasureResult measureResult -> a
@@ -976,6 +976,7 @@ com.vitals.sdk.solutions.live.ILiveNativeSolution -> vs.e.a:
 com.vitals.sdk.solutions.live.ILiveSampler -> vs.e.b:
 # {"id":"sourceFile","fileName":"LiveSampler.kt"}
     void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView) -> bindToLifecycle
+    void reset() -> reset
 com.vitals.sdk.solutions.live.LiveNativeSolution -> vs.e.e:
 # {"id":"sourceFile","fileName":"LiveNativeSolution.kt"}
     void <init>() -> <init>
@@ -1174,6 +1175,7 @@ com.vitals.sdk.solutions.live.LiveSampler -> vs.e.i:
     com.vitals.sdk.api.SamplerEventListener com.vitals.sdk.internal.AbsSampler.mEventListener -> a
     com.vitals.sdk.solutions.core.FaceChecker$FaceOutType preFaceOutType -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/d/c;"}
+    com.vitals.sdk.solutions.live.imp.LiveSolution mSolution -> c
     1:1:void <init>():0:0 -> <init>
     1:1:void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView):0:0 -> bindToLifecycle
     2:2:void com.vitals.sdk.solutions.live.imp.LiveSolution.setActionThreshold(float):0:0 -> bindToLifecycle
@@ -1182,6 +1184,7 @@ com.vitals.sdk.solutions.live.LiveSampler -> vs.e.i:
     3:3:void com.vitals.sdk.solutions.live.imp.LiveSolution.setActionThreshold(float):0 -> bindToLifecycle
     3:3:void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView):0 -> bindToLifecycle
     4:4:void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView):0:0 -> bindToLifecycle
+    1:1:void reset():0:0 -> reset
     1:1:void setEventListener(com.vitals.sdk.api.SamplerEventListener):0:0 -> setEventListener
       # {"id":"com.android.tools.r8.synthesized"}
     2:2:void com.vitals.sdk.internal.AbsSampler.setEventListener(com.vitals.sdk.api.SamplerEventListener):0:0 -> setEventListener
@@ -1352,11 +1355,11 @@ com.vitals.sdk.solutions.live.imp.LiveSolution -> com.vitals.sdk.solutions.live.
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/f/a;"}
     1:1:void bindCameraUseCases(androidx.camera.lifecycle.ProcessCameraProvider):0:0 -> a
     2:2:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker setupFaceLandmarker():0:0 -> a
-    2:2:void bindCameraUseCases$lambda$8(com.vitals.sdk.solutions.live.imp.LiveSolution,androidx.camera.core.ImageAnalysis):0 -> a
-    3:3:void bindCameraUseCases$lambda$8(com.vitals.sdk.solutions.live.imp.LiveSolution,androidx.camera.core.ImageAnalysis):0:0 -> a
+    2:2:void bindCameraUseCases$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,androidx.camera.core.ImageAnalysis):0 -> a
+    3:3:void bindCameraUseCases$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,androidx.camera.core.ImageAnalysis):0:0 -> a
     4:4:void emitEvent(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/f/c;Ljava/lang/Object;)V"}
-    5:5:void emitEvent$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0:0 -> a
+    5:5:void emitEvent$lambda$18(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lcom/vitals/sdk/solutions/live/imp/LiveSolution;Lvs/f/c;Ljava/lang/Object;)V"}
     6:6:com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats$FrameStats com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats.getFrameStats():0:0 -> a
     6:6:void handleImageAnalyze(androidx.camera.core.ImageProxy):0 -> a
@@ -1421,108 +1424,108 @@ com.vitals.sdk.solutions.live.imp.LiveSolution -> com.vitals.sdk.solutions.live.
     35:35:void onDestroy$flushExecutor$lambda$1(com.vitals.sdk.solutions.live.imp.LiveSolution):0:0 -> a
     36:36:void postDetectLiveness(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/f/d;)V"}
-    37:37:void postDetectLiveness$lambda$14(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> a
+    37:37:void postDetectLiveness$lambda$15(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lcom/vitals/sdk/solutions/live/imp/LiveSolution;Lvs/f/d;)V"}
     38:38:android.graphics.Bitmap com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrame():0:0 -> a
     38:38:void detectLiveness(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    38:38:void postDetectLiveness$lambda$14(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> a
+    38:38:void postDetectLiveness$lambda$15(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> a
     39:39:void detectLiveness(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> a
-    39:39:void postDetectLiveness$lambda$14(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> a
+    39:39:void postDetectLiveness$lambda$15(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> a
     40:40:void com.vitals.sdk.solutions.live.imp.LiveSolution$CountDownSignal.add():0:0 -> a
     40:40:void postPixelsBlock(int,int):0 -> a
     41:41:void postPixelsBlock(int,int):0:0 -> a
     42:42:void doPixelsBlock(int,int):0:0 -> a
-    42:42:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    42:42:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     43:43:void doPixelsBlock(int,int):0:0 -> a
-    43:43:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    43:43:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     44:44:android.graphics.Bitmap com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrame():0:0 -> a
     44:44:void doPixelsBlock(int,int):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    44:44:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    44:44:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     45:45:void doPixelsBlock(int,int):0:0 -> a
-    45:45:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    45:45:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     46:46:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFaceResult():0:0 -> a
     46:46:void doPixelsBlock(int,int):0 -> a
-    46:46:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    46:46:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     47:47:void doPixelsBlock(int,int):0:0 -> a
-    47:47:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    47:47:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     48:48:java.util.List com.vitals.sdk.solutions.live.imp.VitalsLib.genLandmarkPoints(java.util.List,int,int):0:0 -> a
     48:48:void doPixelsBlock(int,int):0 -> a
-    48:48:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    48:48:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     49:49:void com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.setMesh(java.util.List):0:0 -> a
     49:49:void doPixelsBlock(int,int):0 -> a
-    49:49:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    49:49:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     50:50:void doPixelsBlock(int,int):0:0 -> a
-    50:50:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    50:50:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     51:51:com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats$StatsLogger com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats.getPixelsStats():0:0 -> a
     51:51:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     51:51:void doPixelsBlock(int,int):0 -> a
-    51:51:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    51:51:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     52:52:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0:0 -> a
     52:52:void doPixelsBlock(int,int):0 -> a
-    52:52:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    52:52:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     53:53:void com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.setPixels(com.vitals.lib.Port$CombinedPixels):0:0 -> a
     53:53:void doPixelsBlock(int,int):0 -> a
-    53:53:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    53:53:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     54:54:void com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.setFrame(android.graphics.Bitmap):0:0 -> a
     54:54:void doPixelsBlock(int,int):0 -> a
-    54:54:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    54:54:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     55:55:void doPixelsBlock(int,int):0:0 -> a
-    55:55:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    55:55:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     56:56:java.util.List com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getMesh():0:0 -> a
     56:56:void doPixelsBlock(int,int):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    56:56:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    56:56:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     57:57:void doPixelsBlock(int,int):0:0 -> a
-    57:57:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    57:57:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     58:58:java.util.List com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getMesh():0:0 -> a
     58:58:void doPixelsBlock(int,int):0 -> a
-    58:58:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    58:58:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     59:59:void doPixelsBlock(int,int):0:0 -> a
-    59:59:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    59:59:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     60:60:java.util.List calcShareMesh(java.util.List,java.util.List):0:0 -> a
     60:60:void doPixelsBlock(int,int):0 -> a
-    60:60:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    60:60:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     61:61:void doPixelsBlock(int,int):0:0 -> a
-    61:61:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    61:61:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     62:62:void com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.setShareMesh(java.util.List):0:0 -> a
     62:62:void doPixelsBlock(int,int):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    62:62:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    62:62:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     63:63:android.graphics.Bitmap com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrame():0:0 -> a
     63:63:void doPixelsBlock(int,int):0 -> a
-    63:63:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    63:63:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     64:64:void doPixelsBlock(int,int):0:0 -> a
-    64:64:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    64:64:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     65:65:com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats$StatsLogger com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats.getPixelsStats():0:0 -> a
     65:65:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0 -> a
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     65:65:void doPixelsBlock(int,int):0 -> a
-    65:65:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    65:65:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     66:66:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0:0 -> a
     66:66:void doPixelsBlock(int,int):0 -> a
-    66:66:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    66:66:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     67:67:void com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.setPixels(com.vitals.lib.Port$CombinedPixels):0:0 -> a
     67:67:void doPixelsBlock(int,int):0 -> a
-    67:67:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    67:67:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
     68:68:void com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.setFrame(android.graphics.Bitmap):0:0 -> a
     68:68:void doPixelsBlock(int,int):0 -> a
-    68:68:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
-    69:69:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0:0 -> a
+    68:68:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    69:69:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0:0 -> a
     70:70:void com.vitals.sdk.solutions.live.imp.LiveSolution$CountDownSignal.countDown():0:0 -> a
-    70:70:void postPixelsBlock$lambda$16(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
-    71:71:void setup(androidx.camera.view.PreviewView,vs.e.LiveSampler$bindToLifecycle$1):0:0 -> a
+    70:70:void postPixelsBlock$lambda$17(com.vitals.sdk.solutions.live.imp.LiveSolution,int,int):0 -> a
+    71:71:void reset():0:0 -> a
+    72:72:void setup(androidx.camera.view.PreviewView,vs.e.LiveSampler$bindToLifecycle$1):0:0 -> a
       # {"id":"com.android.tools.r8.synthesized"}
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroidx/camera/view/PreviewView;Lvs/e/h;)V"}
-    72:72:void setup(androidx.camera.view.PreviewView,kotlin.jvm.functions.Function2):0:0 -> a
-    72:72:void setup(androidx.camera.view.PreviewView,vs.e.LiveSampler$bindToLifecycle$1):0 -> a
-    73:73:void setupCamera():0:0 -> a
+    73:73:void setup(androidx.camera.view.PreviewView,kotlin.jvm.functions.Function2):0:0 -> a
+    73:73:void setup(androidx.camera.view.PreviewView,vs.e.LiveSampler$bindToLifecycle$1):0 -> a
     74:74:void com.vitals.sdk.framework.FakeLog.e(java.lang.String,java.lang.String,java.lang.Throwable):0:0 -> a
-    74:74:void setupCamera$lambda$6(com.google.common.util.concurrent.ListenableFuture,com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> a
-    75:75:void setupCamera$lambda$6(com.google.common.util.concurrent.ListenableFuture,com.vitals.sdk.solutions.live.imp.LiveSolution):0:0 -> a
+    74:74:void setupCamera$lambda$7(com.google.common.util.concurrent.ListenableFuture,com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> a
+    75:75:void setupCamera$lambda$7(com.google.common.util.concurrent.ListenableFuture,com.vitals.sdk.solutions.live.imp.LiveSolution):0:0 -> a
     76:76:void toState(com.vitals.sdk.solutions.live.imp.LiveSolution$State):0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/f/m;)V"}
     77:77:void com.vitals.sdk.framework.FakeLog.d(java.lang.String,java.lang.String):0:0 -> a
@@ -1536,59 +1539,57 @@ com.vitals.sdk.solutions.live.imp.LiveSolution -> com.vitals.sdk.solutions.live.
     3:3:void onPause$lambda$3(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> b
     4:4:void postFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/f/d;)V"}
-    5:5:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
+    5:5:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lcom/vitals/sdk/solutions/live/imp/LiveSolution;Lvs/f/d;)V"}
     6:6:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
-    6:6:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    6:6:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     7:7:android.graphics.Bitmap com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrame():0:0 -> b
     7:7:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    7:7:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    7:7:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     8:8:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
-    8:8:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    8:8:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     9:9:com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats$FaceStats com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats.getFaceStats():0:0 -> b
     9:9:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    9:9:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    9:9:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     10:10:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
-    10:10:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    10:10:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     11:11:long com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getTimestamp():0:0 -> b
     11:11:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
-    11:11:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    11:11:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     12:12:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
-    12:12:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    12:12:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     13:13:void com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.setFaceResult(com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult):0:0 -> b
     13:13:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
-    13:13:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    13:13:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     14:14:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
-    14:14:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    14:14:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     15:15:android.graphics.Bitmap com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrame():0:0 -> b
     15:15:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
-    15:15:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    15:15:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     16:16:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
-    16:16:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    16:16:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     17:17:void com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.setFaceCheckResult(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0:0 -> b
     17:17:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
-    17:17:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    17:17:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     18:18:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
-    18:18:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    18:18:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     19:19:com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats$FaceStats com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats.getFaceStats():0:0 -> b
     19:19:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    19:19:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    19:19:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     20:20:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
-    20:20:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    20:20:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     21:21:long com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats$TimeStats.end():0:0 -> b
     21:21:long com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats$StatsLogger.end():0 -> b
     21:21:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
-    21:21:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    21:21:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
     22:22:long com.vitals.sdk.solutions.live.imp.LiveSolution$SolutionStats$StatsLogger.end():0:0 -> b
     22:22:void handleFace(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
-    22:22:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
-    23:23:void postFace$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
-    24:24:void com.vitals.sdk.solutions.live.imp.LiveSolution$CountDownSignal.await():0:0 -> b
-    24:24:void stopHandle():0 -> b
-    25:25:void stopHandle():0:0 -> b
+    22:22:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> b
+    23:23:void postFace$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> b
+    24:24:void setupCamera():0:0 -> b
     1:1:void resumeHandle():0:0 -> c
     1:1:void onResume$lambda$4(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
@@ -1596,124 +1597,128 @@ com.vitals.sdk.solutions.live.imp.LiveSolution -> com.vitals.sdk.solutions.live.
     2:2:void onResume$lambda$4(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> c
     3:3:void postFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/f/d;)V"}
-    4:4:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
+    4:4:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lcom/vitals/sdk/solutions/live/imp/LiveSolution;Lvs/f/d;)V"}
     5:5:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
-    5:5:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    5:5:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     6:6:void com.vitals.sdk.solutions.live.imp.LiveSolution$Debugger.debugFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
     6:6:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    6:6:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    6:6:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     7:7:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFaceCheckResult():0:0 -> c
     7:7:void com.vitals.sdk.solutions.live.imp.LiveSolution$Debugger.debugFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     7:7:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    7:7:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    7:7:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     8:8:com.vitals.sdk.solutions.core.FaceChecker$FaceOutType com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.getFaceOutType():0:0 -> c
     8:8:void com.vitals.sdk.solutions.live.imp.LiveSolution$Debugger.debugFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     8:8:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    8:8:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    8:8:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     9:9:void com.vitals.sdk.solutions.live.imp.LiveSolution$Debugger.debugFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
     9:9:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    9:9:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    9:9:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     10:10:java.lang.String access$getTAG$p(com.vitals.sdk.solutions.live.imp.LiveSolution):0:0 -> c
     10:10:void com.vitals.sdk.solutions.live.imp.LiveSolution$Debugger.debugFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     10:10:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    10:10:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    10:10:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     11:11:void com.vitals.sdk.solutions.live.imp.LiveSolution$Debugger.debugFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
     11:11:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    11:11:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    11:11:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     12:12:void com.vitals.sdk.framework.FakeLog.d(java.lang.String,java.lang.String):0:0 -> c
     12:12:void com.vitals.sdk.solutions.live.imp.LiveSolution$Debugger.debugFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     12:12:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    12:12:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    12:12:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     13:13:void com.vitals.sdk.solutions.live.imp.LiveSolution$Debugger.debugFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
     13:13:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    13:13:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    13:13:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     14:14:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFaceCheckResult():0:0 -> c
     14:14:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    14:14:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    14:14:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     15:15:com.vitals.sdk.solutions.core.FaceChecker$FaceOutType com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.getFaceOutType():0:0 -> c
     15:15:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    15:15:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    15:15:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     16:16:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
-    16:16:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    16:16:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     17:17:com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFaceCheckResult():0:0 -> c
     17:17:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    17:17:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    17:17:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     18:18:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
-    18:18:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    18:18:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     19:19:void updateProgress():0:0 -> c
     19:19:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    19:19:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    19:19:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     20:20:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
-    20:20:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    20:20:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     21:21:int com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getIdx():0:0 -> c
     21:21:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    21:21:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    21:21:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     22:22:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
-    22:22:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    22:22:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     23:23:void restartHandle():0:0 -> c
     23:23:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    23:23:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    23:23:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     24:24:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
-    24:24:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    24:24:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     25:25:void startHandle():0:0 -> c
     25:25:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    25:25:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    25:25:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     26:26:android.graphics.Bitmap com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrame():0:0 -> c
     26:26:void pickFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     26:26:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    26:26:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    26:26:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     27:27:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFaceResult():0:0 -> c
     27:27:void pickFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     27:27:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    27:27:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    27:27:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     28:28:void pickFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
     28:28:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
-    28:28:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    28:28:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
     29:29:void handleFaceResult(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> c
-    29:29:void postFaceResult$lambda$11(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    29:29:void postFaceResult$lambda$12(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> c
+    30:30:void com.vitals.sdk.solutions.live.imp.LiveSolution$CountDownSignal.await():0:0 -> c
+    30:30:void stopHandle():0 -> c
+    31:31:void stopHandle():0:0 -> c
     1:1:void postFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> d
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/f/d;)V"}
-    2:2:void postFrame$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> d
+    2:2:void postFrame$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> d
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Lcom/vitals/sdk/solutions/live/imp/LiveSolution;Lvs/f/d;)V"}
     3:3:void handleFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> d
-    3:3:void postFrame$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
+    3:3:void postFrame$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     4:4:void handleFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> d
-    4:4:void postFrame$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
+    4:4:void postFrame$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
     5:5:void com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.setIdx(int):0:0 -> d
     5:5:void handleFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    5:5:void postFrame$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
+    5:5:void postFrame$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
     6:6:void handleFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> d
-    6:6:void postFrame$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
+    6:6:void postFrame$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
     7:7:int com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getIdx():0:0 -> d
     7:7:void handleFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
-    7:7:void postFrame$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
+    7:7:void postFrame$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
     8:8:void handleFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> d
-    8:8:void postFrame$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
+    8:8:void postFrame$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
     9:9:int com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getIdx():0:0 -> d
     9:9:void handleFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
-    9:9:void postFrame$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
+    9:9:void postFrame$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
     10:10:void handleFrame(com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0:0 -> d
-    10:10:void postFrame$lambda$9(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
-    11:11:void setup$lambda$5(com.vitals.sdk.solutions.live.imp.LiveSolution):0:0 -> d
-    1:1:void doAnalyze(java.util.List):0:0 -> e
-    1:1:void stopHandle$lambda$13(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> e
-    2:2:com.vitals.lib.Port$CombinedPixels com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getPixels():0:0 -> e
-    2:2:void doAnalyze(java.util.List):0 -> e
+    10:10:void postFrame$lambda$10(com.vitals.sdk.solutions.live.imp.LiveSolution,com.vitals.sdk.solutions.live.imp.LiveSolution$Frame):0 -> d
+    11:11:void reset$lambda$5(com.vitals.sdk.solutions.live.imp.LiveSolution):0:0 -> d
+    void setup$lambda$6(com.vitals.sdk.solutions.live.imp.LiveSolution) -> e
+    1:1:void doAnalyze(java.util.List):0:0 -> f
+    1:1:void stopHandle$lambda$14(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> f
+    2:2:com.vitals.lib.Port$CombinedPixels com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getPixels():0:0 -> f
+    2:2:void doAnalyze(java.util.List):0 -> f
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    2:2:void stopHandle$lambda$13(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> e
-    3:3:void doAnalyze(java.util.List):0:0 -> e
-    3:3:void stopHandle$lambda$13(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> e
-    4:4:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFaceResult():0:0 -> e
-    4:4:void doAnalyze(java.util.List):0 -> e
+    2:2:void stopHandle$lambda$14(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> f
+    3:3:void doAnalyze(java.util.List):0:0 -> f
+    3:3:void stopHandle$lambda$14(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> f
+    4:4:com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarkerResult com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFaceResult():0:0 -> f
+    4:4:void doAnalyze(java.util.List):0 -> f
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    4:4:void stopHandle$lambda$13(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> e
-    5:5:void doAnalyze(java.util.List):0:0 -> e
-    5:5:void stopHandle$lambda$13(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> e
+    4:4:void stopHandle$lambda$14(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> f
+    5:5:void doAnalyze(java.util.List):0:0 -> f
+    5:5:void stopHandle$lambda$14(com.vitals.sdk.solutions.live.imp.LiveSolution):0 -> f
     1:1:void com.vitals.sdk.framework.FakeLog.d(java.lang.String,java.lang.String):0:0 -> onPause
     1:1:void onPause(androidx.lifecycle.LifecycleOwner):0 -> onPause
     2:2:void onPause(androidx.lifecycle.LifecycleOwner):0:0 -> onPause

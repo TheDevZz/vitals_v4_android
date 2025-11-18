@@ -110,9 +110,18 @@ class FaceActivity : AppCompatActivity() {
             }
 
             override fun onSampledData(sampledData: VitalsSampledData) {
-                DataBridge.sampledData = sampledData
-                startActivity(Intent(this@FaceActivity, ResultActivity::class.java))
-                finish()
+                AlertDialog.Builder(this@FaceActivity)
+                    .setTitle("采集完成")
+                    .setMessage("人脸数据采集完成，是否进行分析？")
+                    .setPositiveButton("是") { _, _ ->
+                        DataBridge.sampledData = sampledData
+                        startActivity(Intent(this@FaceActivity, ResultActivity::class.java))
+                        finish()
+                    }
+                    .setNegativeButton("否") { _, _ ->
+                        vitalsSampler.reset()
+                    }
+                    .show()
             }
 
             override fun onError(e: VitalsRuntimeException) {

@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.vitals.example.databinding.ActivityMainBinding
+import com.vitals.sdk.parcel.ParcelableVitalsSampledData
 import com.vitals.sdk.api.Vitals
 import com.vitals.sdk.api.VitalsSdkConfig
 import com.vitals.sdk.api.VitalsSdkInitCallback
 import com.vitals.sdk.api.VitalsSdkInitOption
+import com.vitals.sdk.parcel.Credential
+import com.vitals.sdk.parcel.SignalData
 
 class MainActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityMainBinding
@@ -33,6 +36,12 @@ class MainActivity : AppCompatActivity() {
             //
             // }
             startActivity(Intent(this, ResultActivity::class.java))
+            ParcelableVitalsSampledData(
+                Credential("", System.currentTimeMillis(), ""),
+                SignalData(0L, 0L, 0.0, DoubleArray(0), IntArray(0)),
+                emptyList(),
+                emptyList(),
+            )
         }
 
         setupSdk()

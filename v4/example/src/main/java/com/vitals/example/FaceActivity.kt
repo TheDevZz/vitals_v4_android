@@ -108,9 +108,18 @@ class FaceActivity : AppCompatActivity() {
             }
 
             override fun onSampledData(sampledData: VitalsSampledData) {
-                DataBridge.sampledData = sampledData
-                startActivity(Intent(this@FaceActivity, ResultActivity::class.java))
-                finish()
+                AlertDialog.Builder(this@FaceActivity)
+                    .setTitle("采集完成")
+                    .setMessage("人脸数据采集完成，是否进行分析？")
+                    .setPositiveButton("是") { _, _ ->
+                        DataBridge.sampledData = sampledData
+                        startActivity(Intent(this@FaceActivity, ResultActivity::class.java))
+                        finish()
+                    }
+                    .setNegativeButton("否") { _, _ ->
+                        vitalsSampler.reset()
+                    }
+                    .show()
             }
 
             override fun onError(e: VitalsRuntimeException) {
@@ -126,6 +135,7 @@ class FaceActivity : AppCompatActivity() {
     private fun getTips(faceState: FaceState): String {
         return when(faceState) {
             FaceState.NO_FACE -> "请面对镜头"
+            FaceState.MULTI_FACE -> "请单人检测"
             FaceState.OUT_OF_FRAME -> "请保持面部在取景框内"
             FaceState.TOO_FAR -> "请靠近"
             FaceState.TOO_DARK -> "光线太暗"

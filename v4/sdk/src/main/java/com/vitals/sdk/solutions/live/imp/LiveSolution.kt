@@ -167,8 +167,8 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
 
     private val countDownSignal = CountDownSignal()
 
-    private val pickedLandmarks = ArrayList<List<PointF>>()
-    private val pickedFrames = ArrayList<Bitmap>()
+    private var pickedLandmarks = ArrayList<List<PointF>>()
+    private var pickedFrames = ArrayList<Bitmap>()
 
 //    private var handleStartTime = 0L
     // Running Var <<<
@@ -240,6 +240,14 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         logger.d(TAG, "onResume")
         handleExecutor.execute {
             resumeHandle()
+        }
+    }
+
+    fun reset() {
+        handleExecutor.execute {
+            if (state == State.ANALYZE) {
+                toState(State.IDLE)
+            }
         }
     }
 
@@ -517,6 +525,8 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         preFaceFrameIdx = -1
         frameQueue = ArrayList()
         livenessConfidences = ConcurrentLinkedQueue()
+        pickedFrames = ArrayList()
+        pickedLandmarks = ArrayList()
         toState(State.HANDLE)
     }
 
