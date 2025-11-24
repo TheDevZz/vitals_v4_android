@@ -2,8 +2,8 @@
 # compiler_version: 8.3.37
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 08f7ddf
-# pg_map_hash: SHA-256 08f7ddf8a20b271a43e94bc44959b33cd531964d55969471b25cf555e9c48397
+# pg_map_id: efdf5b7
+# pg_map_hash: SHA-256 efdf5b7426de50f9387be45bb6e7d6c0d7538d863aa8cc868c66d261df71982c
 com.vitals.sdk.api.AnalyzeResult -> com.vitals.sdk.api.AnalyzeResult:
 # {"id":"sourceFile","fileName":"api.kt"}
     com.vitals.sdk.api.MeasureResult measureResult -> a
@@ -428,6 +428,21 @@ com.vitals.sdk.framework.ResultOrException -> vs.a.m:
     2:2:void <init>(java.lang.Boolean,vs.a.VitalsException,int):0 -> <init>
     3:3:void <init>(java.lang.Object,com.vitals.sdk.framework.VitalsException):0:0 -> <init>
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/lang/Object;Lvs/a/v;)V"}
+    1:1:com.vitals.sdk.api.Result convert():0:0 -> a
+    2:2:com.vitals.sdk.framework.ErrCode com.vitals.sdk.framework.VitalsException.getErrCode():0:0 -> a
+    2:2:com.vitals.sdk.api.Result convert():0 -> a
+    3:3:int com.vitals.sdk.framework.ErrCode.code():0:0 -> a
+    3:3:com.vitals.sdk.api.Result convert():0 -> a
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    4:4:int com.vitals.sdk.framework.ErrCode.code():0:0 -> a
+    4:4:com.vitals.sdk.api.Result convert():0 -> a
+    5:5:com.vitals.sdk.api.Result convert():0:0 -> a
+    6:6:int com.vitals.sdk.framework.ErrCode.code():0:0 -> a
+    6:6:com.vitals.sdk.api.Result convert():0 -> a
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    7:7:int com.vitals.sdk.framework.ErrCode.code():0:0 -> a
+    7:7:com.vitals.sdk.api.Result convert():0 -> a
+    8:8:com.vitals.sdk.api.Result convert():0:0 -> a
     1:1:boolean equals(java.lang.Object):0:0 -> equals
     1:1:int hashCode():0:0 -> hashCode
     1:1:java.lang.String toString():0:0 -> toString
@@ -486,7 +501,7 @@ com.vitals.sdk.framework.SdkManager -> vs.a.s:
     com.vitals.sdk.framework.SdkFileManager fileManager -> g
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/a/p;"}
     com.vitals.sdk.imp.NetService netService -> h
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/b/e;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/b/d;"}
     1:1:void <clinit>():0:0 -> <clinit>
     void <init>() -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
@@ -551,7 +566,7 @@ com.vitals.sdk.imp.IVitalsSdkImp1 -> vs.b.a:
 # {"id":"sourceFile","fileName":"VitalsSdkImp1.kt"}
     com.vitals.sdk.api.VitalsSolution getSolution() -> getSolution
     void initialize(android.content.Context,com.vitals.sdk.api.VitalsSdkInitOption,com.vitals.sdk.api.VitalsSdkConfig,com.vitals.sdk.api.VitalsSdkInitCallback) -> initialize
-com.vitals.sdk.imp.NetService -> vs.b.e:
+com.vitals.sdk.imp.NetService -> vs.b.d:
 # {"id":"sourceFile","fileName":"NetService.kt"}
     java.lang.String serverUrl -> a
     1:1:void <init>():0:0 -> <init>
@@ -593,44 +608,11 @@ com.vitals.sdk.imp.NetService$uploadLogFileParams$2 -> vs.b.c:
     12:12:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error(com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable):0:0 -> onResponse
     12:12:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error$default(com.vitals.sdk.framework.ResultOrException$Companion,com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable,int,java.lang.Object):0 -> onResponse
     12:12:void onResponse(okhttp3.Call,okhttp3.Response):0 -> onResponse
-com.vitals.sdk.imp.NetService$uploadResult$1 -> vs.b.d:
-# {"id":"sourceFile","fileName":"NetService.kt"}
-    kotlin.jvm.functions.Function1 $callback -> a
-    1:1:void <init>(vs.e.LiveNativeSolution$analyze$1$1):0:0 -> <init>
-      # {"id":"com.android.tools.r8.synthesized"}
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/e/c;)V"}
-    2:2:void <init>(kotlin.jvm.functions.Function1):0:0 -> <init>
-    2:2:void <init>(vs.e.LiveNativeSolution$analyze$1$1):0 -> <init>
-    1:1:void onFailure(okhttp3.Call,java.io.IOException):0:0 -> onFailure
-    2:2:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error(com.vitals.sdk.framework.ErrCode,java.lang.Throwable):0:0 -> onFailure
-    2:2:void onFailure(okhttp3.Call,java.io.IOException):0 -> onFailure
-    3:3:void onFailure(okhttp3.Call,java.io.IOException):0:0 -> onFailure
-    1:1:void onResponse(okhttp3.Call,okhttp3.Response):0:0 -> onResponse
-    2:2:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error(com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable):0:0 -> onResponse
-    2:2:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error$default(com.vitals.sdk.framework.ResultOrException$Companion,com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable,int,java.lang.Object):0 -> onResponse
-    2:2:void onResponse(okhttp3.Call,okhttp3.Response):0 -> onResponse
-    3:3:void onResponse(okhttp3.Call,okhttp3.Response):0:0 -> onResponse
-    4:4:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.success(java.lang.Object):0:0 -> onResponse
-    4:4:void onResponse(okhttp3.Call,okhttp3.Response):0 -> onResponse
-    5:5:void onResponse(okhttp3.Call,okhttp3.Response):0:0 -> onResponse
-    6:6:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.success(java.lang.Object):0:0 -> onResponse
-    6:6:void onResponse(okhttp3.Call,okhttp3.Response):0 -> onResponse
-    7:7:void onResponse(okhttp3.Call,okhttp3.Response):0:0 -> onResponse
-    8:8:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error(com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable):0:0 -> onResponse
-    8:8:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error$default(com.vitals.sdk.framework.ResultOrException$Companion,com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable,int,java.lang.Object):0 -> onResponse
-    8:8:void onResponse(okhttp3.Call,okhttp3.Response):0 -> onResponse
-    9:9:void onResponse(okhttp3.Call,okhttp3.Response):0:0 -> onResponse
-    10:10:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error(com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable):0:0 -> onResponse
-    10:10:void onResponse(okhttp3.Call,okhttp3.Response):0 -> onResponse
-    11:11:void onResponse(okhttp3.Call,okhttp3.Response):0:0 -> onResponse
-    12:12:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error(com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable):0:0 -> onResponse
-    12:12:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.framework.ResultOrException$Companion.error$default(com.vitals.sdk.framework.ResultOrException$Companion,com.vitals.sdk.framework.ErrCode,java.lang.String,java.lang.Throwable,int,java.lang.Object):0 -> onResponse
-    12:12:void onResponse(okhttp3.Call,okhttp3.Response):0 -> onResponse
-com.vitals.sdk.imp.VitalsSdkImp -> vs.b.i:
+com.vitals.sdk.imp.VitalsSdkImp -> vs.b.h:
 # {"id":"sourceFile","fileName":"imp.kt"}
     void <init>() -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
-com.vitals.sdk.imp.VitalsSdkImp1 -> vs.b.h:
+com.vitals.sdk.imp.VitalsSdkImp1 -> vs.b.g:
 # {"id":"sourceFile","fileName":"VitalsSdkImp1.kt"}
     android.content.Context com.vitals.sdk.framework.AbsSdkBase.mContext -> a
     com.vitals.sdk.framework.ILogger mLogger -> b
@@ -655,15 +637,15 @@ com.vitals.sdk.imp.VitalsSdkImp1 -> vs.b.h:
     6:6:void com.vitals.sdk.imp.NetService.setServerUrl(java.lang.String):0:0 -> initialize
     6:6:void initialize(android.content.Context,com.vitals.sdk.api.VitalsSdkInitOption,com.vitals.sdk.api.VitalsSdkConfig,com.vitals.sdk.api.VitalsSdkInitCallback):0 -> initialize
     7:7:void initialize(android.content.Context,com.vitals.sdk.api.VitalsSdkInitOption,com.vitals.sdk.api.VitalsSdkConfig,com.vitals.sdk.api.VitalsSdkInitCallback):0:0 -> initialize
-com.vitals.sdk.imp.VitalsSdkImp1$initialize$1 -> vs.b.g:
+com.vitals.sdk.imp.VitalsSdkImp1$initialize$1 -> vs.b.f:
 # {"id":"sourceFile","fileName":"VitalsSdkImp1.kt"}
     android.content.Context $context -> a
     com.vitals.sdk.api.VitalsSdkInitOption $vitalsSdkInitOption -> b
     com.vitals.sdk.imp.VitalsSdkImp1 this$0 -> c
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/b/h;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/b/g;"}
     com.vitals.sdk.api.VitalsSdkInitCallback $callback -> d
     1:1:void <init>(android.content.Context,com.vitals.sdk.api.VitalsSdkInitOption,com.vitals.sdk.imp.VitalsSdkImp1,com.vitals.sdk.api.VitalsSdkInitCallback,kotlin.coroutines.Continuation):0:0 -> <init>
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/content/Context;Lcom/vitals/sdk/api/VitalsSdkInitOption;Lvs/b/h;Lcom/vitals/sdk/api/VitalsSdkInitCallback;Lkotlin/coroutines/Continuation;)V"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/content/Context;Lcom/vitals/sdk/api/VitalsSdkInitOption;Lvs/b/g;Lcom/vitals/sdk/api/VitalsSdkInitCallback;Lkotlin/coroutines/Continuation;)V"}
     1:1:kotlin.coroutines.Continuation create(java.lang.Object,kotlin.coroutines.Continuation):0:0 -> create
     1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> invoke
     2:2:java.lang.Object invoke(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.Continuation):0:0 -> invoke
@@ -711,7 +693,7 @@ com.vitals.sdk.imp.VitalsSdkImp1$initialize$1 -> vs.b.g:
     25:25:com.vitals.sdk.framework.CrashHandler com.vitals.sdk.framework.SdkManager.getCrashHandler():0:0 -> invokeSuspend
     25:25:java.lang.Object invokeSuspend(java.lang.Object):0 -> invokeSuspend
     26:26:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> invokeSuspend
-com.vitals.sdk.imp.VitalsSdkImp1$initialize$1$1 -> vs.b.f:
+com.vitals.sdk.imp.VitalsSdkImp1$initialize$1$1 -> vs.b.e:
 # {"id":"sourceFile","fileName":"VitalsSdkImp1.kt"}
     kotlin.jvm.internal.Ref$ObjectRef $err -> a
     com.vitals.sdk.api.VitalsSdkInitCallback $callback -> b
@@ -969,6 +951,7 @@ com.vitals.sdk.solutions.core.SolutionUtils -> R8$$REMOVED$$CLASS$$4:
 # {"id":"sourceFile","fileName":"SolutionUtils.kt"}
 com.vitals.sdk.solutions.live.ILiveNativeSolution -> vs.e.a:
 # {"id":"sourceFile","fileName":"LiveNativeSolution.kt"}
+    com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData) -> analyze
     com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double) -> analyze
     com.vitals.sdk.api.VitalsSampler createSampler() -> createSampler
     com.vitals.sdk.parcel.ParcelableVitalsSampledData genParcelableSampledData(com.vitals.sdk.api.VitalsSampledData) -> genParcelableSampledData
@@ -977,132 +960,40 @@ com.vitals.sdk.solutions.live.ILiveSampler -> vs.e.b:
 # {"id":"sourceFile","fileName":"LiveSampler.kt"}
     void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView) -> bindToLifecycle
     void reset() -> reset
-com.vitals.sdk.solutions.live.LiveNativeSolution -> vs.e.e:
+com.vitals.sdk.solutions.live.LiveNativeSolution -> vs.e.d:
 # {"id":"sourceFile","fileName":"LiveNativeSolution.kt"}
     void <init>() -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
-    1:1:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    2:2:void com.vitals.sdk.solutions.live.NativeAnalyzer.<init>():0:0 -> analyze
-    2:2:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    3:3:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    4:4:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    4:4:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    5:5:java.util.List com.vitals.sdk.solutions.live.LiveSampledData.getFrameQueue():0:0 -> analyze
-    5:5:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
+    1:1:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData):0:0 -> analyze
+    2:2:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String):0:0 -> analyze
+    2:2:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData):0 -> analyze
+    3:3:java.util.List com.vitals.sdk.solutions.live.LiveSampledData.getFrameQueue():0:0 -> analyze
+    3:3:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String):0 -> analyze
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    5:5:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    6:6:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    6:6:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    6:6:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    7:7:long com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrameTimestamp():0:0 -> analyze
-    7:7:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    7:7:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    7:7:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    8:8:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    8:8:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    8:8:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    9:9:long com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrameTimestamp():0:0 -> analyze
-    9:9:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
-    9:9:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    9:9:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    10:10:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    10:10:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
+    3:3:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData):0 -> analyze
+    4:4:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String):0:0 -> analyze
+    4:4:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData):0 -> analyze
+    5:5:java.lang.Object com.vitals.sdk.framework.ResultOrException.getData():0:0 -> analyze
+    5:5:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData):0 -> analyze
+    6:6:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData):0:0 -> analyze
+    7:7:com.vitals.sdk.api.MeasureResult com.vitals.sdk.solutions.core.SolutionUtils.roundMeasureResult(com.vitals.sdk.api.MeasureResult):0:0 -> analyze
+    7:7:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData):0 -> analyze
+    8:8:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData):0:0 -> analyze
+    9:9:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
+    10:10:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
     10:10:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    11:11:com.vitals.lib.Port$CombinedPixels com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getPixels():0:0 -> analyze
-    11:11:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    11:11:java.util.List com.vitals.sdk.solutions.live.LiveSampledData.getFrameQueue():0:0 -> analyze
     11:11:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     11:11:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    12:12:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    12:12:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
+    12:12:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
     12:12:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    13:13:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0:0 -> analyze
-    13:13:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    13:13:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
+    13:13:java.lang.Object com.vitals.sdk.framework.ResultOrException.getData():0:0 -> analyze
     13:13:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    14:14:void com.vitals.sdk.framework.ResultOrException.setData(java.lang.Object):0:0 -> analyze
-    14:14:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0 -> analyze
-    14:14:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    14:14:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    14:14:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    15:15:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0:0 -> analyze
-    15:15:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    15:15:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
+    14:14:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
+    15:15:com.vitals.sdk.api.MeasureResult com.vitals.sdk.solutions.core.SolutionUtils.roundMeasureResult(com.vitals.sdk.api.MeasureResult):0:0 -> analyze
     15:15:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    16:16:void com.vitals.sdk.framework.ResultOrException.setException(com.vitals.sdk.framework.VitalsException):0:0 -> analyze
-    16:16:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0 -> analyze
-    16:16:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    16:16:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    16:16:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    17:17:com.vitals.sdk.framework.CrashHandler com.vitals.sdk.framework.SdkManager.getCrashHandler():0:0 -> analyze
-    17:17:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0 -> analyze
-    17:17:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    17:17:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    17:17:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    18:18:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0:0 -> analyze
-    18:18:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    18:18:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    18:18:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    19:19:com.vitals.sdk.framework.VitalsException com.vitals.sdk.framework.ResultOrException.getException():0:0 -> analyze
-    19:19:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    19:19:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    19:19:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    20:20:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(java.util.List,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    20:20:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.NativeAnalyzer.analyze(com.vitals.sdk.solutions.live.LiveSampledData,java.lang.String,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    20:20:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    21:21:java.lang.Object com.vitals.sdk.framework.ResultOrException.getData():0:0 -> analyze
-    21:21:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    22:22:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    23:23:com.vitals.sdk.imp.NetService com.vitals.sdk.framework.SdkManager.getNetService():0:0 -> analyze
-    23:23:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    24:24:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
-    25:25:void com.vitals.sdk.imp.NetService.uploadResult(com.vitals.sdk.api.MeasureResult,kotlin.jvm.functions.Function1):0:0 -> analyze
-    25:25:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    26:26:java.lang.String com.vitals.sdk.imp.NetService.cvtJson(java.lang.Object):0:0 -> analyze
-    26:26:void com.vitals.sdk.imp.NetService.uploadResult(com.vitals.sdk.api.MeasureResult,kotlin.jvm.functions.Function1):0 -> analyze
-    26:26:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    27:27:okhttp3.RequestBody com.vitals.sdk.imp.NetService.createJsonBody(java.lang.String):0:0 -> analyze
-    27:27:void com.vitals.sdk.imp.NetService.uploadResult(com.vitals.sdk.api.MeasureResult,kotlin.jvm.functions.Function1):0 -> analyze
-    27:27:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    28:28:okhttp3.Call com.vitals.sdk.imp.NetService.createPost(java.lang.String,okhttp3.RequestBody):0:0 -> analyze
-    28:28:void com.vitals.sdk.imp.NetService.uploadResult(com.vitals.sdk.api.MeasureResult,kotlin.jvm.functions.Function1):0 -> analyze
-    28:28:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    29:29:okhttp3.Request$Builder com.vitals.sdk.imp.NetService.createRequestBuilder(java.lang.String):0:0 -> analyze
-    29:29:okhttp3.Call com.vitals.sdk.imp.NetService.createPost(java.lang.String,okhttp3.RequestBody):0 -> analyze
-    29:29:void com.vitals.sdk.imp.NetService.uploadResult(com.vitals.sdk.api.MeasureResult,kotlin.jvm.functions.Function1):0 -> analyze
-    29:29:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    30:30:okhttp3.Call com.vitals.sdk.imp.NetService.createPost(java.lang.String,okhttp3.RequestBody):0:0 -> analyze
-    30:30:void com.vitals.sdk.imp.NetService.uploadResult(com.vitals.sdk.api.MeasureResult,kotlin.jvm.functions.Function1):0 -> analyze
-    30:30:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    31:31:void com.vitals.sdk.imp.NetService.uploadResult(com.vitals.sdk.api.MeasureResult,kotlin.jvm.functions.Function1):0:0 -> analyze
-    31:31:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    32:32:com.vitals.sdk.api.MeasureResult com.vitals.sdk.solutions.core.SolutionUtils.roundMeasureResult(com.vitals.sdk.api.MeasureResult):0:0 -> analyze
-    32:32:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    33:33:com.vitals.sdk.api.Result com.vitals.sdk.framework.ResultOrException.convert():0:0 -> analyze
-    33:33:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    34:34:com.vitals.sdk.framework.ErrCode com.vitals.sdk.framework.VitalsException.getErrCode():0:0 -> analyze
-    34:34:com.vitals.sdk.api.Result com.vitals.sdk.framework.ResultOrException.convert():0 -> analyze
-    34:34:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    35:35:int com.vitals.sdk.framework.ErrCode.code():0:0 -> analyze
-    35:35:com.vitals.sdk.api.Result com.vitals.sdk.framework.ResultOrException.convert():0 -> analyze
-    35:35:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(2)"]}
-    36:36:int com.vitals.sdk.framework.ErrCode.code():0:0 -> analyze
-    36:36:com.vitals.sdk.api.Result com.vitals.sdk.framework.ResultOrException.convert():0 -> analyze
-    36:36:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    37:37:com.vitals.sdk.api.Result com.vitals.sdk.framework.ResultOrException.convert():0:0 -> analyze
-    37:37:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    38:38:int com.vitals.sdk.framework.ErrCode.code():0:0 -> analyze
-    38:38:com.vitals.sdk.api.Result com.vitals.sdk.framework.ResultOrException.convert():0 -> analyze
-    38:38:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(2)"]}
-    39:39:int com.vitals.sdk.framework.ErrCode.code():0:0 -> analyze
-    39:39:com.vitals.sdk.api.Result com.vitals.sdk.framework.ResultOrException.convert():0 -> analyze
-    39:39:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
-    40:40:com.vitals.sdk.api.Result com.vitals.sdk.framework.ResultOrException.convert():0:0 -> analyze
-    40:40:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0 -> analyze
+    16:16:com.vitals.sdk.api.Result analyze(com.vitals.sdk.api.VitalsSampledData,int,com.vitals.sdk.api.Gender,double,double):0:0 -> analyze
     1:1:com.vitals.sdk.api.VitalsSampler createSampler():0:0 -> createSampler
     2:2:java.lang.Object com.vitals.sdk.framework.SdkManager.ensureAuth(kotlin.jvm.functions.Function0):0:0 -> createSampler
     2:2:com.vitals.sdk.api.VitalsSampler createSampler():0 -> createSampler
@@ -1141,25 +1032,15 @@ com.vitals.sdk.solutions.live.LiveNativeSolution -> vs.e.e:
     2:2:boolean verifyLiveness(com.vitals.sdk.api.VitalsSampledData):0 -> verifyLiveness
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     3:3:boolean verifyLiveness(com.vitals.sdk.api.VitalsSampledData):0:0 -> verifyLiveness
-com.vitals.sdk.solutions.live.LiveNativeSolution$analyze$1$1 -> vs.e.c:
-# {"id":"sourceFile","fileName":"LiveNativeSolution.kt"}
-    com.vitals.sdk.solutions.live.LiveNativeSolution$analyze$1$1 INSTANCE -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/e/c;"}
-    1:1:void <clinit>():0:0 -> <clinit>
-    1:1:void <init>():0:0 -> <init>
-    1:1:java.lang.Object invoke(java.lang.Object):0:0 -> invoke
-    2:2:void invoke(com.vitals.sdk.framework.ResultOrException):0:0 -> invoke
-    2:2:java.lang.Object invoke(java.lang.Object):0 -> invoke
-    3:3:java.lang.Object invoke(java.lang.Object):0:0 -> invoke
-com.vitals.sdk.solutions.live.LiveNativeSolution$createSampler$1 -> vs.e.d:
+com.vitals.sdk.solutions.live.LiveNativeSolution$createSampler$1 -> vs.e.c:
 # {"id":"sourceFile","fileName":"LiveNativeSolution.kt"}
     com.vitals.sdk.solutions.live.LiveNativeSolution$createSampler$1 INSTANCE -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/e/d;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/e/c;"}
     1:1:void <clinit>():0:0 -> <clinit>
     1:1:void <init>():0:0 -> <init>
     1:1:com.vitals.sdk.solutions.live.LiveSampler invoke():0:0 -> invoke
     1:1:java.lang.Object invoke():0 -> invoke
-com.vitals.sdk.solutions.live.LiveSampledData -> vs.e.f:
+com.vitals.sdk.solutions.live.LiveSampledData -> vs.e.e:
 # {"id":"sourceFile","fileName":"LiveSampledData.kt"}
     java.util.List frameQueue -> a
     java.util.List pickedLandmarks -> b
@@ -1170,7 +1051,7 @@ com.vitals.sdk.solutions.live.LiveSampledData -> vs.e.f:
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V"}
     2:2:void <init>(java.util.List,java.util.List,java.util.List,java.util.List):0:0 -> <init>
     2:2:void <init>(java.util.ArrayList,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList):0 -> <init>
-com.vitals.sdk.solutions.live.LiveSampler -> vs.e.i:
+com.vitals.sdk.solutions.live.LiveSampler -> vs.e.h:
 # {"id":"sourceFile","fileName":"LiveSampler.kt"}
     com.vitals.sdk.api.SamplerEventListener com.vitals.sdk.internal.AbsSampler.mEventListener -> a
     com.vitals.sdk.solutions.core.FaceChecker$FaceOutType preFaceOutType -> b
@@ -1189,12 +1070,12 @@ com.vitals.sdk.solutions.live.LiveSampler -> vs.e.i:
       # {"id":"com.android.tools.r8.synthesized"}
     2:2:void com.vitals.sdk.internal.AbsSampler.setEventListener(com.vitals.sdk.api.SamplerEventListener):0:0 -> setEventListener
     2:2:void setEventListener(com.vitals.sdk.api.SamplerEventListener):0 -> setEventListener
-com.vitals.sdk.solutions.live.LiveSampler$bindToLifecycle$1 -> vs.e.h:
+com.vitals.sdk.solutions.live.LiveSampler$bindToLifecycle$1 -> vs.e.g:
 # {"id":"sourceFile","fileName":"LiveSampler.kt"}
     com.vitals.sdk.solutions.live.LiveSampler this$0 -> a
-      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/e/i;"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/e/h;"}
     1:1:void <init>(com.vitals.sdk.solutions.live.LiveSampler):0:0 -> <init>
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/e/i;)V"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lvs/e/h;)V"}
     1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> invoke
     2:2:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0:0 -> invoke
     2:2:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
@@ -1308,12 +1189,46 @@ com.vitals.sdk.solutions.live.LiveSampler$bindToLifecycle$1 -> vs.e.h:
     35:35:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     35:35:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
     36:36:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> invoke
-com.vitals.sdk.solutions.live.LiveSampler$bindToLifecycle$1$WhenMappings -> vs.e.g:
+com.vitals.sdk.solutions.live.LiveSampler$bindToLifecycle$1$WhenMappings -> vs.e.f:
 # {"id":"sourceFile","fileName":"LiveSampler.kt"}
     int[] $EnumSwitchMapping$1 -> a
     1:1:void <clinit>():0:0 -> <clinit>
-com.vitals.sdk.solutions.live.NativeAnalyzer -> vs.e.j:
+com.vitals.sdk.solutions.live.NativeAnalyzer -> vs.e.i:
 # {"id":"sourceFile","fileName":"NativeAnalyzer.kt"}
+    java.lang.String TAG -> a
+    1:1:void <init>():0:0 -> <init>
+    1:1:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0:0 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Lcom/vitals/sdk/api/Gender;Ljava/lang/Double;Ljava/lang/Double;)Lvs/a/m;"}
+    2:2:long com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrameTimestamp():0:0 -> a
+    2:2:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    3:3:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0:0 -> a
+    4:4:long com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getFrameTimestamp():0:0 -> a
+    4:4:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    5:5:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0:0 -> a
+    6:6:com.vitals.lib.Port$CombinedPixels com.vitals.sdk.solutions.live.imp.LiveSolution$Frame.getPixels():0:0 -> a
+    6:6:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    7:7:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0:0 -> a
+    8:8:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0:0 -> a
+    8:8:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+    9:9:void com.vitals.sdk.framework.ResultOrException.setData(java.lang.Object):0:0 -> a
+    9:9:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0 -> a
+    9:9:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+    10:10:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0:0 -> a
+    10:10:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+    11:11:void com.vitals.sdk.framework.ResultOrException.setException(com.vitals.sdk.framework.VitalsException):0:0 -> a
+    11:11:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0 -> a
+    11:11:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+    12:12:com.vitals.sdk.framework.CrashHandler com.vitals.sdk.framework.SdkManager.getCrashHandler():0:0 -> a
+    12:12:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0 -> a
+    12:12:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+    13:13:com.vitals.sdk.framework.ResultOrException com.vitals.sdk.solutions.live.imp.VitalsLib.processPixelsV2(double[],int[],double,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Double,java.lang.Double):0:0 -> a
+    13:13:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+    14:14:com.vitals.sdk.framework.VitalsException com.vitals.sdk.framework.ResultOrException.getException():0:0 -> a
+    14:14:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0 -> a
+    15:15:com.vitals.sdk.framework.ResultOrException analyze(java.util.List,java.lang.String,java.lang.Integer,com.vitals.sdk.api.Gender,java.lang.Double,java.lang.Double):0:0 -> a
 com.vitals.sdk.solutions.live.imp.LiveSolution -> com.vitals.sdk.solutions.live.imp.LiveSolution:
 # {"id":"sourceFile","fileName":"LiveSolution.kt"}
     java.util.ArrayList pickedLandmarks -> A
@@ -1520,7 +1435,7 @@ com.vitals.sdk.solutions.live.imp.LiveSolution -> com.vitals.sdk.solutions.live.
     71:71:void reset():0:0 -> a
     72:72:void setup(androidx.camera.view.PreviewView,vs.e.LiveSampler$bindToLifecycle$1):0:0 -> a
       # {"id":"com.android.tools.r8.synthesized"}
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroidx/camera/view/PreviewView;Lvs/e/h;)V"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroidx/camera/view/PreviewView;Lvs/e/g;)V"}
     73:73:void setup(androidx.camera.view.PreviewView,kotlin.jvm.functions.Function2):0:0 -> a
     73:73:void setup(androidx.camera.view.PreviewView,vs.e.LiveSampler$bindToLifecycle$1):0 -> a
     74:74:void com.vitals.sdk.framework.FakeLog.e(java.lang.String,java.lang.String,java.lang.Throwable):0:0 -> a
