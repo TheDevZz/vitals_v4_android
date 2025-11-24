@@ -44,9 +44,6 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
             weight
         )
         analyzeResult.data?.let {
-            SdkManager.getNetService().uploadResult(it) {
-                // nothing to do
-            }
             SolutionUtils.roundMeasureResult(it)
         }
         return analyzeResult.convert()
@@ -59,9 +56,6 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
             modelsDir
         )
         analyzeResult.data?.let {
-            SdkManager.getNetService().uploadResult(it) {
-                // nothing to do
-            }
             SolutionUtils.roundMeasureResult(it)
         }
         return analyzeResult.convert()
