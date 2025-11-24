@@ -21,7 +21,7 @@ class NativeAnalyzer: VitalsAnalyzer, INativeAnalyzer {
     val TAG = NativeAnalyzer::class.simpleName?:"NA"
 
     override fun analyze(sampleData: LiveSampledData, modelsDir: String): ResultOrException<MeasureResult> {
-        return analyze(sampleData, modelsDir, -1, Gender.Female, -1.0, -1.0)
+        return analyze(sampleData.frameQueue, modelsDir, null, null, null, null)
     }
 
     override fun analyze(
@@ -38,10 +38,10 @@ class NativeAnalyzer: VitalsAnalyzer, INativeAnalyzer {
     fun analyze(
         frameQueue: List<LiveSolution.Frame>,
         modelsDir: String,
-        age: Int,
-        gender: Gender,
-        height: Double,
-        weight: Double
+        age: Int?,
+        gender: Gender?,
+        height: Double?,
+        weight: Double?
     ): ResultOrException<MeasureResult> {
         val fst = frameQueue.first().frameTimestamp
         val fet = frameQueue.last().frameTimestamp
@@ -62,7 +62,7 @@ class NativeAnalyzer: VitalsAnalyzer, INativeAnalyzer {
         st = System.currentTimeMillis()
         val analyzeResult = VitalsLib.processPixelsV2(
             pixelsV2Signal.toDoubleArray(), shapeV2, fps, modelsDir,
-            age, gender.value, height, weight
+            age, gender?.value, height, weight
         )
         analyzeResult.exception?.printStackTrace()
         et = System.currentTimeMillis()

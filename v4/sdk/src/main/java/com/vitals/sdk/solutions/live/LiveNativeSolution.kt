@@ -17,6 +17,7 @@ import com.vitals.sdk.solutions.core.SolutionUtils
 interface ILiveNativeSolution {
     fun createSampler(): VitalsSampler
     fun analyze(sampleData: VitalsSampledData, age: Int, gender: Gender, height: Double, weight: Double): Result<MeasureResult>
+    fun analyze(sampleData: VitalsSampledData): Result<MeasureResult>
     fun genParcelableSampledData(sampleData: VitalsSampledData): ParcelableVitalsSampledData
     fun verifyLiveness(sampleData: VitalsSampledData): Boolean
 }
@@ -41,6 +42,21 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
             gender,
             height,
             weight
+        )
+        analyzeResult.data?.let {
+            SdkManager.getNetService().uploadResult(it) {
+                // nothing to do
+            }
+            SolutionUtils.roundMeasureResult(it)
+        }
+        return analyzeResult.convert()
+    }
+
+    override fun analyze(sampleData: VitalsSampledData): Result<MeasureResult> {
+        val modelsDir = Port.copyBPModels(SdkManager.getContext())
+        val analyzeResult = NativeAnalyzer().analyze(
+            sampleData as LiveSampledData,
+            modelsDir
         )
         analyzeResult.data?.let {
             SdkManager.getNetService().uploadResult(it) {
