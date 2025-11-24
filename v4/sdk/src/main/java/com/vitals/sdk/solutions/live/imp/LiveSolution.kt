@@ -458,7 +458,9 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         val faceOutType = frame.faceCheckResult?.faceOutType ?: return
         val now = System.currentTimeMillis()
 
-        emitEvent(Event.FACE_RESULT, frame.faceCheckResult!!)
+        if (state != State.END && state != State.ANALYZE) { // 结束后不再回调
+            emitEvent(Event.FACE_RESULT, frame.faceCheckResult!!)
+        }
 
         val faceGood = faceOutType == FaceChecker.FaceOutType.FACE_OUT_TYPE_PASS
 
