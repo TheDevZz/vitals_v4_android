@@ -2,8 +2,8 @@
 # compiler_version: 8.3.37
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: be1a084
-# pg_map_hash: SHA-256 be1a084a15a4f0b36d2227c87ac357705cbbdd5c6f16d0c1afe59701512bf12b
+# pg_map_id: 5a5a6f1
+# pg_map_hash: SHA-256 5a5a6f1677c38b44e2e48932a2e8195457cff1761cf4c15b141485b322312bb9
 com.google.mediapipe.framework.image.BitmapImageBuilder -> vnl.a.a:
 # {"id":"sourceFile","fileName":"BitmapImageBuilder.kt"}
     android.graphics.Bitmap bitmap -> a
@@ -422,17 +422,18 @@ com.vitals.lib.Port -> com.vitals.lib.Port:
     com.vitals.lib.Port INSTANCE -> a
     kotlin.Lazy pixelsExtractor$delegate -> b
     1:1:java.lang.String copyBPModels(android.content.Context):0:0 -> a
-    2:2:com.vitals.sdk.lib.ReusePixelsExtractor getPixelsExtractor():0:0 -> a
-    2:2:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0 -> a
+    2:2:byte[] deriveAesKey(java.lang.String):0:0 -> a
+    3:3:com.vitals.sdk.lib.ReusePixelsExtractor getPixelsExtractor():0:0 -> a
+    3:3:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/graphics/Bitmap;Ljava/util/List;)Lcom/vitals/lib/Port$a;"}
-    3:3:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0:0 -> a
-    4:4:void com.vitals.lib.Port$CombinedPixels.setV2(java.util.List):0:0 -> a
-    4:4:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0 -> a
-    5:5:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0:0 -> a
-    6:6:com.vitals.sdk.lib.ReusePixelsExtractor getPixelsExtractor():0:0 -> a
+    4:4:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0:0 -> a
+    5:5:void com.vitals.lib.Port$CombinedPixels.setV2(java.util.List):0:0 -> a
+    5:5:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0 -> a
+    6:6:com.vitals.lib.Port$CombinedPixels extractCombinedPixels(android.graphics.Bitmap,java.util.List):0:0 -> a
+    7:7:com.vitals.sdk.lib.ReusePixelsExtractor getPixelsExtractor():0:0 -> a
       # {"id":"com.android.tools.r8.residualsignature","signature":"()Lvnl/i/c;"}
-    7:7:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):0:0 -> a
-    8:8:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):0:0 -> a
+    8:8:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String):0:0 -> a
+    9:9:com.vitals.lib.Port$MeasureResult processPixelsV2(double[],int[],double,java.lang.String,int,int,double,double):0:0 -> a
     1:1:java.util.List com.vitals.lib.Port$CombinedPixels.getV2():0:0 -> b
     1:1:java.util.List extractPixels(android.graphics.Bitmap,java.util.List):0 -> b
       # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}

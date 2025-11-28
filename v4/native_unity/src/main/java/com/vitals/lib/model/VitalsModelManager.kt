@@ -23,7 +23,7 @@ object VitalsModelManager {
     )
 
     fun prepareModels(context: Context): String {
-        val modelsDir = File(context.cacheDir, "models")
+        val modelsDir = File(context.cacheDir, "vitals" + File.separatorChar + "models")
         modelsDir.mkdirs()
         val assets = context.assets
         modelNameList.forEach {

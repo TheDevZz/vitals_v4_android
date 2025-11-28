@@ -3,8 +3,14 @@ package com.vitals.lib
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Point
+import androidx.annotation.Keep
 import com.vitals.sdk.lib.ReusePixelsExtractor
 import com.vitals.lib.model.VitalsModelManager
+import java.security.MessageDigest
+import java.security.SecureRandom
+import javax.crypto.Cipher
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.SecretKeySpec
 
 object Port {
     init {
@@ -17,6 +23,46 @@ object Port {
             172, 58, 132, 93, 234, 127, 162, 21, 54, 103, 67, 109)
         ReusePixelsExtractor(roiIds.toIntArray())
     }
+
+    // 对称加解密实现（Java 层），native 层会调用下面两个方法
+    @Keep // 防止被混淆，因为 native 层会通过反射调用
+    @JvmStatic
+    fun encryptImpl(input: ByteArray, key: String): ByteArray {
+        val secret = deriveAesKey(key)
+        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+        val iv = ByteArray(16)
+        SecureRandom().nextBytes(iv)
+        cipher.init(Cipher.ENCRYPT_MODE, SecretKeySpec(secret, "AES"), IvParameterSpec(iv))
+        val encrypted = cipher.doFinal(input)
+        // 返回 iv + ciphertext，native 层获取后按需处理
+        return iv + encrypted
+    }
+
+    @Keep // 防止被混淆，因为 native 层会通过反射调用
+    @JvmStatic
+    fun decryptImpl(input: ByteArray, key: String): ByteArray {
+        if (input.size < 16) throw Exception("invalid input")
+        val secret = deriveAesKey(key)
+        val iv = input.copyOfRange(0, 16)
+        val cipherText = input.copyOfRange(16, input.size)
+        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+        cipher.init(Cipher.DECRYPT_MODE, SecretKeySpec(secret, "AES"), IvParameterSpec(iv))
+        return cipher.doFinal(cipherText)
+    }
+
+    private fun deriveAesKey(key: String): ByteArray {
+        val digest = MessageDigest.getInstance("SHA-256").digest(key.toByteArray(Charsets.UTF_8))
+        return digest.copyOf(16)
+    }
+
+    // native 方法声明（将在 native 层实现，这些 native 实现会回调上面的 encryptImpl/decryptImpl）
+    @JvmStatic
+    private external fun nativeEncryptCall(input: ByteArray, key: String): ByteArray?
+
+    @JvmStatic
+    private external fun nativeDecryptCall(input: ByteArray, key: String): ByteArray?
+
+    private external fun nativeSetPath(tag: String, path: String)
 
     class MeasureResult {
         var hr: Double = 0.0

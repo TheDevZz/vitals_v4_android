@@ -15,6 +15,14 @@ namespace vitals {
 
 namespace measure {
 
+struct MeasureConfig
+{
+  double hr_high = 160.0;
+  double hr_low = 50.0;
+  double rr_high = 24.0;
+  double rr_low = 9.0;
+};
+
 struct MeasureResult {
   double hr = 0;
   double hrv = 0;
@@ -28,6 +36,8 @@ struct MeasureResult {
 
   double ratio = 0;
 
+  long long timestamp = 0;
+
   std::string string() const {
     std::ostringstream oss;
     oss << std::setprecision(17);
@@ -39,7 +49,8 @@ struct MeasureResult {
       << "stress: " << stress << ", "
       << "hbp: " << hbp << ", "
       << "lbp: " << lbp << ", "
-      << "ratio: " << ratio
+      << "ratio: " << ratio << ", "
+      << "timestamp: " << timestamp
       << " }";
     return oss.str();
   }
@@ -55,8 +66,12 @@ std::tuple<double, double> predict_hrv_v2(const std::vector<double>& p, double f
 double predict_spo2_v2(const std::vector<double>& sig_r, const std::vector<double>& sig_b);
 double predict_rr_v2(const std::vector<std::vector<double>>& p, double fps, int age);
 
-MeasureResult processPixelsV2(const std::vector<std::vector<double>>& p, double fps, std::optional<BaseFeature> base_fea = std::nullopt);
+MeasureResult processPixelsV2(
+        const std::vector<std::vector<double>>& p, double fps,
+        MeasureConfig config,
+        std::optional<BaseFeature> base_fea = std::nullopt
+);
 
 } // namespace measure
 
-} // namespace vitels
+} // namespace vitals

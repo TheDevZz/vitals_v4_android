@@ -9,7 +9,13 @@
 
 namespace vitals {
 
-measure::MeasureResult processPixelsV2(const double* p, const int* p_shape, double fps, const string& models_dir, int age, int gender, double height, double weight) {
+measure::MeasureResult processPixelsV2(
+        const double* p, const int* p_shape,
+        double fps,
+        const string& models_dir,
+        int age, int gender, double height, double weight,
+        measure::MeasureConfig config
+) {
 #ifdef ENABLE_BP
     auto& model_dir_list = measure::model_dir_list;
     if (std::find(model_dir_list.begin(), model_dir_list.end(), models_dir) == model_dir_list.end()) {
@@ -39,9 +45,9 @@ measure::MeasureResult processPixelsV2(const double* p, const int* p_shape, doub
     measure::BaseFeature baseFea(age, gender, height, weight);
 
     if (age <= 0) {
-        return measure::processPixelsV2(pixels_cf, fps);
+        return measure::processPixelsV2(pixels_cf, fps, config);
     } else {
-        return measure::processPixelsV2(pixels_cf, fps, baseFea);
+        return measure::processPixelsV2(pixels_cf, fps, config, baseFea);
     }
 }
 

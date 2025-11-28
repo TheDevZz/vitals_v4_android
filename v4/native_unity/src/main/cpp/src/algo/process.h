@@ -15,7 +15,13 @@ struct PixelsResult {
 };
 
 //measure::MeasureResult processPixelsV2(double* p_rfcPixels, const std::vector<size_t>& shape, double fps);
-measure::MeasureResult processPixelsV2(const double* p, const int* p_shape, double fps, const string& models_dir, int age, int gender, double height, double weight);
+measure::MeasureResult processPixelsV2(
+        const double* p, const int* p_shape,
+        double fps,
+        const string& models_dir,
+        int age, int gender, double height, double weight,
+        measure::MeasureConfig config
+);
 
 } // namespace vitals
 

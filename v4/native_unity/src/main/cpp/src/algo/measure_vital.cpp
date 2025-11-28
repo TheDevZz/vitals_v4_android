@@ -31,7 +31,7 @@ std::pair<int, int> hr_get_peak_width(const std::vector<double>& d, int ind) {
     --i;
   }
   ++i;
-  
+
   temp = d[ind];
   int j = ind + 1;
   while (d[j] < temp && std::abs(j - ind) <= 5) {
@@ -215,8 +215,8 @@ std::tuple<double, double> predict_hrv_v2(const std::vector<double>& p, double f
   std::vector<double> rr_interval(diff_ind.size());
   std::transform(diff_ind.begin(), diff_ind.end(), rr_interval.begin(), [&fps](int it) {
     return it / fps;
-    });
-  
+  });
+
   TestHelperInstance->update_hrv_data(p_tar, peak_ind, rr_interval);
 
   rr_interval = filter_data(rr_interval);
@@ -324,12 +324,11 @@ double rr_most_freq(const std::vector<double>& rr_preds) {
 /*
 p is pixels cf (one roi)
 */
-double predict_rr_v2(const std::vector<std::vector<double>>& p, double fps, int age) {
-  int low = 10;
-  int high = 40;
-  if (age <= 60) {
-    high = 30;
-  }
+double predict_rr_v2(
+        const std::vector<std::vector<double>>& p, double fps,
+        int age,
+        double low, double high
+) {
   int frame_cnt =  p[0].size();
   double ind_low = low / 60.0 * frame_cnt / fps;
   double ind_high = high / 60.0 * frame_cnt / fps;
@@ -350,7 +349,7 @@ double predict_rr_v2(const std::vector<std::vector<double>>& p, double fps, int 
   sigs.push_back(lgi_1(mp));
 
   std::vector<double> rr_preds(sigs.size());
-  std::transform(sigs.begin(), sigs.end(), rr_preds.begin(), 
+  std::transform(sigs.begin(), sigs.end(), rr_preds.begin(),
     [ind_low, ind_high, frame_cnt, fps](auto& sig) {
       int pred_ind = rr_sig_predict_ind(sig, ind_low, ind_high);
       double rr_pred = (double)pred_ind / frame_cnt * fps * 60;
@@ -370,7 +369,12 @@ double predict_rr_v2(const std::vector<std::vector<double>>& p, double fps, int 
 /*
 p is pixels cf (one roi)
 */
-MeasureResult processPixelsV2(const std::vector<std::vector<double>>& p, double fps, std::optional<BaseFeature> base_fea) {
+MeasureResult processPixelsV2(
+  const std::vector<std::vector<double>>& p,
+  double fps,
+  MeasureConfig config,
+  std::optional<BaseFeature> base_fea
+) {
   auto frame_cnt = p[0].size();
   Eigen::VectorXd ps = pos(p, fps);
   Eigen::VectorXcd fft_data = rfft(ps);
@@ -378,11 +382,25 @@ MeasureResult processPixelsV2(const std::vector<std::vector<double>>& p, double 
   TestHelperInstance->update_sig(ps);
   TestHelperInstance->update_fft(fft_data, frame_cnt, fps);
 
+  double hr_low = config.hr_low;
+  double hr_high = config.hr_high;
   double hr, peak_ratio;
-  std::tie(hr, peak_ratio) = predict_hr_v2(fft_data, frame_cnt, fps, 40, 240);
+  std::tie(hr, peak_ratio) = predict_hr_v2(fft_data, frame_cnt, fps, hr_low, hr_high);
   if (hr <= 50 && peak_ratio <= 0.5) {
-    std::tie(hr, peak_ratio) = predict_hr_v2(fft_data, frame_cnt, fps, 50, 240);
+    hr_low = 50;
+    std::tie(hr, peak_ratio) = predict_hr_v2(fft_data, frame_cnt, fps, hr_low, hr_high);
+  } else if (50 < hr && hr <= 55 && peak_ratio <= 0.5) {
+    hr_low = 55;
+    std::tie(hr, peak_ratio) = predict_hr_v2(fft_data, frame_cnt, fps, hr_low, hr_high);
+  } else if (55 < hr && hr <= 60 && peak_ratio <= 0.3) {
+    hr_low = 60;
+    std::tie(hr, peak_ratio) = predict_hr_v2(fft_data, frame_cnt, fps, hr_low, hr_high);
   }
+  if (hr >= 140 && peak_ratio <= 0.4) {
+    hr_high = 140;
+    std::tie(hr, peak_ratio) = predict_hr_v2(fft_data, frame_cnt, fps, hr_low, hr_high);
+  }
+
 
   // std::cout << "hr: " << hr << std::endl;
   // std::cout << "peak_ratio: " << peak_ratio << std::endl;
@@ -397,7 +415,7 @@ MeasureResult processPixelsV2(const std::vector<std::vector<double>>& p, double 
   double spo2 = predict_spo2_v2(p[0], p[2]);
   // std::cout << "spo2: " << spo2 << std::endl;
 
-  double rr = predict_rr_v2(p, fps, 30);
+  double rr = predict_rr_v2(p, fps, 30, config.rr_low, config.rr_high);
   // std::cout << "rr: " << rr << std::endl;
 
   MeasureResult res;
