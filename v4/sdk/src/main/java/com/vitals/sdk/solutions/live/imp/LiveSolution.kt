@@ -515,8 +515,10 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
     private fun updateProgress() {
         val now = System.currentTimeMillis()
         val handleTime = now - handleStartTime
-        val progress = handleTime.toFloat() / Threshold.recordTimeLimit
-        val remainingTimeMs = Threshold.recordTimeLimit - handleTime
+        var progress = handleTime.toFloat() / Threshold.recordTimeLimit
+        progress = progress.coerceIn(0f, 1f)
+        var remainingTimeMs = Threshold.recordTimeLimit - handleTime
+        remainingTimeMs = remainingTimeMs.coerceAtLeast(0L)
         emitEvent(Event.PROGRESS, ProgressEvent(progress, remainingTimeMs))
     }
 
