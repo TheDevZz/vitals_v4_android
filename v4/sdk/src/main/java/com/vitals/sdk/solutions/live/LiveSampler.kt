@@ -17,10 +17,16 @@ import com.vitals.sdk.solutions.live.imp.LiveSolution
 interface ILiveSampler {
     fun bindToLifecycle(context: Context, lifecycleOwner: LifecycleOwner, previewView: PreviewView)
     fun reset()
+    val samplerState: SamplerState
+    val faceState: FaceState?
 }
 
 class LiveSampler: AbsSampler(), VitalsSampler {
-//    var mState: SamplerState = SamplerState.NOT_STARTED
+    override var samplerState: SamplerState = SamplerState.NOT_STARTED
+        private set
+    override var faceState: FaceState? = null
+        private set
+
     private var preFaceOutType: FaceOutType? = null
     private var mSolution: LiveSolution? = null
     private var mActionThreshold: Float = 1f
@@ -50,7 +56,10 @@ class LiveSampler: AbsSampler(), VitalsSampler {
                             LiveSolution.State.ERROR ->
                                 SamplerState.ERROR
                         }
-                        notifySamplerStateChange(samplerState)
+                        if (this.samplerState != samplerState) {
+                            this.samplerState = samplerState
+                            notifySamplerStateChange(samplerState)
+                        }
                     }
                 }
                 LiveSolution.Event.FACE_RESULT -> {
@@ -69,7 +78,10 @@ class LiveSampler: AbsSampler(), VitalsSampler {
                                 FaceOutType.FACE_OUT_TYPE_PASS -> FaceState.OK
                                 else -> FaceState.NO_FACE
                             }
-                            notifyFaceStateChange(faceState)
+                            if (this.faceState != faceState) {
+                                this.faceState = faceState
+                                notifyFaceStateChange(faceState)
+                            }
                         }
                         val quality = SolutionUtils.calcQuality(faceCheckResult)
                         notifyQualityChange(quality)

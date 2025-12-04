@@ -2,8 +2,8 @@
 # compiler_version: 8.3.37
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: efdf5b7
-# pg_map_hash: SHA-256 efdf5b7426de50f9387be45bb6e7d6c0d7538d863aa8cc868c66d261df71982c
+# pg_map_id: 6abd015
+# pg_map_hash: SHA-256 6abd015b444719f2efbdadebd55819d72bdb78a387aba30af03bb49d26200053
 com.vitals.sdk.api.AnalyzeResult -> com.vitals.sdk.api.AnalyzeResult:
 # {"id":"sourceFile","fileName":"api.kt"}
     com.vitals.sdk.api.MeasureResult measureResult -> a
@@ -959,6 +959,8 @@ com.vitals.sdk.solutions.live.ILiveNativeSolution -> vs.e.a:
 com.vitals.sdk.solutions.live.ILiveSampler -> vs.e.b:
 # {"id":"sourceFile","fileName":"LiveSampler.kt"}
     void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView) -> bindToLifecycle
+    com.vitals.sdk.api.FaceState getFaceState() -> getFaceState
+    com.vitals.sdk.api.SamplerState getSamplerState() -> getSamplerState
     void reset() -> reset
 com.vitals.sdk.solutions.live.LiveNativeSolution -> vs.e.d:
 # {"id":"sourceFile","fileName":"LiveNativeSolution.kt"}
@@ -1054,9 +1056,12 @@ com.vitals.sdk.solutions.live.LiveSampledData -> vs.e.e:
 com.vitals.sdk.solutions.live.LiveSampler -> vs.e.h:
 # {"id":"sourceFile","fileName":"LiveSampler.kt"}
     com.vitals.sdk.api.SamplerEventListener com.vitals.sdk.internal.AbsSampler.mEventListener -> a
-    com.vitals.sdk.solutions.core.FaceChecker$FaceOutType preFaceOutType -> b
+    com.vitals.sdk.api.SamplerState samplerState -> b
+    com.vitals.sdk.api.FaceState faceState -> c
+    com.vitals.sdk.solutions.core.FaceChecker$FaceOutType preFaceOutType -> d
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lvs/d/c;"}
-    com.vitals.sdk.solutions.live.imp.LiveSolution mSolution -> c
+    com.vitals.sdk.solutions.live.imp.LiveSolution mSolution -> e
+    float mActionThreshold -> f
     1:1:void <init>():0:0 -> <init>
     1:1:void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView):0:0 -> bindToLifecycle
     2:2:void com.vitals.sdk.solutions.live.imp.LiveSolution.setActionThreshold(float):0:0 -> bindToLifecycle
@@ -1065,6 +1070,8 @@ com.vitals.sdk.solutions.live.LiveSampler -> vs.e.h:
     3:3:void com.vitals.sdk.solutions.live.imp.LiveSolution.setActionThreshold(float):0 -> bindToLifecycle
     3:3:void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView):0 -> bindToLifecycle
     4:4:void bindToLifecycle(android.content.Context,androidx.lifecycle.LifecycleOwner,androidx.camera.view.PreviewView):0:0 -> bindToLifecycle
+    1:1:com.vitals.sdk.api.FaceState getFaceState():0:0 -> getFaceState
+    1:1:com.vitals.sdk.api.SamplerState getSamplerState():0:0 -> getSamplerState
     1:1:void reset():0:0 -> reset
     1:1:void setEventListener(com.vitals.sdk.api.SamplerEventListener):0:0 -> setEventListener
       # {"id":"com.android.tools.r8.synthesized"}
@@ -1137,58 +1144,68 @@ com.vitals.sdk.solutions.live.LiveSampler$bindToLifecycle$1 -> vs.e.g:
     19:19:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
     20:20:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0:0 -> invoke
     20:20:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    21:21:void com.vitals.sdk.solutions.live.LiveSampler.access$notifySamplerStateChange(com.vitals.sdk.solutions.live.LiveSampler,com.vitals.sdk.api.SamplerState):0:0 -> invoke
+    21:21:com.vitals.sdk.api.SamplerState com.vitals.sdk.solutions.live.LiveSampler.getSamplerState():0:0 -> invoke
     21:21:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     21:21:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    22:22:void com.vitals.sdk.internal.AbsSampler.notifySamplerStateChange(com.vitals.sdk.api.SamplerState):0:0 -> invoke
-    22:22:void com.vitals.sdk.solutions.live.LiveSampler.access$notifySamplerStateChange(com.vitals.sdk.solutions.live.LiveSampler,com.vitals.sdk.api.SamplerState):0 -> invoke
+    22:22:void com.vitals.sdk.solutions.live.LiveSampler.access$setSamplerState$p(com.vitals.sdk.solutions.live.LiveSampler,com.vitals.sdk.api.SamplerState):0:0 -> invoke
     22:22:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     22:22:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    23:23:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0:0 -> invoke
+    23:23:void com.vitals.sdk.internal.AbsSampler.notifySamplerStateChange(com.vitals.sdk.api.SamplerState):0:0 -> invoke
+    23:23:void com.vitals.sdk.solutions.live.LiveSampler.access$notifySamplerStateChange(com.vitals.sdk.solutions.live.LiveSampler,com.vitals.sdk.api.SamplerState):0 -> invoke
+    23:23:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     23:23:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    24:24:com.vitals.sdk.solutions.core.FaceChecker$FaceOutType com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.getFaceOutType():0:0 -> invoke
-    24:24:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
+    24:24:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0:0 -> invoke
     24:24:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    25:25:com.vitals.sdk.solutions.core.FaceChecker$FaceOutType com.vitals.sdk.solutions.live.LiveSampler.access$getPreFaceOutType$p(com.vitals.sdk.solutions.live.LiveSampler):0:0 -> invoke
+    25:25:com.vitals.sdk.solutions.core.FaceChecker$FaceOutType com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.getFaceOutType():0:0 -> invoke
     25:25:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     25:25:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    26:26:void com.vitals.sdk.solutions.live.LiveSampler.access$setPreFaceOutType$p(com.vitals.sdk.solutions.live.LiveSampler,com.vitals.sdk.solutions.core.FaceChecker$FaceOutType):0:0 -> invoke
+    26:26:com.vitals.sdk.solutions.core.FaceChecker$FaceOutType com.vitals.sdk.solutions.live.LiveSampler.access$getPreFaceOutType$p(com.vitals.sdk.solutions.live.LiveSampler):0:0 -> invoke
     26:26:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     26:26:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    27:27:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0:0 -> invoke
+    27:27:void com.vitals.sdk.solutions.live.LiveSampler.access$setPreFaceOutType$p(com.vitals.sdk.solutions.live.LiveSampler,com.vitals.sdk.solutions.core.FaceChecker$FaceOutType):0:0 -> invoke
+    27:27:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     27:27:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    28:28:void com.vitals.sdk.internal.AbsSampler.notifyFaceStateChange(com.vitals.sdk.api.FaceState):0:0 -> invoke
-    28:28:void com.vitals.sdk.solutions.live.LiveSampler.access$notifyFaceStateChange(com.vitals.sdk.solutions.live.LiveSampler,com.vitals.sdk.api.FaceState):0 -> invoke
-    28:28:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
+    28:28:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0:0 -> invoke
     28:28:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    29:29:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0:0 -> invoke
+    29:29:com.vitals.sdk.api.FaceState com.vitals.sdk.solutions.live.LiveSampler.getFaceState():0:0 -> invoke
     29:29:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     29:29:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    30:30:com.vitals.sdk.solutions.core.FaceChecker$FaceOutType com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.getFaceOutType():0:0 -> invoke
-    30:30:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0 -> invoke
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    30:30:void com.vitals.sdk.solutions.live.LiveSampler.access$setFaceState$p(com.vitals.sdk.solutions.live.LiveSampler,com.vitals.sdk.api.FaceState):0:0 -> invoke
     30:30:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     30:30:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    31:31:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0:0 -> invoke
+    31:31:void com.vitals.sdk.internal.AbsSampler.notifyFaceStateChange(com.vitals.sdk.api.FaceState):0:0 -> invoke
+    31:31:void com.vitals.sdk.solutions.live.LiveSampler.access$notifyFaceStateChange(com.vitals.sdk.solutions.live.LiveSampler,com.vitals.sdk.api.FaceState):0 -> invoke
     31:31:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     31:31:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    32:32:java.lang.Float com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.getLightness():0:0 -> invoke
-    32:32:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0 -> invoke
+    32:32:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0:0 -> invoke
     32:32:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     32:32:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    33:33:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0:0 -> invoke
+    33:33:com.vitals.sdk.solutions.core.FaceChecker$FaceOutType com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.getFaceOutType():0:0 -> invoke
+    33:33:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0 -> invoke
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
     33:33:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     33:33:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    34:34:void com.vitals.sdk.internal.AbsSampler.notifyQualityChange(int):0:0 -> invoke
-    34:34:void com.vitals.sdk.solutions.live.LiveSampler.access$notifyQualityChange(com.vitals.sdk.solutions.live.LiveSampler,int):0 -> invoke
-      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    34:34:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0:0 -> invoke
     34:34:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     34:34:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    35:35:void com.vitals.sdk.internal.AbsSampler.notifyQualityChange(int):0:0 -> invoke
-    35:35:void com.vitals.sdk.solutions.live.LiveSampler.access$notifyQualityChange(com.vitals.sdk.solutions.live.LiveSampler,int):0 -> invoke
+    35:35:java.lang.Float com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult.getLightness():0:0 -> invoke
+    35:35:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0 -> invoke
     35:35:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
     35:35:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
-    36:36:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> invoke
+    36:36:int com.vitals.sdk.solutions.core.SolutionUtils.calcQuality(com.vitals.sdk.solutions.core.FaceChecker$FaceCheckResult):0:0 -> invoke
+    36:36:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
+    36:36:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
+    37:37:void com.vitals.sdk.internal.AbsSampler.notifyQualityChange(int):0:0 -> invoke
+    37:37:void com.vitals.sdk.solutions.live.LiveSampler.access$notifyQualityChange(com.vitals.sdk.solutions.live.LiveSampler,int):0 -> invoke
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    37:37:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
+    37:37:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
+    38:38:void com.vitals.sdk.internal.AbsSampler.notifyQualityChange(int):0:0 -> invoke
+    38:38:void com.vitals.sdk.solutions.live.LiveSampler.access$notifyQualityChange(com.vitals.sdk.solutions.live.LiveSampler,int):0 -> invoke
+    38:38:void invoke(com.vitals.sdk.solutions.live.imp.LiveSolution$Event,java.lang.Object):0 -> invoke
+    38:38:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
+    39:39:java.lang.Object invoke(java.lang.Object,java.lang.Object):0:0 -> invoke
 com.vitals.sdk.solutions.live.LiveSampler$bindToLifecycle$1$WhenMappings -> vs.e.f:
 # {"id":"sourceFile","fileName":"LiveSampler.kt"}
     int[] $EnumSwitchMapping$1 -> a
