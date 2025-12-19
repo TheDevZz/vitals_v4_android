@@ -92,9 +92,9 @@ class FaceChecker {
     }
 
     private fun applyActionThreshold(threshold: Float) {
-        actionThresholdMap["dh1"] = interpolateThreshold(0.2f, 1f, threshold)
-        actionThresholdMap["dv1"] = interpolateThreshold(0.1f, 1f, threshold)
-        actionThresholdMap["dc1"] = interpolateThreshold(0.2f, 1f, threshold)
+        actionThresholdMap["dh1"] = interpolateThreshold(0.3f, 1f, threshold)
+        actionThresholdMap["dv1"] = interpolateThreshold(0.3f, 1f, threshold)
+        actionThresholdMap["dc1"] = interpolateThreshold(0.3f, 1f, threshold)
         actionThresholdMap["arc1"] = interpolateThreshold(15f, 90f, threshold)
         actionThresholdMap["dmh1"] = interpolateThreshold(0.3f, 1f, threshold)
         actionThresholdMap["dmv1"] = interpolateThreshold(0.3f, 1f, threshold)
