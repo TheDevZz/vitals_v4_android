@@ -17,7 +17,7 @@ namespace measure {
 
 struct MeasureConfig
 {
-  double hr_high = 160.0;
+  double hr_high = 130.0;
   double hr_low = 50.0;
   double rr_high = 24.0;
   double rr_low = 9.0;
