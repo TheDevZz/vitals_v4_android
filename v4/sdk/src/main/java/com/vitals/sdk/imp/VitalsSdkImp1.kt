@@ -44,7 +44,7 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
         callback: VitalsSdkInitCallback?
     ) {
         setContext(context)
-        SdkManager.getNetService().serverUrl = "https://api.utours.cn/open-service/face-detect/sdk"
+        SdkManager.getNetService().serverUrl = "https://api.facemed.ai/open-service/face-detect/sdk"
 
         if (vitalsSdkConfig.enableLog) {
             var logDir = vitalsSdkConfig.logDirPath
