@@ -23,18 +23,19 @@ std::tuple<Eigen::VectorXd, Eigen::VectorXcd> get_fft(const std::vector<std::vec
 }
 
 std::pair<int, int> hr_get_peak_width(const std::vector<double>& d, int ind) {
-  // 有越界风险
+  // 左侧搜索，添加边界检查
   double temp = d[ind];
   int i = ind - 1;
-  while (d[i] < temp && std::abs(i - ind) <= 5) {
+  while (i >= 0 && d[i] < temp && std::abs(i - ind) <= 5) {
     temp = d[i];
     --i;
   }
   ++i;
 
+  // 右侧搜索，添加边界检查
   temp = d[ind];
   int j = ind + 1;
-  while (d[j] < temp && std::abs(j - ind) <= 5) {
+  while (j < d.size() && d[j] < temp && std::abs(j - ind) <= 5) {
     temp = d[j];
     ++j;
   }
