@@ -10,6 +10,8 @@ class LiveSampledData(
     val pickedLandmarks: List<List<PointF>>,
     val pickedFrames: List<Bitmap>,
     val livenessConfidences: List<Float>,
+    val leftEyeRatios: List<Float>,
+    val rightEyeRatios: List<Float>,
 ) : VitalsSampledData {
 
 }

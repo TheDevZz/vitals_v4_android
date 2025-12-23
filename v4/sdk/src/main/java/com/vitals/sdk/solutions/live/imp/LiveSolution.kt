@@ -48,6 +48,7 @@ import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.math.round
 
 
 class LiveSolution(private val context: Context, private val lifecycleOwner: LifecycleOwner) :
@@ -133,7 +134,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
     // State Control Parameter <<<
 
     // Control Options >>>
-    private var shareMeshStep = 3
+    private var shareMeshStep = 1
     // Control Options <<<
 
     // Running Var >>>
@@ -167,9 +168,20 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
 
     private val countDownSignal = CountDownSignal()
 
+    // Eyelid Distance
+    private var leftEyeDistances = ArrayList<Int>()
+    private var rightEyeDistances = ArrayList<Int>()
+    // Eye Width (Corner to Corner)
+    private var leftEyeWidths = ArrayList<Int>()
+    private var rightEyeWidths = ArrayList<Int>()
+    // Eye Distance to Width Ratio
+    private var leftEyeRatios = ArrayList<Float>()
+    private var rightEyeRatios = ArrayList<Float>()
+
     private var pickedLandmarks = ArrayList<List<PointF>>()
     private var pickedFrames = ArrayList<Bitmap>()
 
+    private val metricsLock = Any()
 //    private var handleStartTime = 0L
     // Running Var <<<
 
@@ -528,9 +540,16 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         lastFaceFrameIdx  = -1
         preFaceFrameIdx = -1
         frameQueue = ArrayList()
-        livenessConfidences = ConcurrentLinkedQueue()
         pickedFrames = ArrayList()
         pickedLandmarks = ArrayList()
+
+        livenessConfidences = ConcurrentLinkedQueue()
+        leftEyeDistances = ArrayList()
+        rightEyeDistances = ArrayList()
+        leftEyeWidths = ArrayList()
+        rightEyeWidths = ArrayList()
+        leftEyeRatios = ArrayList()
+        rightEyeRatios = ArrayList()
         toState(State.HANDLE)
     }
 
@@ -565,7 +584,10 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
 
     private fun postDetectLiveness(frame: Frame) {
         poolExecutor.execute {
-            detectLiveness(frame)
+            synchronized(metricsLock) {
+                detectLiveness(frame)
+                updateEyeMetrics(frame)
+            }
         }
     }
 
@@ -581,6 +603,48 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
 //                }
             } else {
 //                logger.e(TAG, "detectLiveness no face") // DEBUG
+            }
+        }
+    }
+
+    private fun updateEyeMetrics(frame: Frame) {
+        // Calculate Eyelid Distance
+        frame.faceResult?.faceLandmarks()?.getOrNull(0)?.let { landmarks ->
+            val width = frame.frame?.width ?: 0
+            val height = frame.frame?.height ?: 0
+
+            if (width > 0 && height > 0 && landmarks.size > 386) {
+                // Left Eye: 159 (Top), 145 (Bottom)
+                val l1 = landmarks[159]
+                val l2 = landmarks[145]
+                val leftDist = Math.hypot((l1.x - l2.x) * width.toDouble(), (l1.y - l2.y) * height.toDouble())
+
+                // Right Eye: 386 (Top), 374 (Bottom)
+                val r1 = landmarks[386]
+                val r2 = landmarks[374]
+                val rightDist = Math.hypot((r1.x - r2.x) * width.toDouble(), (r1.y - r2.y) * height.toDouble())
+
+                leftEyeDistances.add(round(leftDist).toInt())
+                rightEyeDistances.add(round(rightDist).toInt())
+
+                // Left Eye Width: 33 (Outer), 133 (Inner)
+                val l3 = landmarks[33]
+                val l4 = landmarks[133]
+                val leftWidth = Math.hypot((l3.x - l4.x) * width.toDouble(), (l3.y - l4.y) * height.toDouble())
+
+                // Right Eye Width: 362 (Inner), 263 (Outer)
+                val r3 = landmarks[362]
+                val r4 = landmarks[263]
+                val rightWidth = Math.hypot((r3.x - r4.x) * width.toDouble(), (r3.y - r4.y) * height.toDouble())
+
+                leftEyeWidths.add(round(leftWidth).toInt())
+                rightEyeWidths.add(round(rightWidth).toInt())
+
+                // Calculate Eye Distance to Width Ratio
+                val leftRatio = if (leftWidth > 0) (leftDist / leftWidth).toFloat() else 0f
+                val rightRatio = if (rightWidth > 0) (rightDist / rightWidth).toFloat() else 0f
+                leftEyeRatios.add(leftRatio)
+                rightEyeRatios.add(rightRatio)
             }
         }
     }
@@ -646,14 +710,24 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         }
         debugger.debugFrameQueue(frameQueue)
 
-//        emitEvent(Event.COLLECT_RESULT, NativeAnalyzerTask(frameQueue, Port.copyBPModels(context), logger))
-//        emitEvent(Event.COLLECT_RESULT, ArrayList(frameQueue))
-        emitEvent(Event.COLLECT_RESULT, LiveSampledData(
+        val sampleData = LiveSampledData(
             ArrayList(frameQueue),
             ArrayList(pickedLandmarks),
             ArrayList(pickedFrames),
             ArrayList(livenessConfidences),
-        ))
+            ArrayList(leftEyeRatios),
+            ArrayList(rightEyeRatios),
+        )
+
+        SdkTestManager.getSolutionDebugger()?.dumpSampledData(
+            sampleData,
+            leftEyeDistances,
+            rightEyeDistances,
+            leftEyeWidths,
+            rightEyeWidths
+        )
+
+        emitEvent(Event.COLLECT_RESULT, sampleData)
     }
 
     private fun setupFaceLandmarker(): FaceLandmarker {

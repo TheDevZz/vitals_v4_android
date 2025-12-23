@@ -99,13 +99,34 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
         val threshold = 0.915
 //        android.util.Log.d("ZZZ", "verifyLiveness mean=$mean, size=${livenessConfidences.size} : $livenessConfidences") // DEBUG
         if (mean <= threshold) {
+            val blinkMode = true
+            if (blinkMode) {
+                val leftEyeRatioDiff = sampleData.leftEyeRatios.let { eyeRatios ->
+                    val maxEyeRatio = eyeRatios.maxOrNull() ?: 0f
+                    val minEyeRatio = eyeRatios.minOrNull() ?: 0f
+                    maxEyeRatio - minEyeRatio
+                }
+                val rightEyeRatioDiff = sampleData.rightEyeRatios.let { eyeRatios ->
+                    val maxEyeRatio = eyeRatios.maxOrNull() ?: 0f
+                    val minEyeRatio = eyeRatios.minOrNull() ?: 0f
+                    maxEyeRatio - minEyeRatio
+                }
+                SdkManager.getLogger()?.d("VitalsDev", "leftEyeRatioDiff=$leftEyeRatioDiff, rightEyeRatioDiff=$rightEyeRatioDiff") // DEBUG
+                if (leftEyeRatioDiff > 0.08 || rightEyeRatioDiff > 0.08) {
+                    return true
+                }
+            }
             return false
         }
-        val lowConfidences = livenessConfidences.filter { it <= threshold }
-        val lowCount = lowConfidences.size
-        val total = livenessConfidences.size
-        val lowRatio = lowCount.toDouble() / total
-//        android.util.Log.d("ZZZ", "verifyLiveness low confidences, ratio=${lowRatio} size=${lowConfidences.size} : $lowConfidences") // DEBUG
-        return lowRatio < 0.01
+        val strictMode = false
+        if (strictMode) {
+            val lowConfidences = livenessConfidences.filter { it <= threshold }
+            val lowCount = lowConfidences.size
+            val total = livenessConfidences.size
+            val lowRatio = lowCount.toDouble() / total
+    //        android.util.Log.d("ZZZ", "verifyLiveness low confidences, ratio=${lowRatio} size=${lowConfidences.size} : $lowConfidences") // DEBUG
+            return lowRatio < 0.01
+        }
+        return true
     }
 }
