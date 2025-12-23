@@ -182,6 +182,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
     private var pickedFrames = ArrayList<Bitmap>()
 
     private val metricsLock = Any()
+    private val livenessDetectFlag = AtomicInteger(0)
 //    private var handleStartTime = 0L
     // Running Var <<<
 
@@ -450,16 +451,28 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         if (state == State.IDLE || state == State.KEEP) {
             if (faceProcessCount.compareAndSet(0, 1)) {
                 postFace(frame)
+            } else {
+                releaseFrame(frame) // 未使用到，主动清理
             }
         } else if (state == State.HANDLE) {
             frame.idx = frameQueue.size
-            frameQueue.add(frame)
             var doFace = lastFaceFrameIdx == -1 || frame.idx - lastFaceFrameIdx > shareMeshStep
-            if (doFace && faceProcessCount.compareAndSet(0, 1)) {
+            doFace = doFace && faceProcessCount.compareAndSet(0, 1)
+            // 当lastFaceFrameIdx == -1 && !doFace时不add。
+            // lastFaceFrameIdx == -1表示当前帧为首帧，首帧必须做人脸识别，
+            // 而此时doFace为false则表示当前有正在进行的人脸检测，这会导致首帧无法做人脸检测，
+            // 因此不添加进队列，那么下一帧则会被当做首帧处理，直到遇到可做人脸识别的首帧
+            // 首帧无人脸点位则会在doPixelsBlock的preFrame.mesh!!处抛空异常
+            if (lastFaceFrameIdx != -1 || doFace) {
+                frameQueue.add(frame)
+            }
+            if (doFace) {
                 preFaceFrameIdx = lastFaceFrameIdx
                 lastFaceFrameIdx = frame.idx
                 postFace(frame)
             }
+        } else {
+            releaseFrame(frame) // 未使用到，主动清理
         }
     }
 
@@ -499,11 +512,12 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
             State.HANDLE -> {
                 updateProgress()
                 if (faceGood) {
+                    buildMesh(frame) // 提前构造mesh以保证doPixelsBlock并发时preFrame.mesh!!可用
                     postPixelsBlock(preFaceFrameIdx, frame.idx)
                     if (now - handleStartTime > Threshold.recordTimeLimit) {
                         stopHandle()
                     } else {
-                        postDetectLiveness(frame)
+//                        postDetectLiveness(frame)
                     }
                 } else {
                     restartHandle()
@@ -543,6 +557,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         pickedFrames = ArrayList()
         pickedLandmarks = ArrayList()
 
+        livenessDetectFlag.set(0)
         livenessConfidences = ConcurrentLinkedQueue()
         leftEyeDistances = ArrayList()
         rightEyeDistances = ArrayList()
@@ -593,7 +608,9 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
 
     private fun detectLiveness(frame: Frame) {
         frame.frame?.let {
+            solutionStats.livenessStats.start()
             val res = liveEngine.detect(it)
+            solutionStats.livenessStats.end()
             if (res.hasFace) {
                 livenessConfidences.add(res.confidence)
 //                if (res.confidence > 0.915f) {
@@ -657,14 +674,30 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         }
     }
 
-    private fun doPixelsBlock(preIdx: Int, currIdx: Int) {
-        val frame = frameQueue[currIdx]
+    private fun buildMesh(frame: Frame) {
         val bitmap = frame.frame!!
         val landmark = frame.faceResult!!.faceLandmarks()[0]
         val mesh = VitalsLib.genLandmarkPoints(landmark, bitmap.width, bitmap.height)
         frame.mesh = mesh
-        frame.pixels = extractCombinedPixels(bitmap, mesh)
-        frame.frame = null // release bitmap
+    }
+
+    private fun doPixelsBlock(preIdx: Int, currIdx: Int) {
+        val frame = frameQueue[currIdx]
+        // 在求pixels处做活体检测，避免bitmap释放冲突
+        try {
+            // 眨眼检测全频
+            updateEyeMetrics(frame)
+            // 活体检测降频
+            if (livenessDetectFlag.getAndIncrement() % 3 == 0) {
+                detectLiveness(frame)
+            }
+        } catch (e: Exception) {
+            logger.e(TAG, "doPixelsBlock detectLiveness error", e)
+        }
+        //
+        val bitmap = frame.frame!!
+        frame.pixels = extractCombinedPixels(bitmap, frame.mesh!!)
+        releaseFrame(frame) // release bitmap
         if (preIdx >= 0) {
             val preFrame = frameQueue[preIdx]
             val shareMesh = calcShareMesh(preFrame.mesh!!, frame.mesh!!)
@@ -673,9 +706,18 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
                 val f = frameQueue[i]
                 f.shareMesh = shareMesh
                 f.pixels = extractCombinedPixels(f.frame!!, shareMesh)
-                f.frame = null // release bitmap
+                releaseFrame(f) // release bitmap
             }
         }
+    }
+
+    private fun releaseBitmap(bitmap: Bitmap?) {
+        bitmap?.recycle()
+    }
+
+    private fun releaseFrame(frame: Frame) {
+        releaseBitmap(frame.frame)
+        frame.frame = null
     }
 
     private fun extractCombinedPixels(bitmap: Bitmap, landmark: List<Point>): Port.CombinedPixels {
@@ -772,7 +814,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         val landmark = frame.faceResult?.faceLandmarks()?.getOrNull(0)?.map {
             PointF(it.x, it.y)
         } ?: return
-        pickedFrames.add(bitmap)
+        pickedFrames.add(bitmap.copy(bitmap.config, false)) // 创建副本，原bitmap后续会被recycle
         pickedLandmarks.add(landmark)
     }
 
@@ -1027,6 +1069,7 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
 
         inner class FaceStats(samplingPeriod: Long, groupPrint: Int): StatsLogger(samplingPeriod, groupPrint, "FaceStats") {
             override fun printStats(periodStartIdx: Int, periodEndIdx: Int) {
+                super.printStats(periodStartIdx, periodEndIdx)
                 StatsReporter.pushFaceStats(getTimeList(periodStartIdx, periodEndIdx))
             }
         }
@@ -1065,12 +1108,14 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
                 }
             }
         }
+        var livenessStats = StatsLogger(1000, 2, "LivenessStats")
 
         fun reset() {
             frameStats.reset()
             faceStats.reset()
             clipStats.reset()
             pixelsStats.reset()
+            livenessStats.reset()
         }
     }
 

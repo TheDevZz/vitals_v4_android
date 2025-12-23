@@ -54,6 +54,10 @@ internal class SdkXLogImp(context: Context, logDirPath: String? = null): Xlog(),
     var logDirPath: String = ""
         private set
 
+    fun appenderFlush() {
+        XLog.appenderFlush()
+    }
+
     private fun setup(context: Context, logDirPath: String?) {
         System.loadLibrary("c++_shared");
         System.loadLibrary("marsxlog");

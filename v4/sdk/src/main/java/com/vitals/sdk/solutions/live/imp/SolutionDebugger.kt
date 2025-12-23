@@ -1,8 +1,8 @@
 package com.vitals.sdk.solutions.live.imp
 
 import android.util.Base64
-import android.util.Log
 import com.vitals.sdk.framework.SdkManager
+import com.vitals.sdk.framework.SdkXLogImp
 import com.vitals.sdk.solutions.live.ISolutionDebugger
 import com.vitals.sdk.solutions.live.LiveSampledData
 import org.json.JSONArray
@@ -26,6 +26,11 @@ class SolutionDebugger : ISolutionDebugger {
 
         // Logging JSON/Base64 Logic from NativeAnalyzer
         dumpSignalLog(sampleData)
+
+        val logger = SdkManager.getLogger()
+        if (logger is SdkXLogImp) {
+            logger.appenderFlush()
+        }
     }
 
     private fun dumpStringBuilderLog(
@@ -35,6 +40,9 @@ class SolutionDebugger : ISolutionDebugger {
         leftEyeWidths: List<Int>,
         rightEyeWidths: List<Int>
     ) {
+        SdkManager.getLogger()?.d(TAG, "liveness size: ${sampleData.livenessConfidences.size}")
+        SdkManager.getLogger()?.d(TAG, "eye size: ${sampleData.leftEyeRatios.size}")
+
         val sb = StringBuilder()
         sampleData.pickedFrames.getOrNull(0)?.let { bitmap ->
             sb.appendLine("${bitmap.width}x${bitmap.height}")
