@@ -39,8 +39,9 @@ class SdkFileManager() {
         return when(dirName) {
             DATA_DIR_NAME, ->
                 Path(context.filesDir.path, VITALS_DIR_NAME, dirName).pathString
-
-            LOG_DIR_NAME, MODEL_DIR_NAME, TOMBSTONE_DIR_NAME, TEMP_DIR_NAME, ->
+            LOG_DIR_NAME, ->
+                Path((context.externalCacheDir?:context.cacheDir).path, VITALS_DIR_NAME, dirName).pathString
+            MODEL_DIR_NAME, TOMBSTONE_DIR_NAME, TEMP_DIR_NAME, ->
                 Path(context.cacheDir.path, VITALS_DIR_NAME, dirName).pathString
 
             else ->

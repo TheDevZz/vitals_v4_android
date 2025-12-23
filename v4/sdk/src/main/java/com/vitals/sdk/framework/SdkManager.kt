@@ -13,6 +13,8 @@ object SdkManager: ISdkManager {
 
     var appId: String = ""
     var secretHashKey: String = ""
+    var uuid: String = ""
+    var outUserId: String = ""
 
     private val sdkInstance: ISdkManager by lazy {
         Vitals.getSdkInstance() as ISdkManager
@@ -34,20 +36,12 @@ object SdkManager: ISdkManager {
         getContext().getSharedPreferences("vitals", Context.MODE_PRIVATE)
     }
 
-    fun getSdkDirName(): String {
-        return "vitals"
-    }
-
     fun <T> ensureAuth(action: () -> T): T {
         if (checkAuth()) {
             return action.invoke()
         } else {
             throw AuthorizationException()
         }
-    }
-
-    fun getDefaultLogDir(context: Context): String {
-        return Path(context.applicationContext.externalCacheDir!!.path, getSdkDirName(), "log").pathString
     }
 
     private val crashHandler = CrashHandler()

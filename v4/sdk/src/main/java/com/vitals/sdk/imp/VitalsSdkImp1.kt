@@ -11,6 +11,7 @@ import com.vitals.sdk.framework.DeviceInfoManager
 import com.vitals.sdk.framework.ErrCode
 import com.vitals.sdk.framework.ILogger
 import com.vitals.sdk.framework.IdentityManager
+import com.vitals.sdk.framework.SdkFileManager
 import com.vitals.sdk.framework.SdkManager
 import com.vitals.sdk.framework.SdkXLogImp
 import com.vitals.sdk.framework.VitalsException
@@ -49,7 +50,7 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
         if (vitalsSdkConfig.enableLog) {
             var logDir = vitalsSdkConfig.logDirPath
             if (logDir.isNullOrBlank()) {
-                logDir = SdkManager.getDefaultLogDir(context)
+                logDir = SdkManager.getFileManager().getDirPath(context, SdkFileManager.LOG_DIR_NAME)
             }
             mLogger = SdkXLogImp(context, logDir)
         }
@@ -99,6 +100,8 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
                 }
                 SdkManager.appId = sdkAuthenticator.appId
                 SdkManager.secretHashKey = sdkAuthenticator.secretHashKey
+                SdkManager.uuid = identityManager.getUUID()
+                SdkManager.outUserId = vitalsSdkInitOption.outUserId
                 SdkManager.handleInitialized()
             } catch (e: VitalsException) {
                 err = e

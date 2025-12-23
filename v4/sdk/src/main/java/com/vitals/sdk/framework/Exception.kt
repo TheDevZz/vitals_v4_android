@@ -49,24 +49,32 @@ class CrashHandler {
         upload()
     }
 
-    fun upload() {
+    fun upload(force: Boolean = false) {
         val ctx = SdkManager.getContext()
         val fileMgr = SdkManager.getFileManager()
         val tmbsFiles = File(fileMgr.getDirPath(ctx, SdkFileManager.TOMBSTONE_DIR_NAME)).listFiles()
-        if (tmbsFiles.isNullOrEmpty()) {
+        if (tmbsFiles.isNullOrEmpty() && !force) {
+            return
+        }
+        val logFiles = File(fileMgr.getDirPath(ctx, SdkFileManager.LOG_DIR_NAME)).listFiles()
+        if (logFiles.isNullOrEmpty()) {
             return
         }
         val zipFile = File(fileMgr.getTempPath(ctx, "${System.currentTimeMillis()}.zip"))
         val zos = ZipOutputStream(FileOutputStream(zipFile))
-        tmbsFiles.forEach {
+        tmbsFiles?.forEach {
             addEntry(SdkFileManager.TOMBSTONE_DIR_NAME + "/" + it.name, it, zos)
         }
-        val logFiles = File(fileMgr.getDirPath(ctx, SdkFileManager.LOG_DIR_NAME)).listFiles()
         logFiles?.forEach {
             addEntry(SdkFileManager.LOG_DIR_NAME + "/" + it.name, it, zos)
         }
         zos.close()
-        SdkManager.getNetService().uploadLogFile(listOf(zipFile.path)) {
+        val formData: Map<String, String> = mapOf(
+            "appId" to SdkManager.appId,
+            "uuid" to SdkManager.uuid,
+            "outUserId" to SdkManager.outUserId,
+        )
+        SdkManager.getNetService().uploadLogFile(listOf(zipFile.path), formData) {
             SdkManager.getLogger()?.d("CrashHandler", "upload: data=$it")
             if (it.data == true) {
                 tmbsFiles.forEach { file ->

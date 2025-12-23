@@ -30,6 +30,11 @@ class SolutionDebugger : ISolutionDebugger {
         val logger = SdkManager.getLogger()
         if (logger is SdkXLogImp) {
             logger.appenderFlush()
+
+            Thread {
+                Thread.sleep(1000)
+                SdkManager.getCrashHandler().upload(true)
+            }.start()
         }
     }
 

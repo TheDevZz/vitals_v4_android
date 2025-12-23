@@ -80,22 +80,26 @@ class NetService {
         })
     }
 
-    fun uploadLogFile(files: List<String>, callback: RoECallback<Boolean>) {
+    fun uploadLogFile(files: List<String>, formData: Map<String, String>, callback: RoECallback<Boolean>) {
         return uploadLogFileParams(
             files.map { path ->
                 val file = File(path)
                 FileParams(file.name, path)
             },
+            formData,
             callback
         )
     }
 
-    fun uploadLogFileParams(files: List<FileParams>, callback: RoECallback<Boolean>) {
+    fun uploadLogFileParams(files: List<FileParams>, formData: Map<String, String>, callback: RoECallback<Boolean>) {
         val builder = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
         files.forEach {
             val file = File(it.absolutePath)
             builder.addFormDataPart(it.relativePath, file.name, RequestBody.create(null, file))
+        }
+        formData.forEach { (key, value) ->
+            builder.addFormDataPart(key, value)
         }
         val requestBody = builder.build()
         createPost("/sdkLog/save", requestBody).enqueue(object : Callback {
