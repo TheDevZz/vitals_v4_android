@@ -35,6 +35,67 @@ class NativeAnalyzer: VitalsAnalyzer, INativeAnalyzer {
         return analyze(sampleData.frameQueue, modelsDir, age, gender, height, weight)
     }
 
+    fun analyzeFromJson(json: String, modelsDir: String): ResultOrException<MeasureResult> {
+        return analyzeFromJson(json, modelsDir, null, null, null, null)
+    }
+
+    fun analyzeFromJson(
+        json: String,
+        modelsDir: String,
+        age: Int,
+        gender: Gender,
+        height: Double,
+        weight: Double
+    ): ResultOrException<MeasureResult> {
+        return analyzeFromJson(json, modelsDir, age, gender, height, weight)
+    }
+
+    fun analyzeFromJson(
+        json: String,
+        modelsDir: String,
+        age: Int?,
+        gender: Gender?,
+        height: Double?,
+        weight: Double?
+    ): ResultOrException<MeasureResult> {
+        return try {
+            val jsonData = org.json.JSONObject(json)
+            val base64Pixels = jsonData.getString("base64Pixels")
+            val pixelsShape = jsonData.getJSONArray("pixelsShape")
+            val fps = jsonData.getDouble("fps")
+            val bigEndian = jsonData.optBoolean("bigEndian", false)
+
+            val byteArray = android.util.Base64.decode(base64Pixels, android.util.Base64.NO_WRAP)
+            val buffer = java.nio.ByteBuffer.wrap(byteArray)
+            buffer.order(if (bigEndian) java.nio.ByteOrder.BIG_ENDIAN else java.nio.ByteOrder.LITTLE_ENDIAN)
+
+            val frameCount = pixelsShape.getInt(0)
+            val channelCount = pixelsShape.getInt(2)
+            val pixelsV2Signal = DoubleArray(frameCount * channelCount)
+            for (i in 0 until frameCount * channelCount) {
+                pixelsV2Signal[i] = buffer.float.toDouble()
+            }
+
+            val shapeV2 = IntArray(2)
+            shapeV2[0] = frameCount
+            shapeV2[1] = channelCount
+
+            val st = System.currentTimeMillis()
+            val analyzeResult = VitalsLib.processPixelsV2(
+                pixelsV2Signal, shapeV2, fps, modelsDir,
+                age, gender?.value, height, weight
+            )
+            analyzeResult.exception?.printStackTrace()
+            val et = System.currentTimeMillis()
+            SdkManager.getLogger()?.d(TAG, "analyzeFromJson: V2 measureResult $analyzeResult , ${et - st} ms")
+            StatsReporter.updateAnalyzeCost(et - st)
+            analyzeResult
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ResultOrException(null, com.vitals.sdk.framework.VitalsException(com.vitals.sdk.framework.ErrCode.ANALYZER_FAIL, "Failed to parse JSON for analysis", e))
+        }
+    }
+
     fun analyze(
         frameQueue: List<LiveSolution.Frame>,
         modelsDir: String,

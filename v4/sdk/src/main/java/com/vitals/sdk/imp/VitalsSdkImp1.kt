@@ -13,11 +13,13 @@ import com.vitals.sdk.framework.ILogger
 import com.vitals.sdk.framework.IdentityManager
 import com.vitals.sdk.framework.SdkFileManager
 import com.vitals.sdk.framework.SdkManager
+import com.vitals.sdk.framework.SdkTestManager
 import com.vitals.sdk.framework.SdkXLogImp
 import com.vitals.sdk.framework.VitalsException
 import com.vitals.sdk.internal.SDKAuthenticator
 import com.vitals.sdk.lib.FaceLandmarkerContract
 import com.vitals.sdk.solutions.live.LiveNativeSolution
+import com.vitals.sdk.solutions.live.imp.SolutionDebugger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -75,6 +77,10 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
             val modelFiles = prepareModelFromAssets(context, arrayOf(context.cacheDir.path, "vitals", "models").joinToString(File.separator))
             FaceLandmarkerContract.faceDetectionModelPath = modelFiles[0]
             FaceLandmarkerContract.faceLandmarkerModelPath = modelFiles[1]
+
+            if (vitalsSdkConfig.enableDebug) {
+                SdkTestManager.registerSolutionDebugger(SolutionDebugger())
+            }
 
 //        val checkResult = VitalsLib.checkModels(vitalsSdkConfig.modelDirPath)
 //        if (!checkResult.ok) {

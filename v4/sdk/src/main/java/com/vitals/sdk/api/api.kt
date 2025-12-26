@@ -76,6 +76,7 @@ data class VitalsSdkConfig(
     var enableLog: Boolean = true,
     var enableStats: Boolean = false,
     var logDirPath: String? = null,
+    var enableDebug: Boolean = false,
 )
 
 interface VitalsSdkInitCallback {

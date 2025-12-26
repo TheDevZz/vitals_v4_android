@@ -6,7 +6,7 @@ import com.vitals.sdk.solutions.live.imp.SolutionDebugger
 
 object SdkTestManager {
     init {
-        registerSolutionDebugger(SolutionDebugger())
+        // registerSolutionDebugger(SolutionDebugger())
         // SdkManager.getLogger()?.let { LiveSolution.setLogImp(it) }
     }
 
