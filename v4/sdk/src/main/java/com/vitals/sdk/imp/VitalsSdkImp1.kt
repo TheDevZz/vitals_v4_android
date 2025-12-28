@@ -62,6 +62,8 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
             val activateManager = ActivateManager(SdkManager.sp)
             // 向日志打印uuid
             SdkManager.getLogger()?.i("VitalsDev", "uuid=${identityManager.getUUID()}, outUserId=${vitalsSdkInitOption.outUserId}")
+            SdkManager.getLogger()?.i("VitalsDev", "buildDate: ${com.vitals.sdk.BuildConfig.BUILD_DATE}")
+            SdkManager.flushLog()
             activateManager.executeActivation(context,
                 SdkManager.getNetService().serverUrl + "/activation/save",
                 vitalsSdkInitOption.appId,
