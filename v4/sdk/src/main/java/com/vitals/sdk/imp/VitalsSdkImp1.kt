@@ -60,6 +60,8 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
         CoroutineScope(Dispatchers.IO).launch {
             val identityManager = IdentityManager(SdkManager.sp)
             val activateManager = ActivateManager(SdkManager.sp)
+            // 向日志打印uuid
+            SdkManager.getLogger()?.i("VitalsDev", "uuid=${identityManager.getUUID()}, outUserId=${vitalsSdkInitOption.outUserId}")
             activateManager.executeActivation(context,
                 SdkManager.getNetService().serverUrl + "/activation/save",
                 vitalsSdkInitOption.appId,
