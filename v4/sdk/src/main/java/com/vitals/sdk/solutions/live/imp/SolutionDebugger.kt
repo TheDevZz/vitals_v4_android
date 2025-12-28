@@ -30,6 +30,8 @@ class SolutionDebugger : ISolutionDebugger {
         // Logging JSON/Base64 Logic from NativeAnalyzer
         dumpSignalLog(sampleData)
 
+        dumpLandmarksLog(sampleData)
+
         // Test JSON Analysis (Verification)
 //        try {
 //            val modelsDir = com.vitals.lib.Port.copyBPModels(SdkManager.getContext())
@@ -86,6 +88,12 @@ class SolutionDebugger : ISolutionDebugger {
         chunkLog(signalStr, "signal")
     }
 
+    private fun dumpLandmarksLog(sampleData: LiveSampledData) {
+        val landmarksStr = buildLandmarksJson(sampleData)
+        if (landmarksStr.isEmpty()) return
+        chunkLog(landmarksStr, "landmarks")
+    }
+
     private fun buildSignalJson(sampleData: LiveSampledData): String {
         val frameQueue = sampleData.frameQueue
         if (frameQueue.isEmpty()) return ""
@@ -118,6 +126,36 @@ class SolutionDebugger : ISolutionDebugger {
         jsonData.put("endTime", fet)
         jsonData.put("duration", duration)
         jsonData.put("fps", fps)
+
+        return jsonData.toString()
+    }
+
+    private fun buildLandmarksJson(sampleData: LiveSampledData): String {
+        val pickedLandmarks = sampleData.pickedLandmarks
+        if (pickedLandmarks.isEmpty()) return ""
+
+        val numFrames = pickedLandmarks.size
+        val numPoints = pickedLandmarks[0].size
+        val shape = intArrayOf(numFrames, numPoints, 2)
+
+        val byteArray = ByteArray(numFrames * numPoints * 2 * java.lang.Float.BYTES)
+        val buffer = ByteBuffer.wrap(byteArray)
+        pickedLandmarks.forEach { frameLandmarks ->
+            frameLandmarks.forEach { point ->
+                buffer.putFloat(point.x)
+                buffer.putFloat(point.y)
+            }
+        }
+
+        val base64Landmarks = Base64.encodeToString(byteArray, Base64.NO_WRAP)
+        val jsonData = JSONObject()
+        jsonData.put("base64Landmarks", base64Landmarks)
+        jsonData.put("landmarksShape", JSONArray(shape))
+        jsonData.put("bigEndian", buffer.order() == ByteOrder.BIG_ENDIAN)
+
+        val firstFrame = sampleData.pickedFrames.getOrNull(0)
+        jsonData.put("width", firstFrame?.width ?: 0)
+        jsonData.put("height", firstFrame?.height ?: 0)
 
         return jsonData.toString()
     }

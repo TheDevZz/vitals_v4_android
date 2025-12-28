@@ -164,6 +164,7 @@ class NativeAnalyzer: VitalsAnalyzer, INativeAnalyzer {
         analyzeResult.exception?.printStackTrace()
         et = System.currentTimeMillis()
         SdkManager.getLogger()?.d(TAG, "doAnalyze: V2 measureResult $analyzeResult , ${et - st} ms")
+        SdkManager.flushLog()
         StatsReporter.updateAnalyzeCost(et - st)
         return analyzeResult
     }

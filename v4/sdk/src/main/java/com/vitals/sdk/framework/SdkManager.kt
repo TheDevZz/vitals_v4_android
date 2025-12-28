@@ -36,6 +36,10 @@ object SdkManager: ISdkManager {
         getContext().getSharedPreferences("vitals", Context.MODE_PRIVATE)
     }
 
+    fun flushLog() {
+        com.tencent.mars.xlog.Log.appenderFlush()
+    }
+
     fun <T> ensureAuth(action: () -> T): T {
         if (checkAuth()) {
             return action.invoke()

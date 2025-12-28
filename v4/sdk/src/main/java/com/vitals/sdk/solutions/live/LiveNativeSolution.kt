@@ -20,6 +20,7 @@ interface ILiveNativeSolution {
     fun analyze(sampleData: VitalsSampledData): Result<MeasureResult>
     fun genParcelableSampledData(sampleData: VitalsSampledData): ParcelableVitalsSampledData
     fun verifyLiveness(sampleData: VitalsSampledData): Boolean
+    fun logBloodPressure(systolicBloodPressure: Float, diastolicBloodPressure: Float)
 }
 
 class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
@@ -98,6 +99,8 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
         val mean = livenessConfidences.filter { it > 0 }.average()
         val threshold = 0.915
 //        android.util.Log.d("ZZZ", "verifyLiveness mean=$mean, size=${livenessConfidences.size} : $livenessConfidences") // DEBUG
+        SdkManager.getLogger()?.d("VitalsDev", "verifyLiveness mean=$mean")
+        SdkManager.flushLog()
         if (mean <= threshold) {
             val blinkMode = true
             if (blinkMode) {
@@ -111,7 +114,8 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
                     val minEyeRatio = eyeRatios.minOrNull() ?: 0f
                     maxEyeRatio - minEyeRatio
                 }
-                SdkManager.getLogger()?.d("VitalsDev", "leftEyeRatioDiff=$leftEyeRatioDiff, rightEyeRatioDiff=$rightEyeRatioDiff") // DEBUG
+                SdkManager.getLogger()?.d("VitalsDev", "leftEyeRatioDiff=$leftEyeRatioDiff, rightEyeRatioDiff=$rightEyeRatioDiff") // DEBUGf
+                SdkManager.flushLog()
                 if (leftEyeRatioDiff > 0.08 || rightEyeRatioDiff > 0.08) {
                     return true
                 }
@@ -128,5 +132,10 @@ class LiveNativeSolution : VitalsSolution, ILiveNativeSolution {
             return lowRatio < 0.01
         }
         return true
+    }
+
+    override fun logBloodPressure(systolicBloodPressure: Float, diastolicBloodPressure: Float) {
+        SdkManager.getLogger()?.d("VitalsDev", "hbp=$systolicBloodPressure, lbp=$diastolicBloodPressure")
+        SdkManager.flushLog()
     }
 }
