@@ -33,7 +33,7 @@ std::pair<int, int> hr_get_peak_width(const std::vector<double>& d, int ind) {
     --i;
   }
   ++i;
-  
+
   temp = d[ind];
   int j = ind + 1;
   while (d[j] < temp && std::abs(j - ind) <= 5) {
@@ -197,7 +197,7 @@ double predict_stress(const std::vector<double>& rr_interval) {
 //  8 * stress - 4 + np.random.uniform(-0.3, 0.3)
   stress = 8 * stress - 4 + random_uniform(-0.3, 0.3);
 
-  return stress;
+  return std::max(0.1, std::min(5.0, stress));
 }
 
 /*
@@ -218,7 +218,7 @@ std::tuple<double, double> predict_hrv_v2(const std::vector<double>& p, double f
   std::transform(diff_ind.begin(), diff_ind.end(), rr_interval.begin(), [&fps](int it) {
     return it / fps;
     });
-  
+
   TestHelperInstance->update_hrv_data(p_tar, peak_ind, rr_interval);
 
   rr_interval = filter_data(rr_interval);
@@ -352,7 +352,7 @@ double predict_rr_v2(const std::vector<std::vector<double>>& p, double fps, int 
   sigs.push_back(lgi_1(mp));
 
   std::vector<double> rr_preds(sigs.size());
-  std::transform(sigs.begin(), sigs.end(), rr_preds.begin(), 
+  std::transform(sigs.begin(), sigs.end(), rr_preds.begin(),
     [ind_low, ind_high, frame_cnt, fps](auto& sig) {
       int pred_ind = rr_sig_predict_ind(sig, ind_low, ind_high);
       double rr_pred = (double)pred_ind / frame_cnt * fps * 60;

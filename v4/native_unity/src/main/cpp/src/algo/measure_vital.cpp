@@ -196,7 +196,7 @@ double predict_stress(const std::vector<double>& rr_interval) {
 //  8 * stress - 4 + np.random.uniform(-0.3, 0.3)
   stress = 8 * stress - 4 + random_uniform(-0.3, 0.3);
 
-  return stress;
+  return std::max(0.1, std::min(5.0, stress));
 }
 
 /*
