@@ -164,10 +164,11 @@ std::vector<double> get_rr_interval_hrvs_sdnn(const std::vector<double>& p, size
 
     if (i >= w - 1) {
       double mean = sum / w;
-      double stdev = std::sqrt(squareSum / w - mean * mean);
+      double variance = std::max(0.0, squareSum / w - mean * mean); // 防止由于浮点精度误差导致微小的负数引起 sqrt 异常
+      double stdev = std::sqrt(variance);
       double sdnn = stdev * 1000;
       result.push_back(sdnn);
-      std::cout << "sdnn: " << std::setprecision(17) << sdnn << std::endl;
+      // std::cout << "sdnn: " << std::setprecision(17) << sdnn << std::endl;
     }
   }
 
@@ -234,12 +235,14 @@ std::tuple<double, double> predict_hrv_v2(const std::vector<double>& p, double f
   //             break
   //     sdnn /= i
   if (sdnn >= 140) {
-    for (int i = 2; i < 11; ++i) {
+    int i = 2;
+    for (; i < 11; ++i) {
       if (sdnn / i <= 120) {
-        sdnn /= i;
         break;
       }
     }
+    if (i == 11) i = 10; // Python range(2, 11) 结束时 i 为 10
+    sdnn /= i;
   }
 
   double stress = predict_stress(rr_interval);
