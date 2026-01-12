@@ -101,7 +101,7 @@ std::vector<int> findPeaks(const std::vector<T> &data, const PeakParams<T> &para
   if (threshold < 0) {
     threshold = 0;
   }
-  
+
   std::vector<int> peaks;
 
   // int last_peak_idx = -1;
@@ -134,7 +134,7 @@ std::vector<int> findPeaks(const std::vector<T> &data, const PeakParams<T> &para
 
   if (distance > 1) {
     int peaks_size = peaks.size();
-    
+
     // argsort start: priority_to_position = np.argsort(data[peaks])
     // 创建一个索引向量并使用std::iota生成递增序列
     std::vector<int> priority_to_position(peaks_size);
@@ -260,14 +260,12 @@ double variance(const std::vector<T>& v) {
   }
   double m = mean(v);
 
-  // T sum_squared_diff = std::accumulate(v.begin(), v.end(), T(0), [m](T acc, T val) {
-  //   T diff = val - m;
-  //   return acc + diff * diff;
-  // });
-  // return (double)sum_squared_diff / v.size();
-
-  double sq_sum = std::inner_product(v.begin(), v.end(), v.begin(), 0.0);
-  return sq_sum / v.size() - m * m;
+  double sq_diff_sum = 0;
+  for (const auto& val : v) {
+    double diff = static_cast<double>(val) - m;
+    sq_diff_sum += diff * diff;
+  }
+  return sq_diff_sum / v.size();
 }
 
 template <typename T>
@@ -291,8 +289,12 @@ NumStats<T> calculateStats(const std::vector<T>& v) {
 
   T sum = std::accumulate(v.begin(), v.end(), T(0));
   double mean = static_cast<double>(sum) / v.size();
-  double sq_sum = std::inner_product(v.begin(), v.end(), v.begin(), 0.0);
-  double variance = sq_sum / v.size() - mean * mean;
+  double sq_diff_sum = 0;
+  for (const auto& val : v) {
+    double diff = static_cast<double>(val) - mean;
+    sq_diff_sum += diff * diff;
+  }
+  double variance = sq_diff_sum / v.size();
   double std_dev = std::sqrt(variance);
 
   return NumStats<T>{sum, mean, variance, std_dev};
@@ -467,7 +469,7 @@ inline HRFreqInfo getHR(const FFTInfo& fftInfo, double frame_rate = 30, double m
     }
     freq_ids.push_back(i);
   }
-  
+
   // fft_data = np.abs(fft_data)
   // fft_data[inds] = 0
   // bps_freq = 60.0 * freq

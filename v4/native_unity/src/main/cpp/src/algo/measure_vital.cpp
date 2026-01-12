@@ -5,6 +5,7 @@
 #include "measure_vital.hpp"
 #include "signal_processing.hpp"
 #include "test_helper.hpp"
+#include "log.hpp"
 
 #ifdef ENABLE_BP
 #include "bp_prediction.hpp"
@@ -129,12 +130,13 @@ std::vector<double> bandpass(const std::vector<double> &p, double fps, double lo
   return r;
 }
 
-
 template<typename T>
 std::vector<T> filter_data(const std::vector<T>& d) {
   auto stats = calculateStats(d);
   auto lower = stats.mean - 3 * stats.std_dev;
   auto upper = stats.mean + 3 * stats.std_dev;
+  // LOGD("filter_data: mean: %f, std: %f", stats.mean, stats.std_dev);
+  // LOGD("filter_data: lower: %f, upper: %f", lower, upper);
   std::vector<T> filtered;
   std::copy_if(d.begin(), d.end(), std::back_inserter(filtered), [lower, upper](T it){
     return lower <= it && it <= upper;
@@ -210,23 +212,38 @@ std::tuple<double, double> predict_hrv_v2(const std::vector<double>& p, double f
   double high = hr_pred_minute_to_second + 0.2;
 
   std::vector<double> p_tar = bandpass(p, fps, low, high);
+  // LOGD("p_tar: %s", vectorToString(p_tar).c_str());
   std::vector<int> peak_ind = find_peak(p_tar, 100, false);
-  // std::vector<double> peaks(peak_ind.size());
-  // std::transform(peak_ind.begin(), peak_ind.end(), peaks.begin(), [&fps](int ind) { return ind / fps; });
-  std::vector<int> diff_ind = diff(peak_ind);
-  std::vector<double> rr_interval(diff_ind.size());
-  std::transform(diff_ind.begin(), diff_ind.end(), rr_interval.begin(), [&fps](int it) {
-    return it / fps;
-  });
+  // LOGD("peak_ind: %s", vectorToString(peak_ind).c_str());
+  std::vector<double> peaks(peak_ind.size());
+  std::transform(peak_ind.begin(), peak_ind.end(), peaks.begin(), [&fps](int ind) { return ind / fps; });
+  // std::vector<int> diff_ind = diff(peak_ind);
+  // std::vector<double> rr_interval(diff_ind.size());
+  // std::transform(diff_ind.begin(), diff_ind.end(), rr_interval.begin(), [&fps](int it) {
+  //   return it / fps;
+  // });
+  std::vector<double> rr_interval = diff(peaks);
+  // LOGD("rr_interval: %s", vectorToString(rr_interval).c_str());
 
   TestHelperInstance->update_hrv_data(p_tar, peak_ind, rr_interval);
 
-  rr_interval = filter_data(rr_interval);
+  if (!rr_interval.empty()) { // 防止将空列表传入filter_data
+      auto filtered_rr = filter_data(rr_interval);
+      if (!filtered_rr.empty()) { // 防止filter_data后出现空列表
+          rr_interval = filtered_rr;
+      }
+  }
+  // LOGD("rr_interval_filter: %s", vectorToString(rr_interval).c_str());
   TestHelperInstance->update_rr_interval_filter(rr_interval);
   // get_rr_interval end >>>
 
   std::vector<double> hrvs_sdnn = get_rr_interval_hrvs_sdnn(rr_interval, 15);
+  // LOGD("peak_ind len: %d, rr_interval len: %d", peak_ind.size(), rr_interval.size());
+  // LOGD("p_tar len: %d", p_tar.size());
+  // LOGD("fps: %f", fps);
+  // LOGD("hrvs_sdnn len: %d", hrvs_sdnn.size());
   TestHelperInstance->update_sdnns(hrvs_sdnn);
+
   double sdnn = median(hrvs_sdnn);
 
   // if sdnn >= 140:
