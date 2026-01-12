@@ -159,6 +159,8 @@ std::vector<double> get_rr_interval_hrvs_sdnn(const std::vector<double>& p, size
   std::vector<double> result;
   double sum = 0, squareSum = 0;
   auto p_size = p.size();
+  // 注意：python中少计算了最后一个窗口
+  // python中的get_hrvs方法中的for i in range(l - win_len)的范围应该改为range(l - win_len + 1)
   for (int i = 0; i < p_size; ++i) {
     if (i >= w) {
       double shift_elem = p[i - w];
@@ -171,6 +173,7 @@ std::vector<double> get_rr_interval_hrvs_sdnn(const std::vector<double>& p, size
     squareSum += push_elem * push_elem;
 
     if (i >= w - 1) {
+      // 注意：此处的方差计算方法虽在数学逻辑上一致，但计算路径不同，会受浮点数精度影响
       double mean = sum / w;
       double variance = std::max(0.0, squareSum / w - mean * mean); // 防止由于浮点精度误差导致微小的负数引起 sqrt 异常
       double stdev = std::sqrt(variance);
