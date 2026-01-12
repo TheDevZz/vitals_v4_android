@@ -12,6 +12,11 @@
 #include <algorithm>
 #include <numeric>
 #include <iterator>
+#include <cmath>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/FFT>
@@ -645,6 +650,103 @@ inline std::tuple<Eigen::MatrixXd, Eigen::MatrixXd> np_linalg_qr(const Eigen::Ma
   Eigen::MatrixXd Q = qr.householderQ();
   Eigen::MatrixXd R = qr.matrixQR().template triangularView<Eigen::Upper>();
   return std::make_tuple(Q, R);
+}
+
+
+template <typename T>
+std::vector<double> lfilter(const std::vector<double>& b, const std::vector<double>& a, const std::vector<T>& x) {
+  if (a.empty() || a[0] == 0) return {};
+  std::vector<double> b_norm = b;
+  std::vector<double> a_norm = a;
+  if (a[0] != 1.0) {
+    for (auto& val : b_norm) val /= a[0];
+    for (auto& val : a_norm) val /= a[0];
+  }
+
+  size_t n = x.size();
+  size_t nb = b_norm.size();
+  size_t na = a_norm.size();
+  size_t n_coeffs = std::max(nb, na);
+
+  b_norm.resize(n_coeffs, 0.0);
+  a_norm.resize(n_coeffs, 0.0);
+
+  std::vector<double> y(n);
+  std::vector<double> zi(n_coeffs, 0.0);
+
+  for (size_t i = 0; i < n; ++i) {
+    y[i] = b_norm[0] * x[i] + zi[0];
+    for (size_t j = 1; j < n_coeffs; ++j) {
+      zi[j - 1] = b_norm[j] * x[i] - a_norm[j] * y[i] + zi[j];
+    }
+  }
+  return y;
+}
+
+/**
+ * Compute Butterworth bandpass coefficients for a 2nd order (N=2) filter.
+ * This results in a 4th order IIR filter (len(b)=5, len(a)=5)
+ * Matches scipy.signal.butter(2, [low, high], btype='band', fs=fs)
+ */
+inline void butter_bandpass_2(double low, double high, double fs, std::vector<double>& b, std::vector<double>& a) {
+  double nyq = 0.5 * fs;
+  double low_f = low / nyq;
+  double high_f = high / nyq;
+
+  // Prewarp frequencies
+  double w1 = std::tan(M_PI * low_f / 2.0);
+  double w2 = std::tan(M_PI * high_f / 2.0);
+
+  double bw = w2 - w1;
+  double w02 = w1 * w2;
+
+  // 2nd order Butterworth lowpass prototype poles: s = -1/sqrt(2) +/- j/sqrt(2)
+  // Which corresponds to s^2 + sqrt(2)s + 1 = 0
+  // Bandpass transform: s -> (p^2 + w02) / (p * bw)
+  // ((p^2 + w02)/(p*bw))^2 + sqrt(2)*((p^2 + w02)/(p*bw)) + 1 = 0
+  // (p^2 + w02)^2 + sqrt(2)*bw*p*(p^2 + w02) + (bw*p)^2 = 0
+  // p^4 + 2*w02*p^2 + w02^2 + sqrt(2)*bw*p^3 + sqrt(2)*bw*w02*p + bw^2*p^2 = 0
+  // p^4 + (sqrt(2)*bw)*p^3 + (2*w02 + bw^2)*p^2 + (sqrt(2)*bw*w02)*p + w02^2 = 0
+
+  // Bilinear transform: p -> (z-1)/(z+1)
+  // This is algebraically tedious, but we can use the denominator coefficients directly:
+  double d4 = 1.0;
+  double d3 = std::sqrt(2.0) * bw;
+  double d2 = 2.0 * w02 + bw * bw;
+  double d1 = std::sqrt(2.0) * bw * w02;
+  double d0 = w02 * w02;
+
+  // Substitute p = (z-1)/(z+1) and multiply by (z+1)^4
+  // D(z) = d4(z-1)^4 + d3(z-1)^3(z+1) + d2(z-1)^2(z+1)^2 + d1(z-1)(z+1)^3 + d0(z+1)^4
+  // (z-1)^4 = z^4 - 4z^3 + 6z^2 - 4z + 1
+  // (z-1)^3(z+1) = z^4 - 2z^3 + 0z^2 + 2z - 1
+  // (z-1)^2(z+1)^2 = z^4 + 0z^3 - 2z^2 + 0z + 1
+  // (z-1)(z+1)^3 = z^4 + 2z^3 + 0z^2 - 2z - 1
+  // (z+1)^4 = z^4 + 4z^3 + 6z^2 + 4z + 1
+
+  a.assign(5, 0.0);
+  a[0] = d4 + d3 + d2 + d1 + d0;
+  a[1] = -4*d4 - 2*d3 + 0*d2 + 2*d1 + 4*d0;
+  a[2] = 6*d4 + 0*d3 - 2*d2 + 0*d1 + 6*d0;
+  a[3] = -4*d4 + 2*d3 + 0*d2 - 2*d1 + 4*d0;
+  a[4] = d4 - d3 + d2 - d1 + d0;
+
+  // Numerator for bandpass: (bw*p)^2 * (p*bw)^N ... No, careful.
+  // Analog numerator was (bw*p)^2 = bw^2 * p^2
+  // After bilinear: bw^2 * (z-1)^2 * (z+1)^2 = bw^2 * (z^2 - 1)^2 = bw^2 * (z^4 - 2z^2 + 1)
+  b.assign(5, 0.0);
+  b[0] = bw * bw;
+  b[1] = 0;
+  b[2] = -2.0 * bw * bw;
+  b[3] = 0;
+  b[4] = bw * bw;
+
+  // Normalization
+  double norm = a[0];
+  for (int i = 0; i < 5; ++i) {
+    a[i] /= norm;
+    b[i] /= norm;
+  }
 }
 
 } // namespace signal

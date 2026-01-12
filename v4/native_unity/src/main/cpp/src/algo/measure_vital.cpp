@@ -99,7 +99,7 @@ std::tuple<double, double> predict_hr_v2(const std::vector<std::vector<double>>&
   return predict_hr_v2(fft_data, frame_cnt, fps, low, high);
 }
 
-std::vector<double> bandpass(const std::vector<double> &p, double fps, double low, double high) {
+std::vector<double> bandpass_fft(const std::vector<double> &p, double fps, double low, double high) {
   int frame_cnt = p.size();
   double ind_low = low * frame_cnt / fps;
   double ind_high = high * frame_cnt / fps;
@@ -128,6 +128,12 @@ std::vector<double> bandpass(const std::vector<double> &p, double fps, double lo
   Eigen::VectorXd ifft = eigenFFT.inv(fft, frame_cnt / 2 * 2);
   std::vector<double> r(ifft.data(), ifft.data() + ifft.size());
   return r;
+}
+
+std::vector<double> bandpass(const std::vector<double> &p, double fps, double low, double high) {
+  std::vector<double> b, a;
+  butter_bandpass_2(low, high, fps, b, a);
+  return lfilter(b, a, p);
 }
 
 template<typename T>
