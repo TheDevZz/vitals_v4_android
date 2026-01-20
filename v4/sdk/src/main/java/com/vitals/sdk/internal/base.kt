@@ -1,5 +1,6 @@
 package com.vitals.sdk.internal
 
+import com.vitals.sdk.api.FaceResult
 import com.vitals.sdk.api.FaceState
 import com.vitals.sdk.api.Gender
 import com.vitals.sdk.api.SamplerEventListener
@@ -53,6 +54,10 @@ abstract class AbsSampler: ISampler {
 
     protected fun notifySampledData(sampledData: VitalsSampledData) {
         mEventListener?.onSampledData(sampledData)
+    }
+
+    protected fun notifyFaceResult(faceResult: FaceResult) {
+        mEventListener?.onFaceResult(faceResult)
     }
 
     protected fun notifyError(e: VitalsRuntimeException) {

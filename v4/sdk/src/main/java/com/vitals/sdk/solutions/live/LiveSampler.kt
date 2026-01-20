@@ -1,15 +1,16 @@
 package com.vitals.sdk.solutions.live
 
 import android.content.Context
+import android.graphics.PointF
 import androidx.camera.view.PreviewView
 import androidx.lifecycle.LifecycleOwner
+import com.vitals.sdk.api.FaceResult
 import com.vitals.sdk.api.FaceState
 import com.vitals.sdk.api.SamplerState
 import com.vitals.sdk.api.VitalsSampler
 import com.vitals.sdk.framework.SdkManager
 import com.vitals.sdk.framework.VitalsException
 import com.vitals.sdk.internal.AbsSampler
-import com.vitals.sdk.solutions.core.FaceChecker
 import com.vitals.sdk.solutions.core.FaceChecker.FaceOutType
 import com.vitals.sdk.solutions.core.SolutionUtils
 import com.vitals.sdk.solutions.live.imp.LiveSolution
@@ -64,7 +65,8 @@ class LiveSampler: AbsSampler(), VitalsSampler {
                 }
                 LiveSolution.Event.FACE_RESULT -> {
                     data?.let {
-                        val faceCheckResult = it as FaceChecker.FaceCheckResult
+                        val faceResultEvent = it as LiveSolution.FaceResultEvent
+                        val faceCheckResult = faceResultEvent.faceCheckResult
                         val faceOutType = faceCheckResult.faceOutType
                         if (faceOutType != preFaceOutType) {
                             preFaceOutType = faceOutType
@@ -85,6 +87,15 @@ class LiveSampler: AbsSampler(), VitalsSampler {
                         }
                         val quality = SolutionUtils.calcQuality(faceCheckResult)
                         notifyQualityChange(quality)
+                        if (faceResultEvent.frameWidth != null && faceResultEvent.frameHeight != null) {
+                            val normalizedLandmarks: List<List<PointF>> =
+                                faceResultEvent.faceResult?.faceLandmarks()?.map { faceLandmarks ->
+                                    faceLandmarks.map { normalizedLandmark ->
+                                        PointF(normalizedLandmark.x, normalizedLandmark.y)
+                                    }
+                                } ?: emptyList()
+                            notifyFaceResult(FaceResult(faceResultEvent.frameWidth, faceResultEvent.frameHeight, normalizedLandmarks))
+                        }
                     }
                 }
                 LiveSolution.Event.PROGRESS -> {

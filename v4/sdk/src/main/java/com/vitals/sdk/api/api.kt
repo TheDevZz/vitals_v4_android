@@ -1,5 +1,6 @@
 package com.vitals.sdk.api
 
+import android.graphics.PointF
 import android.os.Parcelable
 
 class AuthorizationException : Exception("SDK authentication failed, please initialize the SDK first or reauthorize.")
@@ -53,12 +54,19 @@ enum class SamplerEvent {
     PROGRESS,
 }
 
+data class FaceResult(
+    var width: Int,
+    var height: Int,
+    var normalizedLandmarks: List<List<PointF>>,
+)
+
 interface SamplerEventListener {
     fun onFaceStateChange(state: FaceState)
     fun onSamplerStateChange(state: SamplerState)
     fun onProgressChange(progress: Float, remainingTimeMs: Long)
     fun onQualityChange(quality: Int)
     fun onSampledData(sampledData: VitalsSampledData)
+    fun onFaceResult(faceResult: FaceResult)
     fun onError(e: VitalsRuntimeException)
 }
 

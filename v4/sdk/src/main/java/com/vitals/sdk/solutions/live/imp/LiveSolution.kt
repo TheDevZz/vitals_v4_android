@@ -86,6 +86,12 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
 
     class StateChangeEvent(val from: State, val to: State)
     class ProgressEvent(val progress: Float, val remainingTimeMs: Long)
+    class FaceResultEvent(
+        val faceCheckResult: FaceChecker.FaceCheckResult,
+        val faceResult: FaceLandmarkerResult?,
+        val frameWidth: Int?,
+        val frameHeight: Int?
+    )
 
     private lateinit var mainExecutor: Executor
     private lateinit var previewView: PreviewView
@@ -484,7 +490,12 @@ class LiveSolution(private val context: Context, private val lifecycleOwner: Lif
         val now = System.currentTimeMillis()
 
         if (state != State.END && state != State.ANALYZE) { // 结束后不再回调
-            emitEvent(Event.FACE_RESULT, frame.faceCheckResult!!)
+            emitEvent(Event.FACE_RESULT, FaceResultEvent(
+                frame.faceCheckResult!!,
+                frame.faceResult,
+                frame.frame?.width,
+                frame.frame?.height
+            ))
         }
 
         val faceGood = faceOutType == FaceChecker.FaceOutType.FACE_OUT_TYPE_PASS

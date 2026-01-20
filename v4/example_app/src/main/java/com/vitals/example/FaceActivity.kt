@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.graphics.Outline
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewOutlineProvider
 import android.view.WindowManager
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.vitals.example.databinding.ActivityFaceBinding
+import com.vitals.sdk.api.FaceResult
 import com.vitals.sdk.api.FaceState
 import com.vitals.sdk.api.SamplerEventListener
 import com.vitals.sdk.api.SamplerState
@@ -122,6 +124,11 @@ class FaceActivity : AppCompatActivity() {
                         vitalsSampler.reset()
                     }
                     .show()
+            }
+
+            override fun onFaceResult(faceResult: FaceResult) {
+//                Log.d("ZZZ", "${faceResult.width}x${faceResult.height}, landmarks size: ${faceResult.normalizedLandmarks.size}")
+//                Log.d("ZZZ", "Points: ${faceResult.normalizedLandmarks.getOrNull(0)?.subList(0, 5)?.joinToString()}")
             }
 
             override fun onError(e: VitalsRuntimeException) {
