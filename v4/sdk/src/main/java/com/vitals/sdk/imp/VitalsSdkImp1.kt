@@ -50,11 +50,15 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
         SdkManager.getNetService().serverUrl = "https://api.facemed.ai/open-service/face-detect/sdk"
 
         if (vitalsSdkConfig.enableLog) {
-            var logDir = vitalsSdkConfig.logDirPath
-            if (logDir.isNullOrBlank()) {
-                logDir = SdkManager.getFileManager().getDirPath(context, SdkFileManager.LOG_DIR_NAME)
+            try {
+                var logDir = vitalsSdkConfig.logDirPath
+                if (logDir.isNullOrBlank()) {
+                    logDir = SdkManager.getFileManager().getDirPath(context, SdkFileManager.LOG_DIR_NAME)
+                }
+                mLogger = SdkXLogImp(context, logDir)
+            } catch (t: Throwable) {
+                mLogger = null
             }
-            mLogger = SdkXLogImp(context, logDir)
         }
 
         CoroutineScope(Dispatchers.IO).launch {
