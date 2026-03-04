@@ -37,6 +37,7 @@ enum class FaceState {
     TOO_FAR, // 距离太远
     TOO_DARK, // 面部区域太暗
     UNSTEADY, // 画面不稳定
+    POOR_ANGLE, // 角度不符合要求
 }
 
 enum class SamplerState {

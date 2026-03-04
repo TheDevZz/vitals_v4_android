@@ -173,6 +173,7 @@ class FaceActivity : AppCompatActivity() {
             FaceState.TOO_DARK -> "光线太暗"
             FaceState.UNSTEADY -> "请保持静止，检测期间不要移动"
             FaceState.OK -> "请保持脸部稳定，勿中途退出"
+            FaceState.POOR_ANGLE -> "请正对镜头"
         }
     }
 }

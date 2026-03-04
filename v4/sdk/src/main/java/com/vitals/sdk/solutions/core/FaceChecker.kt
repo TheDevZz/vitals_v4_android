@@ -35,6 +35,7 @@ class FaceChecker {
         FACE_OUT_TYPE_MULTI_FACE,
         FACE_OUT_TYPE_OUT_BOX,
         FACE_OUT_TYPE_FAR,
+        FACE_OUT_TYPE_ANGLE,
         FACE_OUT_TYPE_DARK,
         FACE_OUT_TYPE_SHAKE,
         FACE_OUT_TYPE_PASS,
@@ -150,6 +151,12 @@ class FaceChecker {
         faceCheckResult.setFarProportion(farProportion)
         if (farProportion < THRESHOLD_FAR_PROPORTION) {
             return faceCheckResult.setFaceOutType(FaceOutType.FACE_OUT_TYPE_FAR)
+        }
+
+        // 判断角度，返回FACE_OUT_TYPE_ANGLE
+        val yaw = calculateYaw(normalizedLandmarks, inputBitmap.width, inputBitmap.height)
+        if (abs(yaw) > 30f) {
+            return faceCheckResult.setFaceOutType(FaceOutType.FACE_OUT_TYPE_ANGLE)
         }
 
         var sum = 0
@@ -293,5 +300,19 @@ class FaceChecker {
             (p1.y() + p2.y()) / 2,
 //            (p1.z() + p2.z()) / 2
         )
+    }
+
+    private fun calculateYaw(landmarks: List<NormalizedLandmark>, width: Int, height: Int): Float {
+        val leftEye = convertPoint(landmarks[33], width, height)
+        val rightEye = convertPoint(landmarks[263], width, height)
+        val noseBridge = convertPoint(landmarks[6], width, height)
+
+        val leftDistance = distance(leftEye, noseBridge)
+        val rightDistance = distance(rightEye, noseBridge)
+
+        if (leftDistance + rightDistance == 0f) return 0f
+
+        val ratio = (leftDistance - rightDistance) / (leftDistance + rightDistance)
+        return ratio * 90f
     }
 }

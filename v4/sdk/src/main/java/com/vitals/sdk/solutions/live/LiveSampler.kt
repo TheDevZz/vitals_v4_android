@@ -75,6 +75,7 @@ class LiveSampler: AbsSampler(), VitalsSampler {
                                 FaceOutType.FACE_OUT_TYPE_MULTI_FACE -> FaceState.MULTI_FACE
                                 FaceOutType.FACE_OUT_TYPE_OUT_BOX -> FaceState.OUT_OF_FRAME
                                 FaceOutType.FACE_OUT_TYPE_FAR -> FaceState.TOO_FAR
+                                FaceOutType.FACE_OUT_TYPE_ANGLE -> FaceState.POOR_ANGLE
                                 FaceOutType.FACE_OUT_TYPE_DARK -> FaceState.TOO_DARK
                                 FaceOutType.FACE_OUT_TYPE_SHAKE -> FaceState.UNSTEADY
                                 FaceOutType.FACE_OUT_TYPE_PASS -> FaceState.OK
