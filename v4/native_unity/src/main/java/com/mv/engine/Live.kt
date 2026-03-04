@@ -13,6 +13,7 @@ class Live : Component() {
 
     @Keep
     private var nativeHandler: Long
+    private val mNativeLock = Any()
 
     init {
         nativeHandler = createInstance()
@@ -21,7 +22,12 @@ class Live : Component() {
     override fun createInstance(): Long = allocate()
 
     override fun destroy() {
-        deallocate()
+        synchronized(mNativeLock) {
+            if (nativeHandler != 0L) {
+                deallocate()
+                nativeHandler = 0L
+            }
+        }
     }
 
     fun loadModel(assetManager: AssetManager): Int {
@@ -32,7 +38,13 @@ class Live : Component() {
             return -1
         }
 
-        return nativeLoadModel(assetManager, configs)
+        synchronized(mNativeLock) {
+            return if (nativeHandler != 0L) {
+                nativeLoadModel(assetManager, configs)
+            } else {
+                -1
+            }
+        }
     }
 
     fun detect(
@@ -46,28 +58,36 @@ class Live : Component() {
             throw IllegalArgumentException("Invalid yuv data")
         }
 
-        return nativeDetectYuv(
-            yuv,
-            previewWidth,
-            previewHeight,
-            orientation,
-            faceBox.left,
-            faceBox.top,
-            faceBox.right,
-            faceBox.bottom
-        )
+        synchronized(mNativeLock) {
+            if (nativeHandler == 0L) return 0f
+            return nativeDetectYuv(
+                yuv,
+                previewWidth,
+                previewHeight,
+                orientation,
+                faceBox.left,
+                faceBox.top,
+                faceBox.right,
+                faceBox.bottom
+            )
+        }
     }
 
-    fun detect(bitmap: Bitmap, faceBox: FaceBox): Float = when (bitmap.config) {
-        Bitmap.Config.ARGB_8888 -> nativeDetectBitmap(
-            bitmap,
-            faceBox.left,
-            faceBox.top,
-            faceBox.right,
-            faceBox.bottom
-        )
+    fun detect(bitmap: Bitmap, faceBox: FaceBox): Float {
+        synchronized(mNativeLock) {
+            if (nativeHandler == 0L) return 0f
+            return when (bitmap.config) {
+                Bitmap.Config.ARGB_8888 -> nativeDetectBitmap(
+                    bitmap,
+                    faceBox.left,
+                    faceBox.top,
+                    faceBox.right,
+                    faceBox.bottom
+                )
 
-        else -> throw IllegalArgumentException("Invalid bitmap config value")
+                else -> throw IllegalArgumentException("Invalid bitmap config value")
+            }
+        }
     }
 
     private fun parseConfig(assetManager: AssetManager): List<ModelConfig> {

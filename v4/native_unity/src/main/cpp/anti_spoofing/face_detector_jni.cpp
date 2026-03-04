@@ -86,15 +86,20 @@ FACE_DETECTOR_METHOD(allocate)(JNIEnv *env, jobject instance) {
 
 JNIEXPORT void JNICALL
 FACE_DETECTOR_METHOD(deallocate)(JNIEnv *env, jobject instance) {
-    delete get_face_detector(env, instance);
-    set_face_detector(env, instance, nullptr);
+    FaceDetector *detector = get_face_detector(env, instance);
+    if (detector != nullptr) {
+        delete detector;
+        set_face_detector(env, instance, nullptr);
+    }
 }
 
 
 JNIEXPORT jint JNICALL
 FACE_DETECTOR_METHOD(nativeLoadModel)(JNIEnv *env, jobject instance, jobject assets_manager) {
+    FaceDetector *detector = get_face_detector(env, instance);
+    if (detector == nullptr) return -1;
     AAssetManager *mgr = AAssetManager_fromJava(env, assets_manager);
-    return get_face_detector(env, instance)->LoadModel(mgr);
+    return detector->LoadModel(mgr);
 }
 
 JNIEXPORT jobject JNICALL
@@ -104,8 +109,11 @@ FACE_DETECTOR_METHOD(nativeDetectBitmap)(JNIEnv *env, jobject instance, jobject 
     if (ret != 0)
         return nullptr;
 
+    FaceDetector *detector = get_face_detector(env, instance);
+    if (detector == nullptr) return nullptr;
+
     std::vector<FaceBox> boxes;
-    get_face_detector(env, instance)->Detect(img, boxes);
+    detector->Detect(img, boxes);
 
     AndroidBitmap_unlockPixels(env, bitmap);
 
@@ -121,8 +129,14 @@ FACE_DETECTOR_METHOD(nativeDetectYuv)(JNIEnv *env, jobject instance, jbyteArray 
     Yuv420sp2bgr(reinterpret_cast<unsigned char *>(yuv_), preview_width, preview_height,
                  orientation, bgr);
 
+    FaceDetector *detector = get_face_detector(env, instance);
+    if (detector == nullptr) {
+        env->ReleaseByteArrayElements(yuv, yuv_, 0);
+        return nullptr;
+    }
+
     std::vector<FaceBox> boxes;
-    get_face_detector(env, instance)->Detect(bgr, boxes);
+    detector->Detect(bgr, boxes);
 
     env->ReleaseByteArrayElements(yuv, yuv_, 0);
 

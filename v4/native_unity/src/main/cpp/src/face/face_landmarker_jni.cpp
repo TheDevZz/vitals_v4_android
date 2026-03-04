@@ -35,14 +35,18 @@ Java_com_vitals_sdk_lib_FaceLandmarker_createFaceLandmarker(JNIEnv *env, jobject
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_vitals_sdk_lib_FaceLandmarker_releaseFaceLandmarker(JNIEnv *env, jobject thiz, jlong ptr) {
-    delete (FaceLandmarker*) ptr;
+    if (ptr != 0) {
+        delete (FaceLandmarker*) ptr;
+    }
 }
 
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_vitals_sdk_lib_FaceLandmarker_nativeSetNumFaces(JNIEnv *env, jobject thiz, jlong ptr,
                                                          jint num_faces) {
-    ((FaceLandmarker*) ptr)->num_faces = num_faces;
+    if (ptr != 0) {
+        ((FaceLandmarker *) ptr)->num_faces = num_faces;
+    }
 }
 
 extern "C"
@@ -51,6 +55,7 @@ Java_com_vitals_sdk_lib_FaceLandmarker_nativeDetect(JNIEnv *env, jobject thiz,
                                                     jlong ptr, jbyteArray data,
                                                     jint width, jint height)
 {
+    if (ptr == 0) return 0;
     jbyte* byte = env->GetByteArrayElements(data, nullptr);
     cv::Mat img(height, width, CV_8UC3, byte);
     auto faceLandmarker = (FaceLandmarker*) ptr;
@@ -64,6 +69,7 @@ extern "C"
 JNIEXPORT jlong JNICALL
 Java_com_vitals_sdk_lib_FaceLandmarker_nativeDetectBitmap(JNIEnv *env, jobject thiz,
                                                           jlong ptr, jobject bitmap) {
+    if (ptr == 0) return 0;
     cv::Mat img;
     vitals::RGBABitmapToRGBMat(env, bitmap, img);
     auto faceLandmarker = (FaceLandmarker*) ptr;

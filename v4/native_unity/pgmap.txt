@@ -2,8 +2,8 @@
 # compiler_version: 8.3.37
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 5a5a6f1
-# pg_map_hash: SHA-256 5a5a6f1677c38b44e2e48932a2e8195457cff1761cf4c15b141485b322312bb9
+# pg_map_id: 644621a
+# pg_map_hash: SHA-256 644621aea17974e9aa994311d7faa3665bda6ed6328e6dfa80921735e5241dd2
 com.google.mediapipe.framework.image.BitmapImageBuilder -> vnl.a.a:
 # {"id":"sourceFile","fileName":"BitmapImageBuilder.kt"}
     android.graphics.Bitmap bitmap -> a
@@ -396,9 +396,10 @@ com.mv.engine.FaceDetector$WhenMappings -> com.mv.engine.FaceDetector$a:
     int[] $EnumSwitchMapping$0 -> a
 com.mv.engine.Live -> com.mv.engine.Live:
 # {"id":"sourceFile","fileName":"Live.kt"}
-    com.mv.engine.Live$Companion Companion -> a
+    java.lang.Object mNativeLock -> a
+    com.mv.engine.Live$Companion Companion -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lcom/mv/engine/Live$a;"}
-    java.lang.String tag -> b
+    java.lang.String tag -> c
     1:1:void com.mv.engine.Live$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
     1:1:void <clinit>():0 -> <clinit>
     2:2:void <clinit>():0:0 -> <clinit>
@@ -542,7 +543,8 @@ com.vitals.lib.model.VitalsModelManager$CheckResult -> vnl.h.a$a:
 com.vitals.sdk.lib.FaceLandmarker -> com.vitals.sdk.lib.FaceLandmarker:
 # {"id":"sourceFile","fileName":"FaceLandmarker.kt"}
     long mNativePtr -> a
-    com.vitals.sdk.lib.FaceLandmarker$Companion Companion -> b
+    java.lang.Object mNativeLock -> b
+    com.vitals.sdk.lib.FaceLandmarker$Companion Companion -> c
       # {"id":"com.android.tools.r8.residualsignature","signature":"Lcom/vitals/sdk/lib/FaceLandmarker$a;"}
     1:1:void com.vitals.sdk.lib.FaceLandmarker$Companion.<init>(kotlin.jvm.internal.DefaultConstructorMarker):0:0 -> <clinit>
     1:1:void <clinit>():0 -> <clinit>

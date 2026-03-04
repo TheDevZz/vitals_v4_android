@@ -9,6 +9,7 @@ class FaceDetector : Component() {
 
     @Keep
     private var nativeHandler: Long
+    private val mNativeLock = Any()
 
     init {
         nativeHandler = createInstance()
@@ -16,11 +17,24 @@ class FaceDetector : Component() {
 
     override fun createInstance(): Long = allocate()
 
-    fun loadModel(assetsManager: AssetManager): Int = nativeLoadModel(assetsManager)
+    fun loadModel(assetsManager: AssetManager): Int {
+        synchronized(mNativeLock) {
+            return if (nativeHandler != 0L) {
+                nativeLoadModel(assetsManager)
+            } else {
+                -1
+            }
+        }
+    }
 
-    fun detect(bitmap: Bitmap): List<FaceBox> = when (bitmap.config) {
-        Bitmap.Config.ARGB_8888 -> nativeDetectBitmap(bitmap) ?: emptyList()
-        else -> throw IllegalArgumentException("Invalid bitmap config value")
+    fun detect(bitmap: Bitmap): List<FaceBox> {
+        synchronized(mNativeLock) {
+            if (nativeHandler == 0L) return emptyList()
+            return when (bitmap.config) {
+                Bitmap.Config.ARGB_8888 -> nativeDetectBitmap(bitmap) ?: emptyList()
+                else -> throw IllegalArgumentException("Invalid bitmap config value")
+            }
+        }
     }
 
     fun detect(
@@ -32,11 +46,20 @@ class FaceDetector : Component() {
         if (previewWidth * previewHeight * 3 / 2 != yuv.size) {
             throw IllegalArgumentException("Invalid yuv data")
         }
-        return nativeDetectYuv(yuv, previewWidth, previewHeight, orientation)
+        synchronized(mNativeLock) {
+            if (nativeHandler == 0L) return emptyList()
+            return nativeDetectYuv(yuv, previewWidth, previewHeight, orientation)
+        }
     }
 
-
-    override fun destroy() = deallocate()
+    override fun destroy() {
+        synchronized(mNativeLock) {
+            if (nativeHandler != 0L) {
+                deallocate()
+                nativeHandler = 0L
+            }
+        }
+    }
 
     //////////////////////////////// Native ////////////////////////////////////
     @Keep

@@ -10,6 +10,7 @@ class FaceLandmarker {
     }
 
     private var mNativePtr: Long = 0
+    private val mNativeLock = Any()
 
     private enum class RunningMode {
         IMAGE,
@@ -20,23 +21,41 @@ class FaceLandmarker {
         faceDetectionModelPath: String,
         faceLandmarkerModelPath: String,
     ) {
-        if (mNativePtr == 0L) {
-            mNativePtr = createFaceLandmarker(faceDetectionModelPath, faceLandmarkerModelPath)
+        synchronized(mNativeLock) {
+            if (mNativePtr == 0L) {
+                mNativePtr = createFaceLandmarker(faceDetectionModelPath, faceLandmarkerModelPath)
+            }
         }
     }
 
     fun release() {
-        if (mNativePtr != 0L) {
-            releaseFaceLandmarker(mNativePtr)
+        synchronized(mNativeLock) {
+            if (mNativePtr != 0L) {
+                releaseFaceLandmarker(mNativePtr)
+                mNativePtr = 0L
+            }
         }
     }
 
     fun setNumFaces(count: Int) {
-        nativeSetNumFaces(mNativePtr, count)
+        synchronized(mNativeLock) {
+            if (mNativePtr != 0L) {
+                nativeSetNumFaces(mNativePtr, count)
+            }
+        }
     }
 
     fun detect(image: Image): List<List<NormalizedLandmark>> {
-        val multiFaceLandmarksHolderPtr = nativeDetect(mNativePtr, image.data, image.width, image.height)
+        val multiFaceLandmarksHolderPtr = synchronized(mNativeLock) {
+            if (mNativePtr != 0L) {
+                nativeDetect(mNativePtr, image.data, image.width, image.height)
+            } else {
+                0L
+            }
+        }
+        if (multiFaceLandmarksHolderPtr == 0L) {
+            return emptyList()
+        }
         val multiFaceLandmarks = ArrayList<List<NormalizedLandmark>>()
         var id = 0
         while(true) {
@@ -57,7 +76,16 @@ class FaceLandmarker {
     }
 
     fun detect(bitmap: Bitmap): List<List<NormalizedLandmark>> {
-        val multiFaceLandmarksHolderPtr = nativeDetectBitmap(mNativePtr, bitmap)
+        val multiFaceLandmarksHolderPtr = synchronized(mNativeLock) {
+            if (mNativePtr != 0L) {
+                nativeDetectBitmap(mNativePtr, bitmap)
+            } else {
+                0L
+            }
+        }
+        if (multiFaceLandmarksHolderPtr == 0L) {
+            return emptyList()
+        }
         val multiFaceLandmarks = ArrayList<List<NormalizedLandmark>>()
         var id = 0
         while(true) {

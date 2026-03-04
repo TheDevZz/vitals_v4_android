@@ -99,8 +99,11 @@ LIVE_METHOD(allocate)(JNIEnv *env, jobject instance) {
 
 JNIEXPORT void JNICALL
 LIVE_METHOD(deallocate)(JNIEnv *env, jobject instance) {
-    delete get_live(env, instance);
-    set_live(env, instance, nullptr);
+    Live *live = get_live(env, instance);
+    if (live != nullptr) {
+        delete live;
+        set_live(env, instance, nullptr);
+    }
 }
 
 JNIEXPORT jint JNICALL
@@ -109,8 +112,11 @@ LIVE_METHOD(nativeLoadModel)(JNIEnv *env, jobject instance, jobject asset_manage
     std::vector<ModelConfig> model_configs;
     ConvertAndroidConfig2NativeConfig(env, configs, model_configs);
 
+    Live *live = get_live(env, instance);
+    if (live == nullptr) return -1;
+
     AAssetManager *mgr = AAssetManager_fromJava(env, asset_manager);
-    return get_live(env, instance)->LoadModel(mgr, model_configs);
+    return live->LoadModel(mgr, model_configs);
 }
 
 
@@ -130,7 +136,13 @@ LIVE_METHOD(nativeDetectYuv)(JNIEnv *env, jobject instance, jbyteArray yuv, jint
     faceBox.x2 = right;
     faceBox.y2 = bottom;
 
-    float confidence = get_live(env, instance)->Detect(bgr, faceBox);
+    Live *live = get_live(env, instance);
+    if (live == nullptr) {
+        env->ReleaseByteArrayElements(yuv, yuv_, 0);
+        return 0.f;
+    }
+
+    float confidence = live->Detect(bgr, faceBox);
     env->ReleaseByteArrayElements(yuv, yuv_, 0);
     return confidence;
 }
@@ -149,7 +161,13 @@ LIVE_METHOD(nativeDetectBitmap)(JNIEnv *env, jobject instance, jobject bitmap, j
     faceBox.x2 = right;
     faceBox.y2 = bottom;
 
-    float confidence = get_live(env, instance)->Detect(img, faceBox);
+    Live *live = get_live(env, instance);
+    if (live == nullptr) {
+        AndroidBitmap_unlockPixels(env, bitmap);
+        return 0.f;
+    }
+
+    float confidence = live->Detect(img, faceBox);
 
     AndroidBitmap_unlockPixels(env, bitmap);
 
