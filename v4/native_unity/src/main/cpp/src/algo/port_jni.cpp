@@ -514,6 +514,8 @@ Java_com_vitals_lib_Port_nativeProcessPixelsV2Fea___3D_3IDLjava_lang_String_2IID
         static std::mt19937 gen(rd());
         static std::uniform_real_distribution<double> dis(-0.5, 0.5);
         res.stress = latest_res->stress + dis(gen);
+        // 2/3加权
+        res.spo2 = (latest_res->spo2 + res.spo2 + res.spo2) / 3.0;
     }
 
     vitals::saveMeasureResult(env, thiz, res);
