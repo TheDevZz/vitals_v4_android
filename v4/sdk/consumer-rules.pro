@@ -1,4 +1,6 @@
 #-keep class com.vitals.sdk.api.** { *; }
--keep class com.tencent.mars.xlog.** { *; }
+-keepclassmembers class com.tencent.mars.** {
+    native <methods>;
+}
 
 -keep class com.vitals.sdk.parcel.** { *; }

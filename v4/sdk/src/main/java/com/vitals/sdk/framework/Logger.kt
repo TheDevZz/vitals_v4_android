@@ -60,7 +60,7 @@ internal class SdkXLogImp(context: Context, logDirPath: String? = null): Xlog(),
 
     private fun setup(context: Context, logDirPath: String?) {
         System.loadLibrary("c++_shared");
-        System.loadLibrary("marsxlog");
+        System.loadLibrary("vxlog");
 
         val logPath = if (logDirPath.isNullOrEmpty()) {
             SdkManager.getFileManager().getDirPath(context, SdkFileManager.LOG_DIR_NAME)
@@ -138,7 +138,7 @@ internal class XLogImp(context: Context, logDirPath: String? = null): Xlog(), IL
 
     private fun setup(context: Context, logDirPath: String?) {
         System.loadLibrary("c++_shared");
-        System.loadLibrary("marsxlog");
+        System.loadLibrary("vxlog");
 
         val logPath = if (logDirPath.isNullOrEmpty()) {
             context.externalCacheDir!!.path + "/vitals/log"

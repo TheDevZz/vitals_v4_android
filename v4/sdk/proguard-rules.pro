@@ -31,6 +31,10 @@
 -keepclassmembers interface com.vitals.sdk.solutions.live.ILiveSampler { *; }
 -keepclassmembers interface com.vitals.sdk.internal.ISampler { *; }
 
+-keepclassmembers class com.tencent.mars.** {
+    native <methods>;
+}
+
 #-dontshrink
 -flattenpackagehierarchy vs
 -printmapping pgmap.txt
