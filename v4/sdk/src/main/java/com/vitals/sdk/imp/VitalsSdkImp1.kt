@@ -147,9 +147,27 @@ abstract class VitalsSdkImp1 : AbsSdkBase(), IVitalsSdkImp1 {
             "face_landmark.tflite",
         ).map { filename ->
             File(modelDir, filename).let { file ->
-                if (!file.exists()) {
-                    file.outputStream().use { os ->
-                        context.assets.open(filename).copyTo(os)
+                // 获取 Asset 文件大小以用于校验
+                val assetSize = try {
+                    context.assets.openFd(filename).use { it.length }
+                } catch (t: Throwable) {
+                    // 如果文件被压缩，openFd 会抛出异常（或者对于部分系统 API 不支持）
+                    -1L
+                }
+
+                // 校验逻辑：文件不存在 OR (检测到有效 Asset 大小且本地大小不匹配)
+                val needsCopy = !file.exists() || (assetSize != -1L && file.length() != assetSize)
+
+                if (needsCopy) {
+                    try {
+                        context.assets.open(filename).use { inputStream ->
+                            file.outputStream().use { outputStream ->
+                                inputStream.copyTo(outputStream)
+                            }
+                        }
+                    } catch (t: Throwable) {
+                        // 打印日志以便排查
+                        SdkManager.getLogger()?.e("VitalsSdk", "Failed to copy model $filename from assets", t)
                     }
                 }
                 file.path
